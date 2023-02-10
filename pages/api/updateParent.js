@@ -4,9 +4,9 @@ import { parentTable, getMinifiedRecord } from './utils/airtable';
 
 export default async (req, res) => {
     // const { user } = await auth0.getSession(req);
-    const { id, fields } = req.body;
+    const { Family_ID, fields } = req.body;
     try {
-        const updatedRecords = await parentTable.update([{id, fields}]);
+        const updatedRecords = await parentTable.update([{Family_ID, fields}]);
         res.statusCode = 200;
         res.json(getMinifiedRecord(updatedRecords[0]));
     } catch (error) {
