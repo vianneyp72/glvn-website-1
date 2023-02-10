@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f43e3c3-b9ae-46ba-8a4c-9de0677a6a36" name="Changes" comment="" />
+    <list default="true" id="8f43e3c3-b9ae-46ba-8a4c-9de0677a6a36" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/ParentPortal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +23,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LWWa2DYjyNAIINrSXMJAOmtOu3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -26,16 +35,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/dinhj/IdeaProjects/glvn-landing-page",
+    "last_opened_file_path": "C:/Users/dinhj/Desktop/Software Development Projects/glvn-website",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\dinhj\\Documents\\GitHub\\glvn-website\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\dinhj\\Desktop\\Software Development Projects\\glvn-website\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dinhj\Desktop\Software Development Projects\glvn-website\pages" />
+      <recent name="C:\Users\dinhj\Desktop\Software Development Projects\glvn-website\components" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,6 +62,7 @@
       <workItem from="1675987380005" duration="92000" />
       <workItem from="1675988383124" duration="578000" />
       <workItem from="1675993019518" duration="8869000" />
+      <workItem from="1676056707456" duration="3346000" />
     </task>
     <servers />
   </component>
