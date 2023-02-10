@@ -6,10 +6,13 @@ function LandingPage() {
     return (
         <main>
             <title>GLVN</title>
+
             <div className="flex justify-center">
                 <Image src="/GLVN_Minimal.png" alt="GLVN Icon" width={600} height={500}></Image>
             </div><br></br>
+
             <div className="flex justify-evenly">
+
                 <div className="teacher-portal">
                     <h1 className="text-4xl">Teacher Portal</h1>
                     <div className="mt-4 text-2xl text-center">
@@ -21,6 +24,7 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
+
                 <div className="parent-portal">
                     <h1 className="text-4xl">Parent Portal</h1>
                     <div className="mt-4 text-2xl text-center">
@@ -33,6 +37,7 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
+
             </div>
         </main>
     );
