@@ -10,8 +10,6 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main>
-        {/*<NavBar />*/}
-        {/*<RegForm />*/}
         <LandingPage />
     </main>
   )
