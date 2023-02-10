@@ -4,7 +4,8 @@ import Link from 'next/link'
 
 function LandingPage() {
     return (
-        <body>
+        <main>
+            <title>GLVN</title>
             <div className="flex justify-center">
                 <Image src="/GLVN_Minimal.png" alt="GLVN Icon" width={600} height={500}></Image>
             </div><br></br>
@@ -27,18 +28,13 @@ function LandingPage() {
                         <p>Absent Student</p>
                         <p>Teacher Contact</p>
                         <p>Schedule/Calendar</p>
-                        {/*<button className="container mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 content-start">*/}
-                        {/*    Visit!</button>*/}
-
-                        {/*<a href="/components/ParentPortal" className="rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4">Visit!</a>*/}
-
                         <div className="mt-8">
                             <Link href="/ParentPortal" className="rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4">Visit!</Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </body>
+        </main>
     );
 }
 
