@@ -1,6 +1,6 @@
 import { parentTable, getMinifiedRecord, minifyRecords } from './utils/airtable';
 // import auth0 from './utils/auth0';
-//wheeze
+//wheeze number 2
 
 export default async (req, res) => {
     // const { user } = await auth0.getSession(req);
