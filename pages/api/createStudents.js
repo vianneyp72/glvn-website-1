@@ -3,9 +3,9 @@ import { studentTable, getMinifiedRecord, minifyRecords } from './utils/airtable
 
 export default async (req, res) => {
     // const { user } = await auth0.getSession(req);
-    const {Grade, Saint_Name, First_Name, Last_Name, Birthday, Baptism_Date, First_Communion_Date} = req.body;
+    const {Family_ID, Grade, Saint_Name, First_Name, Last_Name, Birthday, Baptism_Date, First_Communion_Date} = req.body;
     try {
-        const createdRecords = await studentTable.create([{fields: {Grade, Saint_Name, First_Name, Last_Name, Birthday, Baptism_Date, First_Communion_Date}}]);
+        const createdRecords = await studentTable.create([{fields: {Family_ID, Grade, Saint_Name, First_Name, Last_Name, Birthday, Baptism_Date, First_Communion_Date}}]);
         const createdRecord = {
             id: createdRecords[0].id,
             fields: createdRecords[0].fields
