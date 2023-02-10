@@ -6,9 +6,9 @@ export default async (req, res) => {
     // const { user } = await auth0.getSession(req);
     const { id, fields } = req.body;
     try {
-        const updatedRecord = await parentTable.update([{id, fields}]);
+        const updatedRecords = await parentTable.update([{id, fields}]);
         res.statusCode = 200;
-        res.json(getMinifiedRecord(updatedRecord));
+        res.json(getMinifiedRecord(updatedRecords[0]));
     } catch (error) {
         console.error(error);
         res.statusCode = 500;
