@@ -3,9 +3,9 @@ import { parentTable, getMinifiedRecord, minifyRecords } from './utils/airtable'
 
 export default async (req, res) => {
     // const { user } = await auth0.getSession(req);
-    const {Father_Name} = req.body;
+    const {Father_Name, Mother_Name} = req.body;
     try {
-        const createdRecords = await parentTable.create([{fields: {Father_Name}}]);
+        const createdRecords = await parentTable.create([{fields: {Father_Name, Mother_Name}}]);
         const createdRecord = {
             id: createdRecords[0].id,
             fields: createdRecords[0].fields
