@@ -179,9 +179,6 @@ const Form = () => {
               onChange={handleChange}
             />
           </div>
-          <h1>
-            ____________________________________________________________________________________________________________________________
-          </h1>
           <div className="my-4 mt-10">
             <label
               className="block text-gray-700 font-medium mb-2"
