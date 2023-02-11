@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import Image from "next/image";
+import Router from "next/client";
 export default function ParentPortal () {
     return (
         <>
