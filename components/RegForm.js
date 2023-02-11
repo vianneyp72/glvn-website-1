@@ -2,12 +2,14 @@ import React, { useState } from "react";
 
 const Form = () => {
   const [formData, setFormData] = useState({
-    fatherName: "",
-    fatherPhone: "",
-    fatherEmail: "",
-    motherName: "",
-    motherEmail: "",
-    motherPhone: "",
+    pg1_first_name: "",
+    pg1_last_name: "",
+    pg1_phone: "",
+    pg1_email: "",
+    pg2_first_name: "",
+    pg2_last_name: "",
+    pg2_phone: "",
+    pg2_email: "",
     address: "",
     studentSaintName: "",
     studentFirstName: "",
@@ -33,13 +35,13 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-orange-200 ">
       <>
-        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10">
+        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-300">
           GLVN Registration Form 2023-2024
         </p>
         <form
           onSubmit={handleSubmit}
           className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10"
-        >
+          >
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm shadow-md">
             Parent Information
           </h2>
@@ -50,7 +52,7 @@ const Form = () => {
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg1_first_name"
-            >
+              >
               Parent/Guardian 1 Name:
             </label>
             <div className="flex space-x-3">
@@ -62,11 +64,11 @@ const Form = () => {
                 id="pg1_first_name"
                 value={formData.pg1_first_name}
                 onChange={handleChange}
-              />
+                />
               <label
                 className="block text-gray-700 font-medium mb-2"
                 htmlFor="pg1_first_name"
-              ></label>
+                ></label>
               <input
                 placeholder="Last Name"
                 className="w-full border border-gray-400 p-2 rounded"
@@ -75,14 +77,14 @@ const Form = () => {
                 id="pg1_last_name"
                 value={formData.pg1_last_name}
                 onChange={handleChange}
-              />
+                />
             </div>
           </div>
           <div className="my-4">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg1_phone"
-            >
+              >
               Parent/Guardian 1 Phone #:
             </label>
             <input
@@ -93,13 +95,13 @@ const Form = () => {
               id="pg1_phone"
               value={formData.pg1_phone}
               onChange={handleChange}
-            />
+              />
           </div>
           <div className="my-4">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg1_email"
-            >
+              >
               Parent/Guardian 1 Email:
             </label>
             <input
@@ -110,7 +112,7 @@ const Form = () => {
               id="pg1_email"
               value={formData.pg1_email}
               onChange={handleChange}
-            />
+              />
           </div>
           <h3 className="text-lg font-bold text-center p-4 rounded-sm underline ">
             PARENT/GUARDIAN 2 INFORMATION
@@ -118,7 +120,7 @@ const Form = () => {
           <label
             className="block text-gray-700 font-medium mb-2"
             htmlFor="pg2_first_name"
-          >
+            >
             Parent/Guardian 2 Name:
           </label>
           <div className="flex space-x-3">
@@ -130,11 +132,11 @@ const Form = () => {
               id="pg2_first_name"
               value={formData.pg2_first_name}
               onChange={handleChange}
-            />
+              />
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg2_last_name"
-            ></label>
+              ></label>
             <input
               placeholder="Last Name"
               className="w-full border border-gray-400 p-2 rounded"
@@ -143,13 +145,13 @@ const Form = () => {
               id="pg2_last_name"
               value={formData.pg2_last_name}
               onChange={handleChange}
-            />
+              />
           </div>
           <div className="my-4">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg2_phone"
-            >
+              >
               Parent/Guardian 2 Phone #:
             </label>
             <input
@@ -160,13 +162,13 @@ const Form = () => {
               id="pg2_phone"
               value={formData.pg2_phone}
               onChange={handleChange}
-            />
+              />
           </div>
           <div className="my-4">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="pg2_email"
-            >
+              >
               Parent/Guardian 2 Email:
             </label>
             <input
@@ -177,13 +179,13 @@ const Form = () => {
               id="pg2_email"
               value={formData.pg2_email}
               onChange={handleChange}
-            />
+              />
           </div>
           <div className="my-4 mt-10">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="address"
-            >
+              >
               Address:
             </label>
             <input
@@ -193,7 +195,7 @@ const Form = () => {
               id="address"
               value={formData.address}
               onChange={handleChange}
-            />
+              />
           </div>
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm mt-10 shadow-md">
             Student Information
@@ -202,7 +204,7 @@ const Form = () => {
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="studentSaintName"
-            >
+              >
               Student's Saint Name
             </label>
             <input
@@ -213,12 +215,12 @@ const Form = () => {
               id="studentSaintName"
               value={formData.studentSaintName}
               onChange={handleChange}
-            />
+              />
           </div>
           <label
             className="block text-gray-700 font-medium mb-2"
             htmlFor="studentFirstName"
-          >
+            >
             Student's Name:
           </label>
           <div className="flex space-x-3">
@@ -230,11 +232,11 @@ const Form = () => {
               id="studentFirstName"
               value={formData.studentFirstName}
               onChange={handleChange}
-            />
+              />
               <label
                 className="block text-gray-700 font-medium mb-2"
                 htmlFor="studentLastName"
-              ></label>
+                ></label>
               <input
                 placeholder="Last Name"
                 className="w-full border border-gray-400 p-2 rounded"
@@ -243,13 +245,13 @@ const Form = () => {
                 id="studentLastName"
                 value={formData.studentLastName}
                 onChange={handleChange}
-              />
+                />
           </div>
           <div className="my-4">
             <label
               className="block text-gray-700 font-medium mb-2"
               htmlFor="studentDOB"
-            >
+              >
               Student's Date of Birth
             </label>
             <input
@@ -296,7 +298,7 @@ const Form = () => {
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm mt-10 mb-10 shadow-md">
             Payment Information
           </h2>
-          <button className="container bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 content-start">
+          <button className="container bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 content-between font-bold text-lg ">
             Register!
           </button>
         </form>
