@@ -1,3 +1,4 @@
+
 import NavBar from '../components/NavBarParents'
 import RegForm from '../components/RegForm'
 
