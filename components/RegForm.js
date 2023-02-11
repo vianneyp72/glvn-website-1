@@ -31,7 +31,9 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-4xl my-6 bg-orange-200 shadow-md rounded p-10">
+    <div className='min-h-screen bg-orange-200 '>
+    <><p className="text-2xl font-bold text-grey-800 text-center">GLVN Registration 2023-2024</p>
+    <form onSubmit={handleSubmit} className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10">
       <h2 className="text-lg font-bold text-center">Parent Information</h2>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="fatherName">
@@ -43,8 +45,7 @@ const Form = () => {
           name="fatherName"
           id="fatherName"
           value={formData.fatherName}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="fatherPhone">
@@ -56,8 +57,7 @@ const Form = () => {
           name="fatherPhone"
           id="fatherPhone"
           value={formData.fatherPhone}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="fatherEmail">
@@ -69,8 +69,7 @@ const Form = () => {
           name="fatherEmail"
           id="fatherEmail"
           value={formData.fatherEmail}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="motherName">
@@ -82,8 +81,7 @@ const Form = () => {
           name="motherName"
           id="motherName"
           value={formData.motherName}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="motherPhone">
@@ -95,8 +93,7 @@ const Form = () => {
           name="motherPhone"
           id="motherPhone"
           value={formData.motherPhone}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="motherEmail">
@@ -108,8 +105,7 @@ const Form = () => {
           name="motherEmail"
           id="motherEmail"
           value={formData.motherEmail}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
@@ -121,8 +117,7 @@ const Form = () => {
           name="address"
           id="address"
           value={formData.address}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <h2 className="text-lg font-bold mt-8 text-center">Student Information</h2>
       <div className="my-4">
@@ -135,8 +130,7 @@ const Form = () => {
           name="studentSaintName"
           id="studentSaintName"
           value={formData.studentSaintName}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="studentFirstName">
@@ -148,8 +142,7 @@ const Form = () => {
           name="studentFirstName"
           id="studentFirstName"
           value={formData.studentFirstName}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="studentLastName">
@@ -161,8 +154,7 @@ const Form = () => {
           name="studentLastName"
           id="studentLastName"
           value={formData.studentLastName}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="studentDOB">
@@ -174,8 +166,7 @@ const Form = () => {
           name="studentDOB"
           id="studentDOB"
           value={formData.studentDOB}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="studentBaptismDate">
@@ -187,8 +178,7 @@ const Form = () => {
           name="studentBaptismDate"
           id="studentBaptismDate"
           value={formData.studentBaptismDate}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <div className="my-4">
         <label className="block text-gray-700 font-medium mb-2" htmlFor="studentFirstCommunionDate">
@@ -200,13 +190,13 @@ const Form = () => {
           name="studentFirstCommunionDate"
           id="studentFirstCommunionDate"
           value={formData.studentFirstCommunionDate}
-          onChange={handleChange}
-        />
+          onChange={handleChange} />
       </div>
       <button className="container bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 content-start">
         Register!
       </button>
-    </form>
+    </form></>
+          </div>
   )
 }
 
