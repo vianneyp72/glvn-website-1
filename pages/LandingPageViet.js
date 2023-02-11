@@ -1,22 +1,22 @@
 import Link from "next/link";
 import Image from 'next/image'
 
-function LandingPage() {
+function LandingPageViet() {
     return (
         <main className="bg-[url('/LandingPageBackgroundEdit.png')] h-screen w-screen">
             <title>GLVN</title>
             <div className="flex justify-center">
-                <button onClick={()=> {history.go(0);}}>
+                <Link href="/">
                     <Image src="/GLVN_Minimal_small.png" alt="GLVN Icon" width={600} height={500}></Image>
-                </button>
+                </Link>
             </div><br></br>
 
             <div className="flex justify-evenly px-96">
 
                 <div className="teacher-portal rounded-3xl bg-fuchsia-200/75 py-8 px-8 flex flex-col items-center justify-between">
-                    <h1 className="text-6xl font-bold text-neutral-700">Teacher Portal</h1>
+                    <h1 className="text-6xl font-bold text-neutral-700">Thầy Giáo Portal</h1>
                     <ul className="mt-4 text-4xl text-white text-center space-y-2">
-                        <li>Class Lists</li>
+                        <li>Danh Sách Lớp</li>
                         <li>Attendance</li>
                         <li>Directory</li>
                     </ul>
@@ -26,7 +26,7 @@ function LandingPage() {
                 </div>
 
                 <div className="parent-portal rounded-3xl bg-fuchsia-200/75 py-8 px-8 flex flex-col items-center justify-between">
-                    <h1 className="text-6xl font-bold text-neutral-700">Parent Portal</h1>
+                    <h1 className="text-6xl font-bold text-neutral-700">Cha Mẹ Portal</h1>
                     <ul className="mt-4 text-4xl text-white text-center space-y-2">
                         <li>Registration</li>
                         <li>Absent Student</li>
@@ -40,12 +40,12 @@ function LandingPage() {
 
             </div>
             <footer className="flex h-10 justify-end ">
-                <Link href="/LandingPageViet" className="rounded bg-red-500 hover:bg-red-600 text-white py-2 px-4">
-                    Translate to Viet!
+                <Link href="/" className="rounded bg-red-500 hover:bg-red-600 text-white py-2 px-4">
+                    Translate to English!
                 </Link>
             </footer>
         </main>
     );
 }
 
-export default LandingPage;
+export default LandingPageViet;

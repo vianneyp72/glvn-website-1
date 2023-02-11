@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f43e3c3-b9ae-46ba-8a4c-9de0677a6a36" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/glvn-website.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="461637c9-b9a6-4093-a6e6-cd1037785d9b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/LandingPageViet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LandingPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/ParentPortal.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/ParentPortal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/TeacherPortal.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/TeacherPortal.js" afterDir="false" />
     </list>
@@ -25,7 +22,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2LWWa2DYjyNAIINrSXMJAOmtOu3" />
+  <component name="ProjectId" id="2LZwpbxZfv9WCUo29fNZA7q2TpY" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -38,36 +35,26 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dinhj/Desktop/Software Development Projects/glvn-website&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dinhj\\Desktop\\Software Development Projects\\glvn-website\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\dinhj\Desktop\Software Development Projects\glvn-website\pages" />
-      <recent name="C:\Users\dinhj\Desktop\Software Development Projects\glvn-website\components" />
-    </key>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8f43e3c3-b9ae-46ba-8a4c-9de0677a6a36" name="Changes" comment="" />
-      <created>1675987378355</created>
+      <changelist id="461637c9-b9a6-4093-a6e6-cd1037785d9b" name="Changes" comment="" />
+      <created>1676092100147</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675987378355</updated>
-      <workItem from="1675987380005" duration="92000" />
-      <workItem from="1675988383124" duration="578000" />
-      <workItem from="1675993019518" duration="8869000" />
-      <workItem from="1676056707456" duration="3723000" />
-      <workItem from="1676064933519" duration="1979000" />
+      <updated>1676092100147</updated>
+      <workItem from="1676092101381" duration="1429000" />
+      <workItem from="1676094087184" duration="1007000" />
+      <workItem from="1676145455249" duration="51000" />
     </task>
     <servers />
   </component>
