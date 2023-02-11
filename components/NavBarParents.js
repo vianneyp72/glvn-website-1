@@ -1,12 +1,19 @@
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-
+import Image from 'next/image'
 
 function Navbar() {
   const { user } = useUser();
   return (
-    <nav className="container flex justify-between items-center py-4 px-10 mx-11">
-      <p className="text-2xl font-bold text-grey-800">GLVN Registration 2023-2024</p>
+    <nav className="flex justify-between items-center px-5 mx-10 my-2">
+      <div>
+        <Image
+          src="/GLVN_Minimal_small.png"
+          alt="GLVN Icon"
+          width={150}
+          height={150}
+        ></Image>
+      </div>
       <div className="flex">
         {user && (
           <a
