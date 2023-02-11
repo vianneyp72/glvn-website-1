@@ -153,7 +153,7 @@ const Form = () => {
               Parent/Guardian 2 Phone #:
             </label>
             <input
-            placeholder="(000)-000-0000"
+              placeholder="(000)-000-0000"
               className="w-full border border-gray-400 p-2 rounded"
               type="tel"
               name="pg2_phone"
@@ -209,6 +209,7 @@ const Form = () => {
               Student's Saint Name
             </label>
             <input
+              placeholder="ex. St.Thomas Aquinas"
               className="w-full border border-gray-400 p-2 rounded"
               type="text"
               name="studentSaintName"
@@ -217,14 +218,15 @@ const Form = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="my-4">
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="studentFirstName"
-            >
-              Student's First Name
-            </label>
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="studentFirstName"
+          >
+            Student's Name:
+          </label>
+          <div className="flex space-x-3">
             <input
+              placeholder="First Name"
               className="w-full border border-gray-400 p-2 rounded"
               type="text"
               name="studentFirstName"
@@ -232,22 +234,19 @@ const Form = () => {
               value={formData.studentFirstName}
               onChange={handleChange}
             />
-          </div>
-          <div className="my-4">
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="studentLastName"
-            >
-              Student's Last Name
-            </label>
-            <input
-              className="w-full border border-gray-400 p-2 rounded"
-              type="text"
-              name="studentLastName"
-              id="studentLastName"
-              value={formData.studentLastName}
-              onChange={handleChange}
-            />
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                htmlFor="studentLastName"
+              ></label>
+              <input
+                placeholder="Last Name"
+                className="w-full border border-gray-400 p-2 rounded"
+                type="text"
+                name="studentLastName"
+                id="studentLastName"
+                value={formData.studentLastName}
+                onChange={handleChange}
+              />
           </div>
           <div className="my-4">
             <label
