@@ -1,18 +1,21 @@
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from 'next/image'
+import Link from "next/link";
 
 function Navbar() {
   const { user } = useUser();
   return (
     <nav className="flex justify-between items-center px-5 mx-10 my-2">
       <div>
-        <Image
-          src="/GLVN_Minimal_small.png"
-          alt="GLVN Icon"
-          width={150}
-          height={150}
-        ></Image>
+          <Link href="/">
+              <Image
+                  src="/GLVN_Minimal_small.png"
+                  alt="GLVN Icon"
+                  width={150}
+                  height={150}
+              ></Image>
+          </Link>
       </div>
       <div className="flex">
         {user && (
