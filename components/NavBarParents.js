@@ -5,7 +5,7 @@ import Image from 'next/image'
 function Navbar() {
   const { user } = useUser();
   return (
-    <nav className="flex justify-between items-center px-5 mx-10 my-2">
+    <nav className="flex justify-between items-center px-5 mx-10 py-2">
       <div>
         <Image
           src="/GLVN_Minimal_small.png"
