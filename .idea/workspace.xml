@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="461637c9-b9a6-4093-a6e6-cd1037785d9b" name="Changes" comment="" />
+    <list default="true" id="461637c9-b9a6-4093-a6e6-cd1037785d9b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/TeacherPortal.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/TeacherPortal.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +38,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dinhj\\Desktop\\Software Development Projects\\glvn-website\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -51,10 +56,21 @@
       <workItem from="1676145455249" duration="51000" />
       <workItem from="1676145780012" duration="60000" />
       <workItem from="1676218860591" duration="8160000" />
+      <workItem from="1676244882970" duration="146000" />
+      <workItem from="1676245038398" duration="37000" />
+      <workItem from="1676245083290" duration="605000" />
+      <workItem from="1676320810272" duration="184000" />
+      <workItem from="1676321197692" duration="631000" />
+      <workItem from="1676354481577" duration="942000" />
+      <workItem from="1676491947988" duration="605000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

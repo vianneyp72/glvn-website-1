@@ -4,7 +4,7 @@ import Image from 'next/image'
 function LandingPage() {
     return (
         // FIND POSSIBLE WAY TO SCALE WEB APP
-        <main className="bg-[url('/LandingPageBackground.png')] h-screen w-screen">
+        <main className="bg-[url('/LandingPageBackground.png')] bg-cover h-screen w-screen">
             <title>GLVN</title>
             <div className="flex justify-center">
                 <button onClick={()=> {history.go(0);}}>
@@ -12,9 +12,9 @@ function LandingPage() {
                 </button>
             </div><br></br>
 
-            <div className="flex justify-evenly px-96">
+            <div className="flex justify-evenly px-96 mr-20">
 
-                <div className="teacher-portal rounded-3xl bg-fuchsia-200/75 py-8 px-8 flex flex-col items-center justify-between">
+                <div className="teacher-portal rounded-3xl bg-fuchsia-200/75 py-5 px-5 flex flex-col items-center justify-between">
                     <h1 className="text-6xl font-bold text-neutral-700">Teacher Portal</h1>
                     <ul className="mt-4 text-4xl text-white text-center space-y-4">
                         <li>Class Lists</li>
@@ -26,7 +26,7 @@ function LandingPage() {
                     </div>
                 </div>
 
-                <div className="parent-portal rounded-3xl bg-fuchsia-200/75 py-8 px-8 flex flex-col items-center justify-between">
+                <div className="parent-portal rounded-3xl bg-fuchsia-200/75 py-5 px-5 flex flex-col items-center justify-between">
                     <h1 className="text-6xl font-bold text-neutral-700">Parent Portal</h1>
                     <ul className="mt-4 text-4xl text-white text-center space-y-4">
                         <li>Registration</li>
