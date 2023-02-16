@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import NavBarParents from "../components/NavBarParents";
 
-export default function ParentPortal () {
+export default function SchedulePage () {
     return (
         <main className="bg-[url('/ClassListBackground.png')] bg-cover h-screen w-screen">
             <NavBarParents/>
