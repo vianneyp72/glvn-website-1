@@ -1,5 +1,5 @@
 import Link from 'next/link'
-export default function TeacherPortal () {
+export default function TeacherPortal() {
     return (
         <main className="bg-[url('/TeacherPortalBackground.png')] bg-cover h-screen w-screen">
             <div>

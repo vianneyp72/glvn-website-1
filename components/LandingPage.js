@@ -3,7 +3,6 @@ import Image from 'next/image'
 
 function LandingPage() {
     return (
-        // FIND POSSIBLE WAY TO SCALE WEB APP
         <main className="bg-[url('/LandingPageBackground.png')] bg-cover h-screen w-screen">
             <title>GLVN</title>
             <div className="flex justify-center">

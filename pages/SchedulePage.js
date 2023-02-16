@@ -1,6 +1,6 @@
 import NavBarParents from "../components/NavBarParents";
 
-export default function SchedulePage () {
+export default function SchedulePage() {
     return (
         <main className="bg-[url('/ClassListBackground.png')] bg-cover h-screen w-screen">
             <NavBarParents/>

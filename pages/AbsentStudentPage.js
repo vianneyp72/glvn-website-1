@@ -1,6 +1,6 @@
 import NavBarParents from "../components/NavBarParents";
 
-export default function AbsentStudentPage () {
+export default function AbsentStudentPage() {
     return (
         <main className="bg-[url('/AbsentStudentBackground.png')] bg-cover h-screen w-screen">
             <NavBarParents/>
