@@ -11,11 +11,11 @@ export default function ParentPortal () {
                 <ul className="mt-4 rounded-2xl text-4xl text-neutral-600 font-bold text-center space-y-24">
                     <li><Link href="/registration-page" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-64 shadow-lg hover:shadow-2xl">
                         Registration</Link></li>
-                    <li><Link href="/" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-60 shadow-lg hover:shadow-2xl">
+                    <li><Link href="/AbsentStudentPage" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-60 shadow-lg hover:shadow-2xl">
                         Absent Student</Link></li>
-                    <li><Link href="/" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-60 shadow-lg hover:shadow-2xl">
+                    <li><Link href="/TeacherContactPage" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-60 shadow-lg hover:shadow-2xl">
                         Teacher Contact</Link></li>
-                    <li><Link href="/" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-52 shadow-lg hover:shadow-2xl">
+                    <li><Link href="/SchedulePage" className="rounded-3xl bg-blue-200 hover:bg-blue-300 py-4 px-52 shadow-lg hover:shadow-2xl">
                         Schedule/Calendar</Link></li>
                 </ul>
             </div>
