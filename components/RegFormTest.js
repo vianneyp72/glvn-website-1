@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 import { useForm } from "react-hook-form";
 
 const Form = () => {
@@ -15,13 +16,23 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-orange-200 ">
       <>
-        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-300">
-          GLVN Registration Form 2023-2024
+        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-200">
+
         </p>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10"
         >
+          <p className="flex justify-between text-2xl font-bold text-grey-800 text-center px-8 pt-10 pb-10 mb-2 bg-orange-300">
+          <Image
+                  src="/GLVN_Minimal_small.png"
+                  alt="GLVN Icon"
+                  width={150}
+                  height={150}
+              ></Image>
+          GLVN Registration Form 2023-2024
+        </p>
+        
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm shadow-md">
             Parent Information
           </h2>
@@ -478,12 +489,12 @@ const Form = () => {
               Payment Information
             </h2>
 
-            <div className="my-4">
+            <div className="my-4 flex justify-center">
               <button
-                className="container bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 content-between font-bold text-lg"
+                className=" bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 font-bold text-lg"
                 type="submit"
               >
-                Submit
+                Register!
               </button>
             </div>
           </div>
