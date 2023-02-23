@@ -277,7 +277,7 @@ const Form = () => {
                     {...register("City", {
                       required: true,
                       pattern: {
-                        value: /^[A-Za-z.]+$/i,
+                        value: /^[A-Za-z. ]+$/i,
                         message: "invalid city name",
                       },
                     })}
