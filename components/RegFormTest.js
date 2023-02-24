@@ -29,7 +29,7 @@ const Form = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10"
         >
-          <div className="flex justify-between text-2xl px-8 pt-10 pb-10 mb-2 bg-orange-300">
+          <div className="flex justify-between text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-orange-300">
             <div>
               <Image
                 src="/GLVN_Minimal_small.png"
