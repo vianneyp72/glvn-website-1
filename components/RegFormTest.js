@@ -564,7 +564,7 @@ const Form = () => {
 
             <div className="my-4 flex justify-center">
               <button
-                className=" bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 font-bold text-lg"
+                className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 font-bold text-lg"
                 type="submit"
               >
                 Register!
