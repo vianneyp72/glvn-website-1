@@ -23,15 +23,20 @@ const Form = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10"
         >
-          <p className="flex justify-between text-2xl font-bold text-grey-800 text-center px-8 pt-10 pb-10 mb-2 bg-orange-300">
-          <Image
+          <div className="flex justify-between text-2xl px-8 pt-10 pb-10 mb-2 bg-orange-300">
+            <div>
+              <Image
                   src="/GLVN_Minimal_small.png"
                   alt="GLVN Icon"
                   width={150}
                   height={150}
               ></Image>
-          GLVN Registration Form 2023-2024
-        </p>
+            </div>
+            <div>
+              <p className="font-bold text-4xl">GLVN Registration Form</p>
+              <p>2023-2024</p>
+            </div>
+          </div>
         
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm shadow-md">
             Parent Information
@@ -488,6 +493,27 @@ const Form = () => {
             <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm mt-10 mb-10 shadow-md">
               Payment Information
             </h2>
+
+            <div className="flex justify-center">
+              <div>
+                <ul>
+                  <li className="border-4 border-r-0 border-black px-3"> Lop 2 - First Communion </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Lop 9 - Pre-Confirmation Retreat </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Lop 10 - Confirmation Retreat </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Cleaning Fee (Per Family) </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Late Fee </li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li className="border-4 border-black px-3">  + $100.00 </li>
+                  <li className="border-4 border-t-0 border-black px-3">  + $150.00 </li>
+                  <li className="border-4 border-t-0 border-black px-3">  + $300.00 </li>
+                  <li className="border-4 border-t-0 border-black px-3">  + $25.00 </li>
+                  <li className="border-4 border-t-0 border-black px-3">  + $20.00 per child </li>
+                </ul>
+              </div>
+            </div>
 
             <div className="my-4 flex justify-center">
               <button
