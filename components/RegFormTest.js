@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
+import { useForm, Control, useFieldArray } from "react-hook-form";
 import axios from "axios";
 
 const Form = () => {
@@ -8,7 +8,13 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
+
+  const { fields, append, remove } = useFieldArray({
+    name: "students_cart",
+    control,
+  });
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -354,6 +360,21 @@ const Form = () => {
             <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm shadow-md mt-10 mb-10">
               Student Information
             </h2>
+
+            {/* {fields.map((field, index) => {
+              return (
+                <section key={field.id}>
+                  <label>
+                    <span>Name</span>
+                    <input {...register(`students_cart.${index}.name`)} />
+                  </label>
+                  <label>
+                    <span>amount</span>
+                    <input {...register(`students_cart.${index}.amount`)} />
+                  </label>
+                </section>
+              );
+            })} */}
 
             <div className="my-4">
               <label
