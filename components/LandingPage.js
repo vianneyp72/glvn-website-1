@@ -15,7 +15,7 @@ function LandingPage() {
                 <div className="teacher-portal rounded-3xl bg-fuchsia-200/75 py-5 px-5 flex flex-col items-center justify-between">
                     <h1 className="text-6xl font-bold text-neutral-700">
                         Teacher Portal</h1>
-                    <ul className="mt-4 text-4xl text-white text-center space-y-4">
+                    <ul className="mt-4 font-bold text-4xl text-white text-center space-y-4">
                         <li>Class Lists</li>
                         <li>Attendance</li>
                         <li>Directory</li>
@@ -30,7 +30,7 @@ function LandingPage() {
                 <div className="parent-portal rounded-3xl bg-fuchsia-200/75 py-5 px-5 flex flex-col items-center justify-between">
                     <h1 className="text-6xl font-bold text-neutral-700">
                         Parent Portal</h1>
-                    <ul className="mt-4 text-4xl text-white text-center space-y-4">
+                    <ul className="mt-4 font-bold text-4xl text-white text-center space-y-4">
                         <li>Registration</li>
                         <li>Absent Student</li>
                         <li>Teacher Contact</li>
