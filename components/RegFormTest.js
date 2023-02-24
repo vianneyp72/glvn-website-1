@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
@@ -9,16 +9,14 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (e) => {
+    console.log(e);
   };
 
   return (
     <div className="min-h-screen bg-orange-200 ">
       <>
-        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-200">
-
-        </p>
+        <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-200"></p>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mx-auto max-w-4xl my-6 bg-orange-100 shadow-md rounded p-10"
@@ -26,10 +24,10 @@ const Form = () => {
           <div className="flex justify-between text-2xl px-8 pt-10 pb-10 mb-2 bg-orange-300">
             <div>
               <Image
-                  src="/GLVN_Minimal_small.png"
-                  alt="GLVN Icon"
-                  width={150}
-                  height={150}
+                src="/GLVN_Minimal_small.png"
+                alt="GLVN Icon"
+                width={150}
+                height={150}
               ></Image>
             </div>
             <div>
@@ -37,7 +35,7 @@ const Form = () => {
               <p>2023-2024</p>
             </div>
           </div>
-        
+
           <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm shadow-md">
             Parent Information
           </h2>
@@ -510,20 +508,47 @@ const Form = () => {
             <div className="flex justify-center p-6">
               <div>
                 <ul>
-                  <li className="border-4 border-r-0 border-black px-3"> Lop 2 - First Communion </li>
-                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Lop 9 - Pre-Confirmation Retreat </li>
-                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Lop 10 - Confirmation Retreat </li>
-                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Cleaning Fee (Per Family) </li>
-                  <li className="border-4 border-t-0 border-r-0 border-black px-3"> Late Fee </li>
+                  <li className="border-4 border-r-0 border-black px-3">
+                    {" "}
+                    Lop 2 - First Communion{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3">
+                    {" "}
+                    Lop 9 - Pre-Confirmation Retreat{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3">
+                    {" "}
+                    Lop 10 - Confirmation Retreat{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3">
+                    {" "}
+                    Cleaning Fee (Per Family){" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-r-0 border-black px-3">
+                    {" "}
+                    Late Fee{" "}
+                  </li>
                 </ul>
               </div>
               <div>
                 <ul>
-                  <li className="border-4 border-black px-3">  + $100.00 </li>
-                  <li className="border-4 border-t-0 border-black px-3">  + $150.00 </li>
-                  <li className="border-4 border-t-0 border-black px-3">  + $300.00 </li>
-                  <li className="border-4 border-t-0 border-black px-3">  + $25.00 </li>
-                  <li className="border-4 border-t-0 border-black px-3">  + $20.00 per child </li>
+                  <li className="border-4 border-black px-3"> + $100.00 </li>
+                  <li className="border-4 border-t-0 border-black px-3">
+                    {" "}
+                    + $150.00{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-black px-3">
+                    {" "}
+                    + $300.00{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-black px-3">
+                    {" "}
+                    + $25.00{" "}
+                  </li>
+                  <li className="border-4 border-t-0 border-black px-3">
+                    {" "}
+                    + $20.00 per child{" "}
+                  </li>
                 </ul>
               </div>
             </div>
