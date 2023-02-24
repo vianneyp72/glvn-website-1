@@ -568,9 +568,17 @@ const Form = () => {
                 Dưới sự yêu cầu của cha chánh xứ, Xin mỗi gia đình đóng góp $25 để giáo xứ có thể mướn người thu dọn trường học hàng tuần.
                 By the request of our pastor, each family is asked to contribute $25/family to help the parish with the cost of cleaning the school.
               </p><br/><br/>
-              <p className="font-bold">
-                Registration after May 8th will result in late fees of $20/child
-              </p>
+              <div className="flex justify-center space-x-1">
+                <p className="font-bold">
+                  Registration after May 8th will result in
+                </p>
+                <p className="font-bold underline">
+                  late fees
+                </p>
+                <p className="font-bold">
+                  of $20/child
+                </p>
+              </div>
             </div>
           </div>
         </form>
