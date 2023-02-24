@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Form = () => {
   const {
@@ -9,8 +10,15 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (e) => {
-    console.log(e);
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const response = await axios.post("/api/createParent", data);
+      console.log("Form submitted successfully:", response.data);
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
@@ -241,24 +249,24 @@ const Form = () => {
               </h2>
               <label
                 className="flex text-gray-700 font-medium mb-2 mt-4"
-                htmlFor="address"
+                htmlFor="street_address"
               >
                 Street Address: <p className="text-red-500">*</p>
               </label>
               <input
                 className="w-full border border-gray-400 p-2 rounded"
                 type="text"
-                id="address"
-                {...register("address", {
-                  required: "Address is required",
+                id="street_address"
+                {...register("street_address", {
+                  required: "street_address is required",
                   pattern: {
                     value: /^\s*\S+(?:\s+\S+){2}/i,
-                    message: "Invalid Street Address",
+                    message: "Invalid Street street_address",
                   },
                 })}
               />
-              {errors.address && (
-                <p className="text-red-500">{errors.address.message}</p>
+              {errors.street_address && (
+                <p className="text-red-500">{errors.street_address.message}</p>
               )}
             </div>
 
@@ -267,7 +275,7 @@ const Form = () => {
                 <div>
                   <label
                     className="flex text-gray-700 font-medium mb-2"
-                    htmlFor="City"
+                    htmlFor="city"
                   >
                     City:<p className="text-red-500">*</p>
                   </label>
@@ -275,9 +283,9 @@ const Form = () => {
                     placeholder="Minneapolis"
                     className="w-full border border-gray-400 p-2 rounded"
                     type="text"
-                    name="City"
-                    id="City"
-                    {...register("City", {
+                    name="city"
+                    id="city"
+                    {...register("city", {
                       required: true,
                       pattern: {
                         value: /^[A-Za-z. ]+$/i,
@@ -285,7 +293,7 @@ const Form = () => {
                       },
                     })}
                   />
-                  {errors.City && (
+                  {errors.city && (
                     <span className="text-red-500">This field is required</span>
                   )}
                 </div>
@@ -494,14 +502,15 @@ const Form = () => {
 
             <div className="text-center space-y-5">
               <p>
-                After submitting this form, please visit the GLVN office to pay for registration fees to complete registration for your children.
+                After submitting this form, please visit the GLVN office to pay
+                for registration fees to complete registration for your
+                children.
               </p>
-              <p className="text-3xl font-bold">
-                Registration Fee: $120
-              </p>
+              <p className="text-3xl font-bold">Registration Fee: $120</p>
               <p>
-                All students pay $120 for the general GLVN program.
-                Additional fees are required for the following grades to cover special programming for Sacramental Preparation.
+                All students pay $120 for the general GLVN program. Additional
+                fees are required for the following grades to cover special
+                programming for Sacramental Preparation.
               </p>
             </div>
 
@@ -562,12 +571,17 @@ const Form = () => {
               </button>
             </div>
 
-            <br/>
+            <br />
             <div className="text-center">
               <p className="font-bold text-neutral-700 text-sm">
-                Dưới sự yêu cầu của cha chánh xứ, Xin mỗi gia đình đóng góp $25 để giáo xứ có thể mướn người thu dọn trường học hàng tuần.
-                By the request of our pastor, each family is asked to contribute $25/family to help the parish with the cost of cleaning the school.
-              </p><br/><br/>
+                Dưới sự yêu cầu của cha chánh xứ, Xin mỗi gia đình đóng góp $25
+                để giáo xứ có thể mướn người thu dọn trường học hàng tuần. By
+                the request of our pastor, each family is asked to contribute
+                $25/family to help the parish with the cost of cleaning the
+                school.
+              </p>
+              <br />
+              <br />
               <p className="font-bold">
                 Registration after May 8th will result in late fees of $20/child
               </p>
