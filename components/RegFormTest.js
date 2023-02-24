@@ -494,7 +494,20 @@ const Form = () => {
               Payment Information
             </h2>
 
-            <div className="flex justify-center">
+            <div className="text-center space-y-5">
+              <p>
+                After submitting this form, please visit the GLVN office to pay for registration fees to complete registration for your children.
+              </p>
+              <p className="text-3xl font-bold">
+                Registration Fee: $120
+              </p>
+              <p>
+                All students pay $120 for the general GLVN program.
+                Additional fees are required for the following grades to cover special programming for Sacramental Preparation.
+              </p>
+            </div>
+
+            <div className="flex justify-center p-6">
               <div>
                 <ul>
                   <li className="border-4 border-r-0 border-black px-3"> Lop 2 - First Communion </li>
@@ -522,6 +535,17 @@ const Form = () => {
               >
                 Register!
               </button>
+            </div>
+
+            <br/>
+            <div className="text-center">
+              <p className="font-bold text-neutral-700 text-sm">
+                Dưới sự yêu cầu của cha chánh xứ, Xin mỗi gia đình đóng góp $25 để giáo xứ có thể mướn người thu dọn trường học hàng tuần.
+                By the request of our pastor, each family is asked to contribute $25/family to help the parish with the cost of cleaning the school.
+              </p><br/><br/>
+              <p className="font-bold">
+                Registration after May 8th will result in late fees of $20/child
+              </p>
             </div>
           </div>
         </form>
