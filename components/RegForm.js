@@ -388,7 +388,7 @@ const Form = () => {
                         {...register("studentSaintName", {
                           required: true,
                           pattern: {
-                            value: /^[A-Za-z.]+$/i,
+                            value: /^[A-Za-z. ]+$/i,
                             message: "Invalid Saint name",
                           },
                         })}
