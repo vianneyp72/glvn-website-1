@@ -56,6 +56,7 @@ const Form = () => {
           <h3 className="flex justify-center text-lg font-bold p-4 rounded-sm underline ">
             PARENT/GUARDIAN 1 INFORMATION <p className="text-red-500">*</p>
           </h3>
+
           <div className="my-4">
             <label
               className=" text-gray-700 font-medium mb-2 flex"
