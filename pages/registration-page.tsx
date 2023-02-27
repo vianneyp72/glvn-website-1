@@ -1,12 +1,14 @@
 
 import NavBar from '../components/NavBarParents'
-import RegForm from '../components/RegForm'
+import Form from '../components/RegForm'
+import { useEffect, useContext } from 'react';
+
 
 export default function Home() {
   return (
     <main>
       <NavBar />
-      <RegForm />
+      <Form />
     </main>
   )
 }
