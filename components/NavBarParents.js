@@ -1,6 +1,6 @@
 // import React from "react";
 // import { useUser } from "@auth0/nextjs-auth0/client";
-// import Image from 'next/image'
+import Image from "next/image";
 // import Link from "next/link";
 
 // function Navbar() {
@@ -76,11 +76,12 @@ export default function Example() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                  {/* <Image
+                    src="/GLVN_Minimal_small.png"
+                    alt="GLVN Icon"
+                    width={150}
+                    height={150}
+                  ></Image> */}
                   <img
                     className="hidden h-8 w-auto lg:block"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
