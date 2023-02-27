@@ -17,7 +17,7 @@ const Form = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log("Data:", data);
     try {
       const response = await axios.post("/api/createParent", data);
       console.log("Form submitted successfully:", response.data);
@@ -27,8 +27,10 @@ const Form = () => {
     }
   };
 
+  console.log(fields);
+
   return (
-    <div className="min-h-screen bg-orange-200 ">
+    <div className="min-h-screen bg-orange-200 overflow-auto ">
       <>
         <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10 bg-orange-200"></p>
         <form
@@ -278,8 +280,8 @@ const Form = () => {
             </div>
 
             <div className="my-4">
-              <div className="flex justify-between space-x-3">
-                <div>
+              <div className="flex flex-col md:flex-row justify-between md:space-x-3">
+                <div className="w-full">
                   <label
                     className="flex text-gray-700 font-medium mb-2"
                     htmlFor="city"
@@ -304,7 +306,7 @@ const Form = () => {
                     <span className="text-red-500">This field is required</span>
                   )}
                 </div>
-                <div>
+                <div className="w-full">
                   <label
                     className="flex text-gray-700 font-medium mb-2"
                     htmlFor="City"
@@ -330,7 +332,7 @@ const Form = () => {
                   )}
                 </div>
 
-                <div>
+                <div className="w-full">
                   <label
                     className="flex text-gray-700 font-medium mb-2"
                     htmlFor="zipcode"
@@ -362,22 +364,34 @@ const Form = () => {
               Student Information
             </h2>
 
-            {/* {fields.map((field, index) => {
+            {fields.map((field, index) => {
               return (
                 <section key={field.id}>
                   <label>
-                    <span>Name</span>
+                    <span>Student's Saint Name</span>
                     <input {...register(`students_cart.${index}.name`)} />
                   </label>
                   <label>
-                    <span>amount</span>
+                    <span>Student's First Name</span>
+                    <input {...register(`students_cart.${index}.amount`)} />
+                  </label>
+                  <label>
+                    <span>Student's Last Name</span>
                     <input {...register(`students_cart.${index}.amount`)} />
                   </label>
                 </section>
               );
-            })} */}
+            })}
 
-            <div className="my-4">
+            <button
+              className="bg-blue-500 text-white px-2 rounded-lg hover:bg-blue-600"
+              type="button"
+              onClick={() => append({})}
+            >
+              Add Student
+            </button>
+
+            {/* <div className="my-4">
               <label
                 className="flex text-gray-700 font-medium mb-2"
                 htmlFor="studentSaintName"
@@ -516,7 +530,7 @@ const Form = () => {
               {errors.studentFirstCommunionDate && (
                 <span className="text-red-500">This field is required</span>
               )}
-            </div>
+            </div> */}
 
             <h2 className="text-lg font-bold bg-orange-200 p-4 rounded-sm mt-10 mb-10 shadow-md">
               Payment Information
