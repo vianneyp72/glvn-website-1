@@ -368,7 +368,7 @@ const Form = () => {
               return (
                 <>
                   <section
-                    className="w-full border border-gray-200 p-2 rounded mb-3 bg-orange-200 shadow-md"
+                    className="w-full border border-gray-200 p-2 rounded mb-3 bg-orange-100 shadow-md"
                     key={field.id}
                   >
                     <div className="my-4">
@@ -559,7 +559,23 @@ const Form = () => {
                 type="button"
                 onClick={() => append({})}
               >
-                + Add Student
+                <div className="flex">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Add Student
+                </div>
               </button>
             </section>
 
