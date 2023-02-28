@@ -38,9 +38,9 @@ const Form = () => {
           className="mx-auto max-w-4xl my-6 bg-secondary shadow-md rounded-lg p-10"
         >
           <div className="flex justify-between text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-fourth shadow-xl rounded-lg">
-            <div>
+            <div className="border-2 border-black border- rounded-md bg-gray-200">
               <Image
-                src="/GLVN_Minimal_small(white).png"
+                src="/GLVN_Minimal_small.png"
                 alt="GLVN Icon"
                 width={150}
                 height={150}
@@ -93,10 +93,11 @@ const Form = () => {
               </div>
               <div className="w-full">
                 <label
-                  className="block text-gray-200 font-medium mb-2"
+                  className="flex text-gray-200 font-medium mb-2"
                   htmlFor="pg1_last_name"
                 >
                   Parent/Guardian 1 Last Name:
+                  <p className="text-red-500">*</p>
                 </label>
 
                 <input
