@@ -30,14 +30,14 @@ const Form = () => {
   console.log(fields);
 
   return (
-    <div className="min-h-screen bg-gray-200 overflow-auto ">
+    <div className="min-h-screen bg-stone-300 overflow-auto ">
       <>
         <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10"></p>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto max-w-4xl my-6 bg-gray-300 shadow-md rounded p-10"
+          className="mx-auto max-w-4xl my-6 bg-neutral-200 shadow-md rounded p-10"
         >
-          <div className="flex justify-between text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-gray-700">
+          <div className="flex justify-between text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-neutral-500">
             <div>
               <Image
                 src="/GLVN_Minimal_small.png"
@@ -47,15 +47,19 @@ const Form = () => {
               ></Image>
             </div>
             <div>
-              <p className="font-bold text-4xl">GLVN Registration Form</p>
-              <p>2023-2024</p>
+              <p className="font-bold text-sm lg:text-4xl md:text-3xl sm:text-2xl">
+                GLVN Registration Form
+              </p>
+              <p className="text-blue-800 text-xs lg:text-4xl md:text-3xl  sm:text-xs">
+                2023-2024
+              </p>
             </div>
           </div>
 
-          <h2 className="text-lg font-bold bg-gray-500 p-4 rounded-sm shadow-md">
+          <h2 className="text-lg font-bold bg-neutral-400 p-4 rounded-sm shadow-md">
             Parent Information
           </h2>
-          <h3 className="flex justify-center text-lg font-bold p-4 rounded-sm underline ">
+          <h3 className="flex justify-center text-lg font-bold p-4 rounded-sm underline">
             PARENT/GUARDIAN 1 INFORMATION <p className="text-red-500">*</p>
           </h3>
 
@@ -66,7 +70,7 @@ const Form = () => {
             >
               Parent/Guardian 1 Name: <p className="text-red-500">*</p>
             </label>
-            <div className="flex space-x-3">
+            <div className="flex flex-col md:flex-row md:space-x-3">
               <input
                 placeholder="First Name"
                 className="w-full border border-gray-400 p-2 rounded"
@@ -84,6 +88,10 @@ const Form = () => {
               {errors.pg1_first_name && (
                 <span className="text-red-500">This field is required</span>
               )}
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                htmlFor="pg1_last_name"
+              ></label>
 
               <input
                 placeholder="Last Name"
@@ -164,7 +172,7 @@ const Form = () => {
             >
               Parent/Guardian 2 Name:
             </label>
-            <div className="flex space-x-3">
+            <div className="flex flex-col md:flex-row md:space-x-3">
               <input
                 placeholder="First Name"
                 className="w-full border border-gray-400 p-2 rounded"
@@ -182,6 +190,11 @@ const Form = () => {
               {errors.pg2_first_name && (
                 <p className="text-red-500">{errors.pg2_first_name.message}</p>
               )}
+
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                htmlFor="pg2_last_name"
+              ></label>
 
               <input
                 placeholder="Last Name"
@@ -253,7 +266,7 @@ const Form = () => {
             )}
 
             <div className="my-4 mt-10 py-2">
-              <h2 className="text-lg font-bold bg-gray-500 p-4 rounded-sm shadow-md mb-10">
+              <h2 className="text-lg font-bold bg-neutral-400 p-4 rounded-sm shadow-md mb-10">
                 Address Information
               </h2>
               <label
@@ -360,7 +373,7 @@ const Form = () => {
               </div>
             </div>
 
-            <h2 className="text-lg font-bold bg-gray-500 p-4 rounded-sm shadow-md mt-10 mb-10">
+            <h2 className="text-lg font-bold bg-neutral-400 p-4 rounded-sm shadow-md mt-10 mb-10">
               Student Information
             </h2>
 
@@ -385,13 +398,16 @@ const Form = () => {
                         type="text"
                         name="studentSaintName"
                         id="studentSaintName"
-                        {...register("studentSaintName", {
-                          required: true,
-                          pattern: {
-                            value: /^[A-Za-z. ]+$/i,
-                            message: "Invalid Saint name",
-                          },
-                        })}
+                        {...register(
+                          `students_cart.${index}.studentSaintName`,
+                          {
+                            required: true,
+                            pattern: {
+                              value: /^[A-Za-z. ]+$/i,
+                              message: "Invalid Saint name",
+                            },
+                          }
+                        )}
                       />
                       {errors.zipcode && (
                         <span className="text-red-500">
@@ -405,20 +421,23 @@ const Form = () => {
                     >
                       Student's Name:<p className="text-red-500">*</p>
                     </label>
-                    <div className="flex space-x-3">
+                    <div className="flex flex-col md:flex-row md:space-x-3">
                       <input
                         placeholder="First Name"
                         className="w-full border border-gray-400 p-2 rounded"
                         type="text"
                         name="studentFirstName"
                         id="studentFirstName"
-                        {...register("studentFirstName", {
-                          required: true,
-                          pattern: {
-                            value: /^[A-Za-z.]+$/i,
-                            message: "Invalid Name",
-                          },
-                        })}
+                        {...register(
+                          `students_cart.${index}.studentFirstName`,
+                          {
+                            required: true,
+                            pattern: {
+                              value: /^[A-Za-z.]+$/i,
+                              message: "Invalid Name",
+                            },
+                          }
+                        )}
                       />
                       {errors.studentFirstName && (
                         <span className="text-red-500">
@@ -435,7 +454,7 @@ const Form = () => {
                         type="text"
                         name="studentLastName"
                         id="studentLastName"
-                        {...register("studentLastName", {
+                        {...register(`students_cart.${index}.studentLastName`, {
                           required: true,
                           pattern: {
                             value: /^[A-Za-z.]+$/i,
@@ -461,7 +480,7 @@ const Form = () => {
                         type="date"
                         name="studentDOB"
                         id="studentDOB"
-                        {...register("studentDOB", {
+                        {...register(`students_cart.${index}.studentDOB`, {
                           required: true,
                           pattern: {
                             message: "Invalid Date",
@@ -486,12 +505,15 @@ const Form = () => {
                         type="date"
                         name="studentBaptismDate"
                         id="studentBaptismDate"
-                        {...register("studentBaptismDate", {
-                          required: true,
-                          pattern: {
-                            message: "Invalid Date",
-                          },
-                        })}
+                        {...register(
+                          `students_cart.${index}.studentBaptismDate`,
+                          {
+                            required: true,
+                            pattern: {
+                              message: "Invalid Date",
+                            },
+                          }
+                        )}
                       />
                       {errors.studentBaptismDate && (
                         <span className="text-red-500">
@@ -511,12 +533,15 @@ const Form = () => {
                         type="date"
                         name="studentFirstCommunionDate"
                         id="studentFirstCommunionDate"
-                        {...register("studentFirstCommunionDate", {
-                          required: false,
-                          pattern: {
-                            message: "Invalid Date",
-                          },
-                        })}
+                        {...register(
+                          `students_cart.${index}.studentFirstCommunionDate`,
+                          {
+                            required: false,
+                            pattern: {
+                              message: "Invalid Date",
+                            },
+                          }
+                        )}
                       />
                       {errors.studentFirstCommunionDate && (
                         <span className="text-red-500">
@@ -579,7 +604,7 @@ const Form = () => {
               </button>
             </section>
 
-            <h2 className="text-lg font-bold bg-gray-500 p-4 rounded-sm mt-10 mb-10 shadow-md">
+            <h2 className="text-lg font-bold p-4 rounded-sm mt-10 mb-10 shadow-md bg-neutral-400">
               Payment Information
             </h2>
 
