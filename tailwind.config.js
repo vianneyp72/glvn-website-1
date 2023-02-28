@@ -19,6 +19,7 @@ module.exports = {
         tertiary: "#051635",
         fourth: "#14264e",
         primarytext: "#87c3f6",
+        onhover: "#2f6dc8",
       },
     },
   },
