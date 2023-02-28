@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
+import NavBar from "./NavBarParents";
 
 const Form = () => {
   const {
@@ -32,6 +33,7 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
+        <NavBar/>
         <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10"></p>
         <form
           onSubmit={handleSubmit(onSubmit)}

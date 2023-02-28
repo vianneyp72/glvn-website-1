@@ -58,7 +58,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Disclosure as="nav" className="bg-gray-200">
+    <Disclosure as="nav" className="bg-primary fixed w-full z-10 top-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -75,7 +75,7 @@ export default function Example() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-shrink-0 items-center border-2 border-black border- rounded-md bg-gray-200">
                   <Image
                     src="/GLVN_Minimal_small.png"
                     alt="GLVN Icon"
