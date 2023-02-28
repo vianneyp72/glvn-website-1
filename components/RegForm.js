@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
-import NavBar from "./NavBarParents";
 
 const Form = () => {
   const {
@@ -643,24 +642,34 @@ const Form = () => {
               <table className="table-fixed flex justify-center p-6 text-gray-200">
                 <tbody>
                   <tr>
-                    <td className="border-4 border-gray-100 px-3">Lop 2 - First Communion</td>
+                    <td className="border-4 border-gray-100 px-3">
+                      Lop 2 - First Communion
+                    </td>
                     <td className="border-4 border-gray-100 px-3">+ $100.00</td>
                   </tr>
                   <tr>
-                  <td className="border-4 border-gray-100 px-3">Lop 9 - Pre-Confirmation Retreat</td>
-                  <td className="border-4 border-gray-100 px-3">+ $150.00</td>
+                    <td className="border-4 border-gray-100 px-3">
+                      Lop 9 - Pre-Confirmation Retreat
+                    </td>
+                    <td className="border-4 border-gray-100 px-3">+ $150.00</td>
                   </tr>
                   <tr>
-                  <td className="border-4 border-gray-100 px-3">Lop 10 - Confirmation Retreat</td>
-                  <td className="border-4 border-gray-100 px-3">+ $300.00</td>
-                 </tr>
-                  <tr>
-                  <td className="border-4 border-gray-100 px-3">Cleaning Fee (Per Family)</td>
-                  <td className="border-4 border-gray-100 px-3">+ $25.00</td>
+                    <td className="border-4 border-gray-100 px-3">
+                      Lop 10 - Confirmation Retreat
+                    </td>
+                    <td className="border-4 border-gray-100 px-3">+ $300.00</td>
                   </tr>
                   <tr>
-                  <td className="border-4 border-gray-100 px-3">Late Fee</td>
-                  <td className="border-4 border-gray-100 px-3">+ $20.00 per child</td>
+                    <td className="border-4 border-gray-100 px-3">
+                      Cleaning Fee (Per Family)
+                    </td>
+                    <td className="border-4 border-gray-100 px-3">+ $25.00</td>
+                  </tr>
+                  <tr>
+                    <td className="border-4 border-gray-100 px-3">Late Fee</td>
+                    <td className="border-4 border-gray-100 px-3">
+                      + $20.00 per child
+                    </td>
                   </tr>
                 </tbody>
               </table>
