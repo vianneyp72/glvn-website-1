@@ -33,7 +33,7 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
-        <NavBar/>
+        <NavBar />
         <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10"></p>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -596,7 +596,7 @@ const Form = () => {
             })}
             <section className="pt-3 mb-3">
               <button
-                className="bg-blue-600 text-white px-2 rounded-lg hover:bg-blue-700 font-bold shadow-lg ml-3"
+                className="bg-sky-600 text-white px-2 rounded-lg hover:bg-sky-700 font-bold shadow-lg ml-3"
                 type="button"
                 onClick={() => append({})}
               >
