@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useForm, Control, useFieldArray } from "react-hook-form";
+import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
 
 const Form = () => {
