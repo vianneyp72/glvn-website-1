@@ -40,7 +40,7 @@ const Form = () => {
           <div className="flex justify-between text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-fourth shadow-xl rounded-lg">
             <div>
               <Image
-                src="/GLVN_Minimal_small.png"
+                src="/GLVN_Minimal_small(white).png"
                 alt="GLVN Icon"
                 width={150}
                 height={150}
