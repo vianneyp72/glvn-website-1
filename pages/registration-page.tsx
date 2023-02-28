@@ -7,7 +7,8 @@ import { useEffect, useContext } from 'react';
 export default function Home() {
   return (
     <main>
-      <Form />
+        <NavBar/>
+        <Form/>
     </main>
   )
 }

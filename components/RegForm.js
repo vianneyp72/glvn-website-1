@@ -33,7 +33,6 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
-        <NavBar/>
         <p className="text-2xl font-bold text-grey-800 text-center pt-10 pb-10"></p>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -640,52 +639,31 @@ const Form = () => {
               </p>
             </div>
 
-            <div className="flex justify-center p-6 text-gray-200">
-              <div>
-                <ul>
-                  <li className="border-4 border-r-0 border-gray-100 px-3">
-                    {" "}
-                    Lop 2 - First Communion{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-r-0 border-gray-100 px-3">
-                    {" "}
-                    Lop 9 - Pre-Confirmation Retreat{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-r-0 border-gray-100 px-3">
-                    {" "}
-                    Lop 10 - Confirmation Retreat{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-r-0 border-gray-100 px-3">
-                    {" "}
-                    Cleaning Fee (Per Family){" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-r-0 border-gray-100 px-3">
-                    {" "}
-                    Late Fee{" "}
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <ul>
-                  <li className="border-4 border-gray-100 px-3"> + $100.00 </li>
-                  <li className="border-4 border-t-0 border-gray-100 px-3">
-                    {" "}
-                    + $150.00{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-gray-100 px-3">
-                    {" "}
-                    + $300.00{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-gray-100 px-3">
-                    {" "}
-                    + $25.00{" "}
-                  </li>
-                  <li className="border-4 border-t-0 border-gray-100 px-3">
-                    {" "}
-                    + $20.00 per child{" "}
-                  </li>
-                </ul>
-              </div>
+            <div>
+              <table className="table-fixed flex justify-center p-6 text-gray-200">
+                <tbody>
+                  <tr>
+                    <td className="border-4 border-gray-100 px-3">Lop 2 - First Communion</td>
+                    <td className="border-4 border-gray-100 px-3">+ $100.00</td>
+                  </tr>
+                  <tr>
+                  <td className="border-4 border-gray-100 px-3">Lop 9 - Pre-Confirmation Retreat</td>
+                  <td className="border-4 border-gray-100 px-3">+ $150.00</td>
+                  </tr>
+                  <tr>
+                  <td className="border-4 border-gray-100 px-3">Lop 10 - Confirmation Retreat</td>
+                  <td className="border-4 border-gray-100 px-3">+ $300.00</td>
+                 </tr>
+                  <tr>
+                  <td className="border-4 border-gray-100 px-3">Cleaning Fee (Per Family)</td>
+                  <td className="border-4 border-gray-100 px-3">+ $25.00</td>
+                  </tr>
+                  <tr>
+                  <td className="border-4 border-gray-100 px-3">Late Fee</td>
+                  <td className="border-4 border-gray-100 px-3">+ $20.00 per child</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <div className="my-4 flex justify-center">
