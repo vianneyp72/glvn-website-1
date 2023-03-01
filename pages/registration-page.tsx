@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { useEffect, useContext } from 'react';
 
 
-export default function Home() {
+export default function RegForm() {
   return (
     <main>
       <NavBar />
