@@ -39,10 +39,9 @@ const FamProfile = () => {
         >
           <div className="flex justify-center text-2xl pl-10 px-10 pt-10 pb-10 mb-2 bg-fourth shadow-xl rounded-lg">
             <div>
-              <p className="font-bold text-sm lg:text-4xl md:text-3xl sm:text-2xl text-white">
+              <p className="font-bold sm:text-4xl lg:text-5xl text-white">
                 Family Profile
               </p>
-              <p className="text-primarytext text-xs lg:text-4xl md:text-3xl  sm:text-xs"></p>
             </div>
           </div>
 

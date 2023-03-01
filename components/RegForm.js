@@ -23,7 +23,6 @@ const Form = () => {
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
       console.log("Form submitted successfully:", responses);
-      reset();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
