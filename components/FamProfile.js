@@ -375,7 +375,7 @@ const FamProfile = () => {
                 </div>
               </div>
               <div className="border mt-10 border-gray-700"></div>
-              <div className="my-4 flex mt-5">
+              <div className="my-4 flex mt-5 justify-end">
                 <button
                   className="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-900 font-bold text-lg shadow-lg ml-3"
                   type="submit"
