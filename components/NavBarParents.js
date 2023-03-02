@@ -46,10 +46,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Register(23-24)", href: "/registration-page", current: false },
+  { name: "Register(23-24)", href: "/registration-page", current: true },
   { name: "Family Profile", href: "/family-profile-page", current: false },
-  // { name: "Projects", href: "#", current: false },
-  // { name: "Calendar", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -96,8 +94,8 @@ export default function NavBar() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-onhover hover:text-white",
+                            ? "bg-sky-800 text-white"
+                            : "text-gray-300 hover:bg-sky-800 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
