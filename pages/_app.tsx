@@ -11,11 +11,10 @@ const robo = Roboto({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className= {`${robo.variable} font-sans`}>
-
     <UserProvider>
-      <Component {...pageProps} />
+      <main className= {`${robo.variable} font-sans`}>
+        <Component {...pageProps} />
+      </main>
     </UserProvider>
-    </main>
   );
 }
