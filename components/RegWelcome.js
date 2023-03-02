@@ -10,7 +10,7 @@ export default function RegWelcome() {
             <br />
             Setup your family profile.
             <br />
-            Register your kids for the following school year!
+            Register for the school year!
           </p1>
           <br />
           <div className="border border-gray-700 mt-10 mb-10"></div>
