@@ -12,19 +12,19 @@ export default function NavBar() {
       </span>
       <ul className="flex flex-wrap items-center">
         <li className="m-3">
-          <Image src="/Azure.png" width={100} height={100} />
+          <Image src="/Azure.png" width={100} height={25} />
         </li>
         <li className="m-3">
-          <Image src="/Airtable.png" width={100} height={100} />
+          <Image src="/Airtable.png" width={100} height={25} />
         </li>
         <li className="m-3">
-          <Image src="/Discord.png" width={100} height={100} />
+          <Image src="/Discord.png" width={100} height={25} />
         </li>
         <li className="m-3">
-          <Image src="/Microsoft.png" width={100} height={100} />
+          <Image src="/Microsoft.png" width={100} height={25} />
         </li>
         <li className="m-3">
-          <Image src="/Zapier.png" width={100} height={100} />
+          <Image src="/Zapier.png" width={100} height={25} />
         </li>
       </ul>
       <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
