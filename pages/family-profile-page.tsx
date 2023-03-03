@@ -1,9 +1,11 @@
 import NavBar from "../components/NavBarParents";
 import FamProfile from "../components/FamProfile";
 import Footer from "../components/Footer";
-import { useUser } from "@auth0/nextjs-auth0/client";
+import React from "react"
+import { useUser, withPageAuthRequired, } from "@auth0/nextjs-auth0/client";
 
-export default function RegForm() {
+
+export default withPageAuthRequired(function RegForm() {
   const {user, isLoading, error} = useUser();
   console.log("USER INFO:",user)
   console.log("MYID:",user?.sid)
@@ -14,4 +16,7 @@ export default function RegForm() {
       <Footer />
     </main>
   );
-}
+})
+
+
+
