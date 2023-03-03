@@ -48,10 +48,19 @@ export default function RegConfirmation() {
       <p className="pt-10 pb-10 mb-10"></p>
       <div className="flex justify-center">
         <div className="bg-secondary shadow-lg p-10 rounded-lg w-2/3 sm:w-1/2 lg:w-1/3 text-center">
-          <h3 className="font-bold text-4xl sm:text-6xl pb-10">Registered!</h3>
-          <p1 className="text-primarytext text-xs sm:text-lg font-bold">
-            Reminder to come into the GLVN office to complete the payment for
-            your registration!
+          <h3 className="font-bold text-4xl sm:text-6xl pb-3">Registered!</h3>
+          <h3 className="text-xs pb-10 text-gray-300">
+            Your submission has been received.
+          </h3>
+          <p1 className="text-primarytext text-sm sm:text-xl ">
+            <p1 className="text-md sm:text-2xl font-bold">Reminder:</p1>
+            <br />
+            Payment is Due by Cash or Check at the GLVN Office!
+            <br />
+            <br />
+            DUE: "(date)"
+            <br />
+            Total Amount: "$Total"
           </p1>
           <br />
           <div className="border border-gray-700 mt-10 mb-10"></div>
