@@ -89,7 +89,7 @@ const FamProfile = () => {
                     {...register("pg1_first_name", {
                       required: true,
                       pattern: {
-                        value: /^[A-Za-z]+$/i,
+                        value: /^[A-Za-z -]+$/i,
                         message: "invalid first name",
                       },
                     })}
@@ -116,7 +116,7 @@ const FamProfile = () => {
                     {...register("pg1_last_name", {
                       required: true,
                       pattern: {
-                        value: /^[A-Za-z]+$/i,
+                        value: /^[A-Za-z -]+$/i,
                         message: "invalid last name",
                       },
                     })}
@@ -199,7 +199,7 @@ const FamProfile = () => {
                     {...register("pg2_first_name", {
                       required: false,
                       pattern: {
-                        value: /^[A-Za-z ]+$/i,
+                        value: /^[A-Za-z -]+$/i,
                         message: "invalid first name",
                       },
                     })}
@@ -225,7 +225,7 @@ const FamProfile = () => {
                     {...register("pg2_last_name", {
                       required: true,
                       pattern: {
-                        value: /^[A-Za-z ]+$/i,
+                        value: /^[A-Za-z -]+$/i,
                         message: "Invalid last name",
                       },
                     })}
