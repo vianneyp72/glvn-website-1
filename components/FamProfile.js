@@ -36,7 +36,7 @@ const FamProfile = () => {
         <div className="block w-f md:flex md:justify-center">
           <div>
             <div className="bg-secondary rounded-lg mx-10 my-6 p-11 text-center">
-              <div>
+              <div className="max-w-10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

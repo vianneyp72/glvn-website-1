@@ -10,7 +10,7 @@ export default function NavBar() {
         </a>
         <a>. All Rights Reserved.</a>
       </span>
-      <ul className="flex flex-wrap items-center">
+      <ul className="flex items-center">
         <li className="m-3">
           <Image src="/Azure.png" width={100} height={100} />
         </li>
