@@ -68,15 +68,17 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
-                if (user)
-                {
+                {!user ? (
                   <a
                     href="/api/auth/login"
                     className="text-white mr-3 hover:bg-onhover p-1 rounded-md"
                   >
                     Sign In
                   </a>
-                }
+                ) : (
+                  <></>
+                )}
+
                 {/* <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -141,19 +143,23 @@ export default function NavBar() {
                           </a>
                         )}
                       </Menu.Item> */}
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/api/auth/logout"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
+                      {user ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="/api/auth/logout"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Sign out
+                            </a>
+                          )}
+                        </Menu.Item>
+                      ) : (
+                        <></>
+                      )}
                     </Menu.Items>
                   </Transition>
                 </Menu>

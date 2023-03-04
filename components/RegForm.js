@@ -33,14 +33,16 @@ const Form = () => {
   };
 
   const getFamID = async () => {
-    const sid = user.sid;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sid}"`,
-      })
-      .firstPage();
-    console.log("YESSIR", records[0].fields.Family_ID);
-    return records.length > 0 ? records[0].fields.Family_ID : null;
+    if (user) {
+      const sid = user.sid;
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userid} = "${sid}"`,
+        })
+        .firstPage();
+      console.log("YESSIR", records[0].fields.Family_ID);
+      return records.length > 0 ? records[0].fields.Family_ID : null;
+    }
   };
 
   getFamID();
@@ -54,14 +56,16 @@ const Form = () => {
   };
 
   const getExistingStudents = async () => {
-    const sid = user.sid;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sid}"`,
-      })
-      .firstPage();
-    console.log("YESSIR", records[0].fields.Students_Link);
-    return records.length > 0 ? records[0].fields.Students_Link : null;
+    if (user) {
+      const sid = user.sid;
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userid} = "${sid}"`,
+        })
+        .firstPage();
+      console.log("YESSIR", records[0].fields.Students_Link);
+      return records.length > 0 ? records[0].fields.Students_Link : null;
+    }
   };
 
   const router = useRouter();
