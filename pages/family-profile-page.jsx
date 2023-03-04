@@ -11,7 +11,7 @@ export default withPageAuthRequired(function RegForm() {
   const { user, isLoading, error } = useUser();
   console.log("USER INFO:", user);
 
-  const myID = user?.sid;
+  const myID = user?.sub;
 
   // function checkIfEmailExists(sid) {
   //   // Use filterByFormula to query the Users table

@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["@typescript-eslint"], // Add
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended", // Add
+    "eslint-config-prettier"
+  ],
+  "rules": {
+    // You can remove the prefer-const rule, as it is already added by @typescript-eslint/recommended
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    // I suggest you add at least those two rules:
+    "@typescript-eslint/no-unused-vars": "error"
+    // "@typescript-eslint/no-explicit-any": "error"
+  },
+  "env": {
+    "jest": true
+  }
 }

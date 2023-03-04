@@ -40,8 +40,8 @@ const Form = () => {
           filterByFormula: `{userid} = "${sid}"`,
         })
         .firstPage();
-      console.log("YESSIR", records[0].fields.Family_ID);
-      return records.length > 0 ? records[0].fields.Family_ID : null;
+      console.log("YESSIR", records[0]?.fields.Family_ID);
+      return records.length > 0 ? records[0]?.fields.Family_ID : null;
     }
   };
 
@@ -63,8 +63,8 @@ const Form = () => {
           filterByFormula: `{userid} = "${sid}"`,
         })
         .firstPage();
-      console.log("YESSIR", records[0].fields.Students_Link);
-      return records.length > 0 ? records[0].fields.Students_Link : null;
+      console.log("YESSIR", records[0]?.fields.Students_Link);
+      return records.length > 0 ? records[0]?.fields.Students_Link : null;
     }
   };
 

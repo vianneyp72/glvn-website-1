@@ -1,28 +1,26 @@
-import React, { useCallback, useEffect } from "react";
-import Image from "next/image";
-import { useForm, control, useFieldArray } from "react-hook-form";
+import React, { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import Airtable from "airtable";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import profile from "@auth0/nextjs-auth0/dist/handlers/profile";
-import { format } from "path";
 
-export type FamilyInfoInputs = {
-  pg1_first_name: string;
-  pg1_last_name: string;
-  pg1_phone: string;
-  pg1_email: string;
-  pg2_first_name: string;
-  pg2_last_name: string;
-  pg2_phone: string;
-  pg2_email: string;
-  street_address: string;
-  state: string;
-  city: string;
-  zipcode: string;
-};
 const FamProfile = () => {
+  const { user } = useUser();
+
+  const [fields, setFields] = useState({
+    pg1_first_name: "",
+    pg1_last_name: "",
+    pg1_phone: "",
+    pg1_email: "",
+    pg2_first_name: "",
+    pg2_last_name: "",
+    pg2_phone: "",
+    pg2_email: "",
+    street_address: "",
+    state: "",
+    city: "",
+    zipcode: "",
+  });
 
   const {
     register,
@@ -30,71 +28,82 @@ const FamProfile = () => {
     formState: { errors },
     control,
     reset,
-  } = useForm<FamilyInfoInputs>();
+  } = useForm();
 
   const resetForm = useCallback(() => {
     reset({
-      pg1_first_name: "",
-  pg1_last_name: "",
-  pg1_phone: "",
-  pg1_email: "",
-  pg2_first_name: "",
-  pg2_last_name: "",
-  pg2_phone: "",
-  pg2_email: "",
-  street_address: "",
-  state: "",
-  city: "",
-  zipcode: "",
+      pg1_first_name: fields?.pg1_first_name || "",
+      pg1_last_name: fields?.pg1_last_name || "",
+      pg1_phone: fields?.pg1_phone || "",
+      pg1_email: fields?.pg1_email || "",
+      pg2_first_name: fields?.pg2_first_name || "",
+      pg2_last_name: fields?.pg2_last_name || "",
+      pg2_phone: fields?.pg2_phone || "",
+      pg2_email: fields?.pg2_email || "",
+      street_address: fields?.street_address || "",
+      state: fields?.state || "",
+      city: fields?.city || "",
+      zipcode: fields?.zipcode || "",
     });
   }, [
+    fields?.pg1_first_name,
+    fields?.pg1_last_name,
+    fields?.pg1_phone,
+    fields?.pg1_email,
+    fields?.pg2_first_name,
+    fields?.pg2_last_name,
+    fields?.pg2_phone,
+    fields?.pg2_email,
+    fields?.street_address,
+    fields?.state,
+    fields?.city,
+    fields?.zipcode,
     reset,
   ]);
 
   useEffect(() => {
     // when profile is loaded, set the form values
     resetForm();
-  }, [profile, resetForm,]);
-
-  const getFamInfo = async () => {
-    if (user) {
-      const sid = user.sid;
-      const records = await parentTable
-        .select({
-          filterByFormula: `{userid} = "${sid}"`,
-        })
-        .firstPage();
-      console.log("FamInfo:", records);
-      return (records)
-    }
-  };
-
-  getFamInfo()
+    console.log("RESETTING FORM");
+  }, [user, fields, resetForm]);
 
   useEffect(() => {
-    
-  }, [])
+    const getFamInfo = async () => {
+      console.log("USER:", user);
+      if (user) {
+        const sub = user.sub;
+        const records = await parentTable
+          .select({
+            filterByFormula: `{userid} = "${sub}"`,
+          })
+          .firstPage();
+        setFields(records[0]?.fields);
+        console.log("FamInfo:", records[0]?.fields);
+        return records;
+      }
+    };
+    console.log("GETTING FAM INFO");
 
-  
+    getFamInfo();
+  }, [user]);
 
-  const { user } = useUser();
   const getRecordId = async () => {
     if (user) {
-      const sid = user.sid;
+      const sub = user.sub;
       const records = await parentTable
         .select({
-          filterByFormula: `{userid} = "${sid}"`,
+          filterByFormula: `{userid} = "${sub}"`,
         })
         .firstPage();
       return records.length > 0 ? records[0].id.toString() : null;
     }
   };
 
-
   const onSubmit = async (data) => {
     console.log("Data:", data);
     try {
       const result = await getRecordId();
+      console.log("RESULT", result);
       const response = await axios.put("/api/updateParent", {
         id: result,
         fields: data,
@@ -487,6 +496,14 @@ const FamProfile = () => {
                     type="submit"
                   >
                     Update
+                  </button>
+                  <button
+                    className="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-900 font-bold text-lg shadow-lg ml-3"
+                    onClick={() => {
+                      resetForm();
+                    }}
+                  >
+                    Reset
                   </button>
                 </div>
               </div>
