@@ -114,9 +114,21 @@ const FamProfile = () => {
     }
   };
 
-  const myData = {
-    pg1_first_name: "Minh",
-  };
+  function formatPhoneNumber(input) {
+    const phoneNumber = input.value.replace(/\D/g, "");
+    const phoneNumberLength = phoneNumber.length;
+
+    if (phoneNumberLength < 4) {
+      input.value = phoneNumber;
+    } else if (phoneNumberLength < 7) {
+      input.value = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    } else {
+      input.value = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+        3,
+        6
+      )}-${phoneNumber.slice(6, 10)}`;
+    }
+  }
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
@@ -230,10 +242,11 @@ const FamProfile = () => {
                 type="tel"
                 name="pg1_phone"
                 id="pg1_phone"
+                onInput={(e) => formatPhoneNumber(e.target)}
                 {...register("pg1_phone", {
                   required: true,
                   pattern: {
-                    value: /^[0-9]{10}$/i,
+                    value: /^[0-9]{14}$/i,
                     message: "Invalid phone number",
                   },
                 })}
@@ -338,6 +351,7 @@ const FamProfile = () => {
                 type="tel"
                 name="pg2_phone"
                 id="pg2_phone"
+                onInput={(e) => formatPhoneNumber(e.target)}
                 {...register("pg2_phone", {
                   required: false,
                   pattern: {
@@ -490,7 +504,7 @@ const FamProfile = () => {
                   </div>
                 </div>
                 <div className="border mt-10 border-gray-700"></div>
-                <div className="my-4 flex mt-5">
+                <div className="my-4 flex mt-5 justify-between">
                   <button
                     className="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-900 font-bold text-lg shadow-lg ml-3"
                     type="submit"
@@ -503,7 +517,7 @@ const FamProfile = () => {
                       resetForm();
                     }}
                   >
-                    Reset
+                    Discord Changes
                   </button>
                 </div>
               </div>
