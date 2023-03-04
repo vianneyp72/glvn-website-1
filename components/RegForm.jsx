@@ -188,7 +188,9 @@ const Form = () => {
                         {...register(`students_cart.${index}.First_Name`, {
                           required: true,
                           pattern: {
-                            value: /^[A-Za-z.]+$/i,
+                            value:
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9-]+$/,
+                            // value: /^[A-Za-z.]+$/i,
                             message: "Invalid Name",
                           },
                         })}

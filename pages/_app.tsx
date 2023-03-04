@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { Roboto } from '@next/font/google';
+import NavBarParents from "../components/NavBarParents";
 
 const robo = Roboto({
   subsets: ['latin'],
@@ -12,6 +13,7 @@ const robo = Roboto({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
+      <NavBarParents/>
       <main className= {`${robo.variable} font-sans`}>
         <Component {...pageProps} />
       </main>

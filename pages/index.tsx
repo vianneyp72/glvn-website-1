@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import RegWelcome from "../components/RegWelcome"
 
 export default function Home() {
+
   return (
     <main>
         <NavBar/>

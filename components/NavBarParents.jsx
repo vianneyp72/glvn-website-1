@@ -4,11 +4,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-
-const navigation = [
-  { name: "Register(23-24)", href: "/registration-page", current: true },
-  { name: "Family Profile", href: "/family-profile-page", current: false },
-];
+import { useRouter } from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -16,6 +12,22 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const { user, isLoading, error } = useUser();
+
+  const router = useRouter();
+
+  const navigation = [
+    {
+      name: "Register(23-24)",
+      href: "/registration-page",
+      current: router.asPath === "/registration-page",
+    },
+    {
+      name: "Family Profile",
+      href: "/family-profile-page",
+      current: router.asPath === "/family-profile-page",
+    },
+  ];
+
   return (
     <Disclosure
       as="nav"
