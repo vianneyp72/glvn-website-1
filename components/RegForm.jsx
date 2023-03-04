@@ -89,11 +89,11 @@ const Form = () => {
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
+      console.log("item:");
       for (let i = 0; i < responses.length; i++) {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
-      console.log("studentArrayF", studentArray);
       console.log("Form submitted successfully:", responses);
       router.push("/registration-confirmation-page");
     } catch (error) {
@@ -153,22 +153,22 @@ const Form = () => {
                       </label>
 
                       <input
-                        placeholder="ex. St.Thomas Aquinas"
+                        placeholder="ex. St. Thomas Aquinas"
                         className="w-full border bg-tertiary border-fourth p-2 rounded"
                         type="text"
                         name="Saint_Name"
                         id="Saint_Name"
-                        {...register(`students_cart.${index}.Saint_Name`, {
-                          required: true,
+                        {...register(`students.${index}.saintName`, {
+                          required: "This field is required",
                           pattern: {
                             value: /^[A-Za-z. ]+$/i,
                             message: "Invalid Saint name",
                           },
                         })}
                       />
-                      {errors.Saint_Name && (
+                      {errors?.students?.[index]?.saintName && (
                         <span className="text-red-500">
-                          This field is required
+                          {errors.students[index].saintName.message}
                         </span>
                       )}
                     </div>
@@ -189,15 +189,23 @@ const Form = () => {
                           required: true,
                           pattern: {
                             value:
-                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9-]+$/,
-                            // value: /^[A-Za-z.]+$/i,
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ-]+$/,
                             message: "Invalid Name",
                           },
                         })}
                       />
-                      {errors.First_Name && (
+
+                      {errors?.students_cart?.[index]?.First_Name?.type ===
+                        "required" && (
                         <span className="text-red-500">
                           This field is required
+                        </span>
+                      )}
+
+                      {errors?.students_cart?.[index]?.First_Name && (
+                        <span className="text-red-500">
+                          {errors.students_cart[index].First_Name.message ||
+                            "Invalid name"}
                         </span>
                       )}
                       <label
@@ -213,11 +221,24 @@ const Form = () => {
                         {...register(`students_cart.${index}.Last_Name`, {
                           required: true,
                           pattern: {
-                            value: /^[A-Za-z.]+$/i,
-                            message: "Invalid last name",
+                            value:
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ-]+$/,
+                            message: "Invalid Name",
                           },
                         })}
                       />
+
+                      {errors?.students_cart?.[index]?.Last_Name?.type ===
+                        "required" && (
+                        <span className="text-red-500">
+                          This field is required
+                        </span>
+                      )}
+
+                      {errors?.students_cart?.[index]?.Last_Name?.type ===
+                        "pattern" && (
+                        <span className="text-red-500">Invalid Name</span>
+                      )}
                       {errors.Last_Name && (
                         <span className="text-red-500">
                           This field is required
@@ -240,13 +261,16 @@ const Form = () => {
                         {...register(`students_cart.${index}.Birthday`, {
                           required: true,
                           pattern: {
+                            value: /^\d{4}-\d{2}-\d{2}$/,
                             message: "Invalid Date",
                           },
                         })}
                       />
-                      {errors.Birthday && (
+
+                      {errors?.students_cart?.[index]?.Birthday && (
                         <span className="text-red-500">
-                          This field is required
+                          {errors.students_cart[index].Birthday.message ||
+                            "This field is required"}
                         </span>
                       )}
                     </div>
@@ -270,9 +294,10 @@ const Form = () => {
                           },
                         })}
                       />
-                      {errors.Baptism_Date && (
+                      {errors?.students_cart?.[index]?.Baptism_Date && (
                         <span className="text-red-500">
-                          This field is required
+                          {errors.students_cart[index].Baptism_Date.message ||
+                            "This field is required"}
                         </span>
                       )}
                     </div>
@@ -288,6 +313,7 @@ const Form = () => {
                         type="date"
                         name="First_Communion_Date"
                         id="First_Communion_Date"
+                        defaultValue={null}
                         {...register(
                           `students_cart.${index}.First_Communion_Date`,
                           {

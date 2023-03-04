@@ -188,15 +188,20 @@ const FamProfile = () => {
                     name="pg1_first_name"
                     id="pg1_first_name"
                     {...register("pg1_first_name", {
-                      required: true,
+                      required: {
+                        value: true,
+                        message: "This field is required",
+                      },
                       pattern: {
                         value: /^[A-Za-z -]+$/i,
-                        message: "invalid first name",
+                        message: "Invalid name",
                       },
                     })}
                   />
                   {errors.pg1_first_name && (
-                    <span className="text-red-500">This field is required</span>
+                    <span className="text-red-500">
+                      {errors.pg1_first_name.message}
+                    </span>
                   )}
                 </div>
                 <div className="w-full">
@@ -218,12 +223,16 @@ const FamProfile = () => {
                       required: true,
                       pattern: {
                         value: /^[A-Za-z -]+$/i,
-                        message: "invalid last name",
+                        message: "Invalid last name",
                       },
                     })}
                   />
                   {errors.pg1_last_name && (
-                    <span className="text-red-500">This field is required</span>
+                    <span className="text-red-500">
+                      {errors.pg1_last_name.type === "required"
+                        ? "This field is required"
+                        : "Invalid last name"}
+                    </span>
                   )}
                 </div>
               </div>
@@ -246,13 +255,18 @@ const FamProfile = () => {
                 {...register("pg1_phone", {
                   required: true,
                   pattern: {
-                    value: /^[0-9() -]/i,
+                    value:
+                      /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4}))$/,
                     message: "Invalid phone number",
                   },
                 })}
               />
               {errors.pg1_phone && (
-                <span className="text-red-500">This field is required</span>
+                <span className="text-red-500">
+                  {errors.pg1_phone.type === "required"
+                    ? "This field is required"
+                    : "Invalid phone number"}
+                </span>
               )}
             </div>
             <div className="my-4">
@@ -277,7 +291,11 @@ const FamProfile = () => {
                 })}
               />
               {errors.pg1_email && (
-                <span className="text-red-500">This field is required</span>
+                <span className="text-red-500">
+                  {errors.pg1_email.type === "required"
+                    ? "This field is required"
+                    : "Invalid email address"}
+                </span>
               )}
             </div>
             <h3 className="text-lg font-bold text-center p-4 rounded-sm text-white ">
@@ -302,12 +320,16 @@ const FamProfile = () => {
                       required: false,
                       pattern: {
                         value: /^[A-Za-z -]+$/i,
-                        message: "invalid first name",
+                        message: "Invalid first name",
                       },
                     })}
                   />
                   {errors.pg2_first_name && (
-                    <span className="text-red-500">Invalid Name</span>
+                    <span className="text-red-500">
+                      {errors.pg2_first_name.type === "required"
+                        ? "This field is required"
+                        : errors.pg2_first_name.message}
+                    </span>
                   )}
                 </div>
                 <div className="w-full">
@@ -333,7 +355,9 @@ const FamProfile = () => {
                     })}
                   />
                   {errors.pg2_last_name && (
-                    <span className="text-red-500">Invalid Name</span>
+                    <span className="text-red-500">
+                      {errors.pg2_last_name.message}
+                    </span>
                   )}
                 </div>
               </div>
@@ -355,13 +379,18 @@ const FamProfile = () => {
                 {...register("pg2_phone", {
                   required: false,
                   pattern: {
-                    value: /^[0-9]{10}$/i,
+                    value:
+                      /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4}))$/,
                     message: "Invalid phone number",
                   },
                 })}
               />
               {errors.pg2_phone && (
-                <p className="text-red-500">{errors.pg2_phone.message}</p>
+                <p className="text-red-500">
+                  {errors.pg2_phone.type === "required"
+                    ? "This field is required"
+                    : errors.pg2_phone.message}
+                </p>
               )}
             </div>
             <div className="my-4">
@@ -385,7 +414,10 @@ const FamProfile = () => {
                   },
                 })}
               />
-              {errors.pg2_email && (
+              {errors.pg2_email && errors.pg2_email.type === "pattern" && (
+                <p className="text-red-500">{errors.pg2_email.message}</p>
+              )}
+              {errors.pg2_email && errors.pg2_email.type === "required" && (
                 <p className="text-red-500">{errors.pg2_email.message}</p>
               )}
 
@@ -407,15 +439,22 @@ const FamProfile = () => {
                     required: "This field is required",
                     pattern: {
                       value: /^\s*\S+(?:\s+\S+){2}/i,
-                      message: "Invalid Street street_address",
+                      message: "Invalid street address",
                     },
                   })}
                 />
-                {errors.street_address && (
-                  <p className="text-red-500">
-                    {errors.street_address.message}
-                  </p>
-                )}
+                {errors.street_address &&
+                  errors.street_address.type === "pattern" && (
+                    <p className="text-red-500">
+                      {errors.street_address.message}
+                    </p>
+                  )}
+                {errors.street_address &&
+                  errors.street_address.type === "required" && (
+                    <p className="text-red-500">
+                      {errors.street_address.message}
+                    </p>
+                  )}
               </div>
 
               <div className="my-4">
@@ -434,16 +473,24 @@ const FamProfile = () => {
                       name="city"
                       id="city"
                       {...register("city", {
-                        required: true,
+                        required: {
+                          value: true,
+                          message: "This field is required",
+                        },
                         pattern: {
                           value: /^[A-Za-z. ]+$/i,
-                          message: "invalid city name",
+                          message: "Invalid city name",
                         },
                       })}
                     />
-                    {errors.city && (
+                    {errors.city && errors.city.type === "pattern" && (
                       <span className="text-red-500">
-                        This field is required
+                        {errors.city.message}
+                      </span>
+                    )}
+                    {errors.city && errors.city.type === "required" && (
+                      <span className="text-red-500">
+                        {errors.city.message}
                       </span>
                     )}
                   </div>
