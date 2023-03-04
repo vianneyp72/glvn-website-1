@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
+import { parentTable } from "../pages/api/utils/airtable";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/router";
 
 const Form = () => {
   const {
@@ -16,13 +19,79 @@ const Form = () => {
     control,
   });
 
+  const { user } = useUser();
+  const getRecordId = async () => {
+    if (user) {
+      const sid = user.sid;
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userid} = "${sid}"`,
+        })
+        .firstPage();
+      return records.length > 0 ? records[0].id.toString() : null;
+    }
+  };
+
+  const getFamID = async () => {
+    const sid = user.sid;
+    const records = await parentTable
+      .select({
+        filterByFormula: `{userid} = "${sid}"`,
+      })
+      .firstPage();
+    console.log("YESSIR", records[0].fields.Family_ID);
+    return records.length > 0 ? records[0].fields.Family_ID : null;
+  };
+
+  getFamID();
+
+  const addStudentToFamily = async (arr) => {
+    const result = await getRecordId();
+    const response = await axios.put("/api/updateParent", {
+      id: result,
+      fields: { Students_Link: arr },
+    });
+  };
+
+  const getExistingStudents = async () => {
+    const sid = user.sid;
+    const records = await parentTable
+      .select({
+        filterByFormula: `{userid} = "${sid}"`,
+      })
+      .firstPage();
+    console.log("YESSIR", records[0].fields.Students_Link);
+    return records.length > 0 ? records[0].fields.Students_Link : null;
+  };
+
+  const router = useRouter();
+
   const onSubmit = async (data) => {
     console.log("Data:", data);
+    let existingStudentArray = [];
+    existingStudentArray = await getExistingStudents();
+    let studentArray = [];
+
+    if (existingStudentArray != null) {
+      for (let i = 0; i < existingStudentArray.length; i++) {
+        studentArray.push(existingStudentArray[i]);
+      }
+    }
+
+    for (let i = 0; i < data.students_cart.length; i++) {
+      data.students_cart[i].Family_ID = await getFamID();
+    }
     try {
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
+      for (let i = 0; i < responses.length; i++) {
+        studentArray.push(responses[i].data.id);
+      }
+      addStudentToFamily(studentArray);
+      console.log("studentArrayF", studentArray);
       console.log("Form submitted successfully:", responses);
+      router.push("/registration-confirmation-page");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
