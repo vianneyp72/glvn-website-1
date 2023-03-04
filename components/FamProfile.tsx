@@ -1,21 +1,84 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import Airtable from "airtable";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import profile from "@auth0/nextjs-auth0/dist/handlers/profile";
+import { format } from "path";
 
+export type FamilyInfoInputs = {
+  pg1_first_name: string;
+  pg1_last_name: string;
+  pg1_phone: string;
+  pg1_email: string;
+  pg2_first_name: string;
+  pg2_last_name: string;
+  pg2_phone: string;
+  pg2_email: string;
+  street_address: string;
+  state: string;
+  city: string;
+  zipcode: string;
+};
 const FamProfile = () => {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm();
+    reset,
+  } = useForm<FamilyInfoInputs>();
 
+  const resetForm = useCallback(() => {
+    reset({
+      pg1_first_name: "",
+  pg1_last_name: "",
+  pg1_phone: "",
+  pg1_email: "",
+  pg2_first_name: "",
+  pg2_last_name: "",
+  pg2_phone: "",
+  pg2_email: "",
+  street_address: "",
+  state: "",
+  city: "",
+  zipcode: "",
+    });
+  }, [
+    reset,
+  ]);
+
+  useEffect(() => {
+    // when profile is loaded, set the form values
+    resetForm();
+  }, [profile, resetForm,]);
+
+  const getFamInfo = async () => {
+    if (user) {
+      const sid = user.sid;
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userid} = "${sid}"`,
+        })
+        .firstPage();
+      console.log("FamInfo:", records);
+      return (records)
+    }
+  };
+
+  getFamInfo()
+
+  useEffect(() => {
+    
+  }, [])
+
+  
+
+  const { user } = useUser();
   const getRecordId = async () => {
-    const { user } = useUser();
     if (user) {
       const sid = user.sid;
       const records = await parentTable
@@ -27,6 +90,7 @@ const FamProfile = () => {
     }
   };
 
+
   const onSubmit = async (data) => {
     console.log("Data:", data);
     try {
@@ -36,10 +100,13 @@ const FamProfile = () => {
         fields: data,
       });
       console.log("Updated successfully:", response);
-      // reset();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
+  };
+
+  const myData = {
+    pg1_first_name: "Minh",
   };
 
   return (
