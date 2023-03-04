@@ -21,17 +21,12 @@ export default function RegConfirmation() {
           cost = await getRegCost(),
           parent1Name = await getParent1First() + " " + await getParent1Last(),
           parent2Name = await getParent2First() + " " + await getParent2Last()
-      document.getElementById("due-date").append(
-
-        );
-      document.getElementById("details").append(
+      document.getElementById("information-container").append(
+          "Due: (due date here)" + "\n",
           "Family ID: " + familyID + "\n",
-          "Parents: " + parent1Name + " and " + parent2Name
-      );
-      document.getElementById("total-amount").append(
+          "Parents: " + parent1Name + " and " + parent2Name + "\n",
           "Price: $" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      );
-
+        );
   };
 
   const getFamilyID = async () => {
@@ -118,19 +113,17 @@ export default function RegConfirmation() {
             Your submission has been received.
           </h3>
           <p1 className="text-primarytext text-sm sm:text-xl ">
-            <p1 className="text-md sm:text-2xl font-bold">Reminder:</p1>
-            <br />
+              <p1 className="text-md sm:text-2xl font-bold">Reminder:</p1>
+              <br />
             Payment is Due by Cash or Check at the GLVN Office!
               <br/>
               <br/>
-              <p1 id="due-date"></p1>
-              <br/>
-              <p1 id="details"></p1>
-              <br/>
-              <p1 id="total-amount"></p1>
+              <div
+                  id="information-container"
+                  className="whitespace-pre"></div>
           </p1>
-          <br />
-          <div className="border border-gray-700 mt-10 mb-10"></div>
+            <br />
+          <div className="border border-gray-700 mb-10"></div>
           <a
             href="/family-profile-page"
             className="bg-fourth p-3 mt-3 rounded-md hover:bg-onhover shadow-lg"
