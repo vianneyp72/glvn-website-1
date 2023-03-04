@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 const navigation = [
   { name: "Register(23-24)", href: "/registration-page", current: true },
@@ -14,6 +15,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { user, isLoading, error } = useUser();
   return (
     <Disclosure
       as="nav"
@@ -66,13 +68,15 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
-                <a
-                  href="/api/auth/login"
-                  className="text-white mr-3 hover:bg-onhover p-1 rounded-md"
-                >
-                  Sign In
-                </a>
-
+                if (user)
+                {
+                  <a
+                    href="/api/auth/login"
+                    className="text-white mr-3 hover:bg-onhover p-1 rounded-md"
+                  >
+                    Sign In
+                  </a>
+                }
                 {/* <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -80,7 +84,6 @@ export default function NavBar() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button> */}
-
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>

@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
+import Airtable from "airtable";
+import { parentTable } from "../pages/api/utils/airtable";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 const FamProfile = () => {
   const {
@@ -11,23 +14,34 @@ const FamProfile = () => {
     control,
   } = useForm();
 
-  const { fields, append, remove } = useFieldArray({
-    name: "students_cart",
-    control,
-  });
+  const { user } = useUser();
+
+  const getRecordId = async () => {
+    if (user) {
+      const sid = user.sid;
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userid} = "${sid}"`,
+        })
+        .firstPage();
+      return records.length > 0 ? records[0].id.toString() : null;
+    }
+  };
 
   const onSubmit = async (data) => {
     console.log("Data:", data);
     try {
-      const response = await axios.post("/api/createParent", data);
-      console.log("Form submitted successfully:", response.data);
-      reset();
+      const result = await getRecordId();
+      const response = await axios.put("/api/updateParent", {
+        id: result,
+        fields: data,
+      });
+      console.log("Updated successfully:", response.data);
+      // reset();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
-
-  console.log(fields);
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
