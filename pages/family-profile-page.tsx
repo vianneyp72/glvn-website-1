@@ -1,36 +1,36 @@
 import NavBar from "../components/NavBarParents";
 import FamProfile from "../components/FamProfile";
 import Footer from "../components/Footer";
+import { parentTable, minifyRecords } from './api/utils/airtable';
 import React from "react"
 import { useUser, withPageAuthRequired, } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
+import { FieldSet } from "airtable/lib/field_set";
+import { Records } from "airtable/lib/records";
 
 
 export default withPageAuthRequired(function RegForm() {
   const {user, isLoading, error} = useUser();
   console.log("USER INFO:",user)
-  console.log("MYID:",user?.sid)
-  const myID = user?.sid; 
 
-  // const checkSID = (myID) => {
-  //   return(
-  //     myID
-  //   )
-  // };
+  const myID = user?.sid
+
+  const results =  parentTable
+            .select({ filterByFormula: `userId = '${myID}'` })
+            .firstPage();
 
 
-// const initCreate = async (data) => {
-//     console.log("Data:", data);
-//     try {
-//       const responses = await Promise.all(
-//         data.students_cart.map((item) => axios.post("/api/createStudent", item))
-//       );
-//       console.log("Form submitted successfully:", responses);
-//     } catch (error) {
-//       console.error("Error submitting form:", error);
-//     }
-//   };
-    
+
+  console.log("type:",typeof results)
+  console.log("results:",results)
+
+//   const arr= []
+//   if(min === arr){
+//     const data = {"userID": myID}
+//     axios.post("/api/createParent", data)
+//   }
+// console.log(results)
+
 
   return (
     <main>

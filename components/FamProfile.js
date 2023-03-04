@@ -223,7 +223,7 @@ const FamProfile = () => {
                     name="pg2_last_name"
                     id="pg2_last_name"
                     {...register("pg2_last_name", {
-                      required: true,
+                      required: false,
                       pattern: {
                         value: /^[A-Za-z -]+$/i,
                         message: "Invalid last name",
