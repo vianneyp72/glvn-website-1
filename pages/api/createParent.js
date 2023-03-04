@@ -22,6 +22,7 @@ export default async (req, res) => {
     state,
     zipcode,
     Students_Link,
+    userID,
   } = req.body;
   try {
     const createdRecords = await parentTable.create([
@@ -40,6 +41,7 @@ export default async (req, res) => {
           state,
           zipcode,
           Students_Link,
+          userID,
         },
       },
     ]);
