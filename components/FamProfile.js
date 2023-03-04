@@ -14,9 +14,8 @@ const FamProfile = () => {
     control,
   } = useForm();
 
-  const { user } = useUser();
-
   const getRecordId = async () => {
+    const { user } = useUser();
     if (user) {
       const sid = user.sid;
       const records = await parentTable
@@ -36,7 +35,7 @@ const FamProfile = () => {
         id: result,
         fields: data,
       });
-      console.log("Updated successfully:", response.data);
+      console.log("Updated successfully:", response);
       // reset();
     } catch (error) {
       console.error("Error submitting form:", error);
