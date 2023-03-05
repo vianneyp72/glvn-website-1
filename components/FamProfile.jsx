@@ -83,7 +83,6 @@ const FamProfile = () => {
       }
     };
     console.log("GETTING FAM INFO");
-
     getFamInfo();
   }, [user]);
 
@@ -609,7 +608,7 @@ const FamProfile = () => {
                       resetForm();
                     }}
                   >
-                    Discord Changes
+                    Discard Changes
                   </button>
                 </div>
               </div>
