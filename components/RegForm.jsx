@@ -22,10 +22,10 @@ const Form = () => {
   const { user } = useUser();
   const getRecordId = async () => {
     if (user) {
-      const sid = user.sid;
+      const sub = user.sub;
       const records = await parentTable
         .select({
-          filterByFormula: `{userid} = "${sid}"`,
+          filterByFormula: `{userID} = "${sub}"`,
         })
         .firstPage();
       return records.length > 0 ? records[0].id.toString() : null;
@@ -34,13 +34,13 @@ const Form = () => {
 
   const getFamID = async () => {
     if (user) {
-      const sid = user.sid;
+      const sub = user.sub;
       const records = await parentTable
         .select({
-          filterByFormula: `{userid} = "${sid}"`,
+          filterByFormula: `{userID} = "${sub}"`,
         })
         .firstPage();
-      console.log("YESSIR", records[0]?.fields.Family_ID);
+      console.log("FAMID", records[0]?.fields.Family_ID);
       return records.length > 0 ? records[0]?.fields.Family_ID : null;
     }
   };
@@ -49,21 +49,22 @@ const Form = () => {
 
   const addStudentToFamily = async (arr) => {
     const result = await getRecordId();
+    console.log(result);
     const response = await axios.put("/api/updateParent", {
       id: result,
       fields: { Students_Link: arr },
     });
+    console.log("STUDENDT ADD:", response);
   };
 
   const getExistingStudents = async () => {
     if (user) {
-      const sid = user.sid;
+      const sub = user.sub;
       const records = await parentTable
         .select({
-          filterByFormula: `{userid} = "${sid}"`,
+          filterByFormula: `{userid} = "${sub}"`,
         })
         .firstPage();
-      console.log("YESSIR", records[0]?.fields.Students_Link);
       return records.length > 0 ? records[0]?.fields.Students_Link : null;
     }
   };
@@ -81,7 +82,6 @@ const Form = () => {
         studentArray.push(existingStudentArray[i]);
       }
     }
-
     for (let i = 0; i < data.students_cart.length; i++) {
       data.students_cart[i].Family_ID = await getFamID();
     }
@@ -89,7 +89,6 @@ const Form = () => {
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
-      console.log("item:");
       for (let i = 0; i < responses.length; i++) {
         studentArray.push(responses[i].data.id);
       }
@@ -158,17 +157,17 @@ const Form = () => {
                         type="text"
                         name="Saint_Name"
                         id="Saint_Name"
-                        {...register(`students.${index}.saintName`, {
-                          required: "This field is required",
+                        {...register(`students_cart.${index}.Saint_Name`, {
+                          required: true,
                           pattern: {
                             value: /^[A-Za-z. ]+$/i,
                             message: "Invalid Saint name",
                           },
                         })}
                       />
-                      {errors?.students?.[index]?.saintName && (
+                      {errors?.students?.[index]?.Saint_Name && (
                         <span className="text-red-500">
-                          {errors.students[index].saintName.message}
+                          {errors.students[index].Saint_Name.message}
                         </span>
                       )}
                     </div>

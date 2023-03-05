@@ -31,60 +31,60 @@ export default function RegConfirmation() {
   };
 
   const getFamilyID = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.Family_ID : null;
   };
 
   const getRegCost = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.Total_Reg_Cost : null;
   };
 
   const getParent1First = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.pg1_first_name : null;
   };
 
   const getParent1Last = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.pg1_last_name : null;
   };
 
   const getParent2First = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.pg2_first_name : null;
   };
 
   const getParent2Last = async () => {
-    const sid = user.sid;
+    const sub = user.sub;
     const records = await parentTable
       .select({
-        filterByFormula: `{userid} = "${sid}"`,
+        filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
     return records.length > 0 ? records[0].fields.pg2_last_name : null;
@@ -94,10 +94,10 @@ export default function RegConfirmation() {
 
   const getRecordId = async () => {
     if (user) {
-      const sid = user.sid;
+      const sub = user.sub;
       const records = await parentTable
         .select({
-          filterByFormula: `{userid} = "${sid}"`,
+          filterByFormula: `{userid} = "${sub}"`,
         })
         .firstPage();
       return records.length > 0 ? records[0].id.toString() : null;
