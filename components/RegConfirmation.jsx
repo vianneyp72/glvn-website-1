@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useEffect } from "react";
 
 export default function RegConfirmation() {
+  const { user } = useUser();
   let myData;
+
   const displayConfirmationInfo = async (data) => {
     const recID = await getRecordId();
-
     try {
       const response = await axios.get("/api/getParents", data);
-
       myData = response.data;
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error Getting Parents:", error);
     }
-
     let familyID = await getFamilyID(),
       cost = await getRegCost(),
       parent1Name = (await getParent1First()) + " " + (await getParent1Last()),
@@ -37,6 +37,7 @@ export default function RegConfirmation() {
         filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
+    console.log(records);
     return records.length > 0 ? records[0].fields.Family_ID : null;
   };
 
@@ -90,8 +91,6 @@ export default function RegConfirmation() {
     return records.length > 0 ? records[0].fields.pg2_last_name : null;
   };
 
-  const { user } = useUser();
-
   const getRecordId = async () => {
     if (user) {
       const sub = user.sub;
@@ -103,6 +102,10 @@ export default function RegConfirmation() {
       return records.length > 0 ? records[0].id.toString() : null;
     }
   };
+
+  useEffect(() => {
+    displayConfirmationInfo();
+  }, []);
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white ">

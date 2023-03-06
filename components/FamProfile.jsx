@@ -6,6 +6,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 
 const FamProfile = () => {
   const { user } = useUser();
+  console.log(user);
 
   const [fields, setFields] = useState({
     pg1_first_name: "",
