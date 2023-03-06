@@ -7,6 +7,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 
 const Form = () => {
+  const { user } = useUser();
   const {
     register,
     handleSubmit,
@@ -19,7 +20,6 @@ const Form = () => {
     control,
   });
 
-  const { user } = useUser();
   const getRecordId = async () => {
     if (user) {
       const sub = user.sub;
@@ -40,12 +40,9 @@ const Form = () => {
           filterByFormula: `{userID} = "${sub}"`,
         })
         .firstPage();
-
       return records.length > 0 ? records[0]?.fields.Family_ID : null;
     }
   };
-
-  getFamID();
 
   const addStudentToFamily = async (arr) => {
     const result = await getRecordId();
@@ -73,8 +70,9 @@ const Form = () => {
   const onSubmit = async (data) => {
     console.log("Data:", data);
     let existingStudentArray = [];
-    existingStudentArray = await getExistingStudents();
     let studentArray = [];
+
+    existingStudentArray = await getExistingStudents();
 
     if (existingStudentArray != null) {
       for (let i = 0; i < existingStudentArray.length; i++) {
