@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/reg-welcome.js", "pages/family-profile-page.js", "components/FamProfile.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/reg-welcome.js", "pages/family-profile-page.js", "components/FamProfile.jsx", "pages/index.jsx", "pages/registration-page.jsx", "pages/_app.jsx", "pages/registration-confirmation-page.jsx", "pages/ParentPortal.jsx"],
   "exclude": ["node_modules"]
 }

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const FamProfile = () => {
   const { user } = useUser();
