@@ -1,73 +1,63 @@
-import {
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-} from "@material-tailwind/react";
+import { useEffect, useRef, useState } from "react";
+
+const tabsData = [
+  {
+    label: "This Text",
+    content:
+      "Ut irure mollit nulla eiusmod excepteur laboris elit sit anim magna tempor excepteur labore nulla.",
+  },
+  {
+    label: "That Text",
+    content:
+      "Fugiat dolor et quis in incididunt aute. Ullamco voluptate consectetur dolor officia sunt est dolor sint.",
+  },
+];
 
 export default function ProfileTabs() {
-  const data = [
-    {
-      label: "HTML",
-      value: "html",
-      desc: `It really matters and then like it really doesn't matter.
-        What matters is the people who are sparked by it. And the people
-        who are like offended by it, it doesn't matter.`,
-    },
-    {
-      label: "React",
-      value: "react",
-      desc: `Because it's about motivating the doers. Because I'm here
-        to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
-    {
-      label: "Vue",
-      value: "vue",
-      desc: `We're not always in the position that we want to be at.
-        We're constantly growing. We're constantly making mistakes. We're
-        constantly trying to express ourselves and actualize our dreams.`,
-    },
+  const tabsRef = useRef([]);
 
-    {
-      label: "Angular",
-      value: "angular",
-      desc: `Because it's about motivating the doers. Because I'm here
-        to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
+  useEffect(() => {
+    function setTabPosition() {
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
+      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
+    }
 
-    {
-      label: "Svelte",
-      value: "svelte",
-      desc: `We're not always in the position that we want to be at.
-        We're constantly growing. We're constantly making mistakes. We're
-        constantly trying to express ourselves and actualize our dreams.`,
-    },
-  ];
+    setTabPosition();
+    window.addEventListener("resize", setTabPosition);
+
+    return () => window.removeEventListener("resize", setTabPosition);
+  }, [activeTabIndex]);
 
   return (
-    <Tabs id="custom-animation" value="html">
-      <TabsHeader>
-        {data.map(({ label, value }) => (
-          <Tab key={value} value={value}>
-            {label}
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody
-        animate={{
-          initial: { y: 250 },
-          mount: { y: 0 },
-          unmount: { y: 250 },
-        }}
-      >
-        {data.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
-            {desc}
-          </TabPanel>
-        ))}
-      </TabsBody>
-    </Tabs>
+    <div style={{ marginTop: "65px" }}>
+      <div className="relative">
+        <div className="flex space-x-3 border-b">
+          {tabsData.map((tab, idx) => {
+            return (
+              <button
+                key={idx}
+                ref={(el) => (tabsRef.current[idx] = el)}
+                className="pt-2 pb-3"
+                onClick={() => setActiveTabIndex(idx)}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+        <span
+          className="absolute bottom-0 block h-1 bg-teal-500 transition-all duration-300"
+          style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+        />
+      </div>
+      <div className="py-4">
+        <p>{tabsData[activeTabIndex].content}</p>
+      </div>
+    </div>
   );
 }

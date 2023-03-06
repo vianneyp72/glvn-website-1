@@ -1,7 +1,11 @@
 import NavBar from "../components/NavBarParents";
 import FamProfile from "../components/FamProfile";
 import Footer from "../components/Footer";
-import { parentTable } from "./api/utils/airtable";
+import {
+  parentTable,
+  getMinifiedRecord,
+  minifyRecords,
+} from "./api/utils/airtable";
 import React, { useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
@@ -18,7 +22,6 @@ export default withPageAuthRequired(function RegForm() {
         filterByFormula: `{userID} = "${sub}"`,
       })
       .firstPage();
-
     if (records.length === 0) {
       // No matching records found
       console.log(`No user with sub ${sub} exists.`);
@@ -32,7 +35,6 @@ export default withPageAuthRequired(function RegForm() {
 
   const firstRender = useFirstRender();
   useEffect(() => {
-    console.log("CHECKING");
     if (firstRender) {
       checkIfSubExists(myID);
     }
