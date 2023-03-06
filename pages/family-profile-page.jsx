@@ -1,11 +1,7 @@
 import NavBar from "../components/NavBarParents";
 import FamProfile from "../components/FamProfile";
 import Footer from "../components/Footer";
-import {
-  parentTable,
-  getMinifiedRecord,
-  minifyRecords,
-} from "./api/utils/airtable";
+import { parentTable } from "./api/utils/airtable";
 import React, { useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
