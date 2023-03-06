@@ -29,7 +29,7 @@ export default withPageAuthRequired(function RegForm() {
       console.log(`User with ${sub} created.`);
     } else {
       // Matching records found
-      console.log(`User with sub ${sub} exists.`);
+      console.log(`User with sub (${sub}) exists. Continue to Account`);
     }
   };
 
