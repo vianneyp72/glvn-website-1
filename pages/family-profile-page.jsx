@@ -9,26 +9,24 @@ import { useFirstRender } from "../utils/useFirstRender";
 
 export default withPageAuthRequired(function RegForm() {
   const { user, isLoading, error } = useUser();
-  console.log("USER INFO:", user);
 
   const myID = user?.sub;
 
-  const checkIfEmailExists2 = async (sub) => {
+  const checkIfSubExists = async (sub) => {
     const records = await parentTable
       .select({
         filterByFormula: `{userID} = "${sub}"`,
       })
       .firstPage();
 
-    console.log("records", records);
-
     if (records.length === 0) {
       // No matching records found
-      console.log(`No user with email ${sub} exists.`);
+      console.log(`No user with sub ${sub} exists.`);
       axios.post("/api/createParent", { userID: myID });
+      console.log(`User with ${sub} created.`);
     } else {
       // Matching records found
-      console.log(`User with email ${sub} exists.`);
+      console.log(`User with sub ${sub} exists.`);
     }
   };
 
@@ -36,10 +34,9 @@ export default withPageAuthRequired(function RegForm() {
   useEffect(() => {
     console.log("CHECKING");
     if (firstRender) {
-      checkIfEmailExists2(myID);
+      checkIfSubExists(myID);
     }
   }, []);
-  console.log("MYID:", myID);
 
   return (
     <main>
