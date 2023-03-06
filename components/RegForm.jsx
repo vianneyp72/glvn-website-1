@@ -6,7 +6,7 @@ import { parentTable } from "../pages/api/utils/airtable";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 
-const Form = () => {
+const RegForm = () => {
   const { user } = useUser();
   const {
     register,
@@ -470,4 +470,4 @@ const Form = () => {
   );
 };
 
-export default withPageAuthRequired(Form);
+export default RegForm;

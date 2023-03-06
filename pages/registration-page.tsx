@@ -1,18 +1,14 @@
+import NavBar from "../components/NavBarParents";
+import RegForm from "../components/RegForm";
+import Footer from "../components/Footer";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-import NavBar from '../components/NavBarParents'
-import Form from '../components/RegForm'
-import Footer from '../components/Footer'
-import { useEffect, useContext } from 'react';
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-
-
-export default function RegForm() {
-  const user = useUser();
+export default withPageAuthRequired(function RegistrationFormPage() {
   return (
     <main>
       <NavBar />
-      <Form />
+      <RegForm />
       <Footer />
     </main>
-  )
-}
+  );
+});
