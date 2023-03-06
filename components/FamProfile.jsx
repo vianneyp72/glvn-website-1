@@ -64,12 +64,10 @@ const FamProfile = () => {
   useEffect(() => {
     // when profile is loaded, set the form values
     resetForm();
-    console.log("RESETTING FORM");
   }, [user, fields, resetForm]);
 
   useEffect(() => {
     const getFamInfo = async () => {
-      console.log("USER:", user);
       if (user) {
         const sub = user.sub;
         const records = await parentTable
@@ -78,11 +76,10 @@ const FamProfile = () => {
           })
           .firstPage();
         setFields(records[0]?.fields);
-        console.log("FamInfo:", records[0]?.fields);
         return records;
       }
     };
-    console.log("GETTING FAM INFO");
+
     getFamInfo();
   }, [user]);
 
@@ -102,7 +99,6 @@ const FamProfile = () => {
     console.log("Data:", data);
     try {
       const result = await getRecordId();
-      console.log("RESULT", result);
       const response = await axios.put("/api/updateParent", {
         id: result,
         fields: data,
