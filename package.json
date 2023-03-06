@@ -12,6 +12,7 @@
     "@auth0/nextjs-auth0": "^2.2.2",
     "@headlessui/react": "^1.7.12",
     "@heroicons/react": "^2.0.16",
+    "@material-tailwind/react": "^1.4.2",
     "@next/font": "^13.1.1",
     "@nextui-org/react": "^1.0.0-beta.12",
     "@types/node": "18.11.18",
