@@ -40,7 +40,7 @@ const Form = () => {
           filterByFormula: `{userID} = "${sub}"`,
         })
         .firstPage();
-      console.log("FAMID", records[0]?.fields.Family_ID);
+
       return records.length > 0 ? records[0]?.fields.Family_ID : null;
     }
   };
@@ -49,12 +49,11 @@ const Form = () => {
 
   const addStudentToFamily = async (arr) => {
     const result = await getRecordId();
-    console.log(result);
+
     const response = await axios.put("/api/updateParent", {
       id: result,
       fields: { Students_Link: arr },
     });
-    console.log("STUDENDT ADD:", response);
   };
 
   const getExistingStudents = async () => {
