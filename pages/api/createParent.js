@@ -3,6 +3,7 @@ import {
   getMinifiedRecord,
   minifyRecords,
 } from "./utils/airtable";
+
 // import auth0 from './utils/auth0';
 
 export default async (req, res) => {
