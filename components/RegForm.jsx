@@ -472,4 +472,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default withPageAuthRequired(Form);
