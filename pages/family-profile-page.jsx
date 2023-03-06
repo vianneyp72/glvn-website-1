@@ -13,34 +13,10 @@ export default withPageAuthRequired(function RegForm() {
 
   const myID = user?.sub;
 
-  // function checkIfEmailExists(sid) {
-  //   // Use filterByFormula to query the Users table
-  //   parentTable
-  //     .select({
-  //       filterByFormula: `{userID} = "${sid}"`,
-  //     })
-  //     .firstPage(function (err, records) {
-  //       // Handle any errors
-  //       if (err) {
-  //         console.error(err);
-  //         return;
-  //       }
-  //       // Check if records array is empty or not
-  //       if (records.length === 0) {
-  //         // No matching records found
-  //         console.log(`No user with email ${sid} exists.`);
-  //         axios.post("/api/createParent", { userID: myID });
-  //       } else {
-  //         // Matching records found
-  //         console.log(`User with email ${sid} exists.`);
-  //       }
-  //     });
-  // }
-
-  const checkIfEmailExists2 = async (sid) => {
+  const checkIfEmailExists2 = async (sub) => {
     const records = await parentTable
       .select({
-        filterByFormula: `{userID} = "${sid}"`,
+        filterByFormula: `{userID} = "${sub}"`,
       })
       .firstPage();
 
@@ -48,11 +24,11 @@ export default withPageAuthRequired(function RegForm() {
 
     if (records.length === 0) {
       // No matching records found
-      console.log(`No user with email ${sid} exists.`);
+      console.log(`No user with email ${sub} exists.`);
       axios.post("/api/createParent", { userID: myID });
     } else {
       // Matching records found
-      console.log(`User with email ${sid} exists.`);
+      console.log(`User with email ${sub} exists.`);
     }
   };
 
