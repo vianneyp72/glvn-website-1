@@ -189,7 +189,8 @@ const FamProfile = () => {
                         message: "This field is required",
                       },
                       pattern: {
-                        value: /^[A-Za-z -]+$/i,
+                        value:
+                          /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
                         message: "Invalid name",
                       },
                     })}
@@ -218,7 +219,8 @@ const FamProfile = () => {
                     {...register("pg1_last_name", {
                       required: true,
                       pattern: {
-                        value: /^[A-Za-z -]+$/i,
+                        value:
+                          /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
                         message: "Invalid last name",
                       },
                     })}
@@ -315,7 +317,8 @@ const FamProfile = () => {
                     {...register("pg2_first_name", {
                       required: false,
                       pattern: {
-                        value: /^[A-Za-z -]+$/i,
+                        value:
+                          /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
                         message: "Invalid first name",
                       },
                     })}
@@ -345,7 +348,8 @@ const FamProfile = () => {
                     {...register("pg2_last_name", {
                       required: false,
                       pattern: {
-                        value: /^[A-Za-z -]+$/i,
+                        value:
+                          /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
                         message: "Invalid last name",
                       },
                     })}
