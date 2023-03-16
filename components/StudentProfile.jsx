@@ -66,6 +66,8 @@ const RegForm = () => {
     getExistingStudentsInfo();
   }, [user]);
 
+  const stuRecIdArr = [];
+
   const onSubmit = async (data) => {
     const getRecordId = async () => {
       if (user) {
@@ -76,22 +78,24 @@ const RegForm = () => {
           })
           .firstPage();
         for (let i = 0; i < records.length; i++) {
-          stuRecArr.push(records[i].id.toString());
+          stuRecIdArr.push(records[i].id.toString());
         }
       }
     };
-    let stuRecArr = [];
     getRecordId();
 
-    console.log("stuRecArr:", stuRecArr[0]);
+    console.log("stuRecArr:", stuRecIdArr);
+    console.log("stuRecArr:", stuRecIdArr[0]);
+    console.log("stuRecArrLENGTH:", stuRecIdArr.length);
+
     console.log("data.students_cart:", data.students_cart[1]);
 
-    console.log("Data:", data);
+    // console.log("Data:", data);
     try {
-      for (let i = 0; i < stuRecArr.length; i++) {
+      for (let i = 0; i < stuRecIdArr.length; i++) {
         console.log("ITERATING");
         const response = await axios.put("/api/updateStudent", {
-          id: stuRecArr[i],
+          id: stuRecIdArr[i],
           fields: data.students_cart[i],
         });
         console.log("Form submitted successfully:", response);
