@@ -1,8 +1,7 @@
-import React, { useState, useCallback, useEffect } from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
-import { parentTable, studentTable } from "../pages/api/utils/airtable";
+import { studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFirstRender } from "../utils/useFirstRender";
 
@@ -16,7 +15,7 @@ const RegForm = () => {
     setValue,
   } = useForm();
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append } = useFieldArray({
     name: "students_cart",
     control,
   });
@@ -78,7 +77,7 @@ const RegForm = () => {
           })
           .firstPage();
         for (let i = 0; i < records.length; i++) {
-          stuRecIdArr.push(records[i].id.toString());
+          stuRecIdArr.push(records[i].id);
         }
       }
     };
@@ -92,7 +91,7 @@ const RegForm = () => {
 
     // console.log("Data:", data);
     try {
-      for (let i = 0; i < stuRecIdArr.length; i++) {
+      for (let i = 0; i < data.students_cart.length; i++) {
         console.log("ITERATING");
         const response = await axios.put("/api/updateStudent", {
           id: stuRecIdArr[i],
