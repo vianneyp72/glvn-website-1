@@ -232,38 +232,6 @@ const FamProfile = () => {
                     control the content visibility and styling.
                   </p>
                 </div>
-                <div
-                  class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-                  id="settings"
-                  role="tabpanel"
-                  aria-labelledby="settings-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Settings tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
-                <div
-                  class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-                  id="contacts"
-                  role="tabpanel"
-                  aria-labelledby="contacts-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Contacts tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
               </div>
               <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext">
                 Parent Information
