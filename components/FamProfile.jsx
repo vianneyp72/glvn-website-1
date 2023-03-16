@@ -103,6 +103,9 @@ const FamProfile = () => {
         id: result,
         fields: data,
       });
+      console.log(result);
+      console.log("result", result);
+      console.log("data", data);
       console.log("Updated successfully:", response);
     } catch (error) {
       console.error("Error submitting form:", error);

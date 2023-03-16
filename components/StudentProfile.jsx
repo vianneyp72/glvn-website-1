@@ -13,41 +13,8 @@ const RegForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-    reset,
+    setValue,
   } = useForm();
-
-  const [field, setField] = useState({
-    Saint_Name: "",
-    First_Name: "",
-    Last_Name: "",
-    Birthday: "",
-    Baptism_Date: "",
-    First_Communion_Date: "",
-  });
-
-  const resetForm = useCallback(() => {
-    reset({
-      Saint_Name: field?.Saint_Name || "",
-      First_Name: field?.First_Name || "",
-      Last_Name: field?.Last_Name || "",
-      Birthday: field?.Birthday || "",
-      Baptism_Date: field?.Baptism_Date || "",
-      First_Communion_Date: field?.First_Communion_Date || "",
-    });
-  }, [
-    field?.Saint_Name,
-    field?.First_Name,
-    field?.Last_Name,
-    field?.Birthday,
-    field?.Baptism_Date,
-    field?.First_Communion_Date,
-    reset,
-  ]);
-
-  useEffect(() => {
-    // when profile is loaded, set the form values
-    resetForm();
-  }, [user, field, resetForm]);
 
   const { fields, append, remove } = useFieldArray({
     name: "students_cart",
@@ -57,58 +24,78 @@ const RegForm = () => {
   const firstRender = useFirstRender();
 
   useEffect(() => {
-    const getStudentCount = async () => {
-      let count = 0;
-      if (user) {
-        const sub = user.sub;
-        const records = await studentTable
-          .select({
-            filterByFormula: `{userID} = "${sub}"`,
-          })
-          .firstPage();
-        for (let i = 0; i < records.length; i++) {
-          count++;
-        }
-        return count;
-      }
-    };
-
-    getStudentCount().then((count) => {
-      if (firstRender) {
-        for (let i = 0; i < count; i++) {
-          append({});
-        }
-      }
-    });
-  }, [user]);
-
-  useEffect(() => {
     const getExistingStudentsInfo = async () => {
-      if (user) {
-        const sub = user.sub;
-        const records = await studentTable
-          .select({
-            filterByFormula: `{userID} = "${sub}"`,
-          })
-          .firstPage();
-        setField(records[0]?.fields);
-        console.log("EXISTINGSTUDENTS 1: ", records[0]?.fields);
-        console.log("EXISTINGSTUDENTS 2: ", records[1]?.fields);
-        return records.length;
+      if (firstRender) {
+        if (user) {
+          const sub = user.sub;
+          const records = await studentTable
+            .select({
+              filterByFormula: `{userID} = "${sub}"`,
+            })
+            .firstPage();
+          for (let i = 0; i < records.length; i++) {
+            append({});
+            setValue(
+              `students_cart.${i}.Saint_Name`,
+              records[i]?.fields.Saint_Name
+            );
+            setValue(
+              `students_cart.${i}.First_Name`,
+              records[i]?.fields.First_Name
+            );
+            setValue(
+              `students_cart.${i}.Last_Name`,
+              records[i]?.fields.Last_Name
+            );
+            setValue(
+              `students_cart.${i}.Birthday`,
+              records[i]?.fields.Birthday
+            );
+            setValue(
+              `students_cart.${i}.Baptism_Date`,
+              records[i]?.fields.Baptism_Date
+            );
+            setValue(
+              `students_cart.${i}.First_Communion_Date`,
+              records[i]?.fields.First_Communion_Date
+            );
+          }
+        }
       }
     };
     getExistingStudentsInfo();
   }, [user]);
 
   const onSubmit = async (data) => {
+    const getRecordId = async () => {
+      if (user) {
+        const sub = user.sub;
+        const records = await studentTable
+          .select({
+            filterByFormula: `{userid} = "${sub}"`,
+          })
+          .firstPage();
+        for (let i = 0; i < records.length; i++) {
+          stuRecArr.push(records[i].id.toString());
+        }
+      }
+    };
+    let stuRecArr = [];
+    getRecordId();
+
+    console.log("stuRecArr:", stuRecArr[0]);
+    console.log("data.students_cart:", data.students_cart[1]);
+
     console.log("Data:", data);
     try {
-      const responses = await Promise.all(
-        data.students_cart.map((item) =>
-          axios.post("/api/updateStudents", item)
-        )
-      );
-      console.log("Form submitted successfully:", responses);
+      for (let i = 0; i < stuRecArr.length; i++) {
+        console.log("ITERATING");
+        const response = await axios.put("/api/updateStudent", {
+          id: stuRecArr[i],
+          fields: data.students_cart[i],
+        });
+        console.log("Form submitted successfully:", response);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -325,68 +312,18 @@ const RegForm = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-col items-end">
-                      <button
-                        className="bg-red-500 text-white px-2 rounded-lg hover:bg-red-600 font-bold shadow-lg mr-3 mb-3"
-                        type="button"
-                        onClick={() => remove(index)}
-                      >
-                        <div className="flex">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                            />
-                          </svg>
-                          Remove Student
-                        </div>
-                      </button>
-                    </div>
+                    <div className="flex flex-col items-end"></div>
                   </section>
                 </>
               );
             })}
-
-            <section className="pt-3 mb-3">
-              <button
-                className="bg-blue-600 text-white px-2 rounded-lg hover:bg-blue-700 font-bold shadow-lg ml-3"
-                type="button"
-                onClick={() => append({})}
-              >
-                <div className="flex">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  Add Student
-                </div>
-              </button>
-            </section>
 
             <div className="my-4 flex justify-center">
               <button
                 className="w-full bg-sky-800 text-white py-2 px-4 rounded-lg hover:bg-sky-900 font-bold text-lg shadow-lg"
                 type="submit"
               >
-                Register!
+                Update
               </button>
             </div>
           </div>
