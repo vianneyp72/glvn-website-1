@@ -3,9 +3,11 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { Tabs } from "flowbite";
 
 const FamProfile = () => {
   const { user } = useUser();
+  const familyName = user.family_name;
 
   const [fields, setFields] = useState({
     pg1_first_name: "",
@@ -128,12 +130,15 @@ const FamProfile = () => {
     }
   }
 
-  const familyName = user.family_name;
+  const tabs = new Tabs(tabElements, options);
+
+  tabs.show("contacts");
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
         <p className="pt-10 pb-10"></p>
+
         <body>
           <div className="block sm:flex md:justify-center">
             <div>
