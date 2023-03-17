@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -39,6 +40,11 @@ module.exports = {
         fourth: "#14264e",
         primarytext: "#87c3f6",
         onhover: "#2f6dc8",
+
+        // Primary: "#D6E4F0" or "#F2F4F8"
+        // Secondary: "#C4D0E0" or "#E5E9F2"
+        // Tertiary: "#AFBCCF" or "#D8E0F2"
+        // Fourth: "#B9C7DC" or "#E3EAF6"
       },
     },
   },

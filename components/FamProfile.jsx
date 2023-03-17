@@ -170,6 +170,7 @@ const FamProfile = () => {
                   id="myTab"
                   data-tabs-toggle="#myTabContent"
                   role="tablist"
+                  aria-current="page"
                 >
                   <li class="mr-2" role="presentation">
                     <button
@@ -199,6 +200,7 @@ const FamProfile = () => {
                   </li>
                 </ul>
               </div>
+
               <div id="myTabContent">
                 <div
                   class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
@@ -216,6 +218,7 @@ const FamProfile = () => {
                     control the content visibility and styling.
                   </p>
                 </div>
+
                 <div
                   class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
                   id="dashboard"
@@ -233,6 +236,7 @@ const FamProfile = () => {
                   </p>
                 </div>
               </div>
+
               <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext">
                 Parent Information
               </h2>
