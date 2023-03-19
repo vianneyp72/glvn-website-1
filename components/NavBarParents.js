@@ -1,68 +1,71 @@
+// import React from "react";
+// import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
+// import Link from "next/link";
+
+// function Navbar() {
+//   const { user } = useUser();
+//   return (
+//     <nav className="flex justify-between items-center px-5 mx-10 my-2">
+//       <div>
+//           <Link href="/">
+//               <Image
+//                   src="/GLVN_Minimal_small.png"
+//                   alt="GLVN Icon"
+//                   width={150}
+//                   height={150}
+//               ></Image>
+//           </Link>
+//       </div>
+//       <div className="flex">
+//         {user && (
+//           <a
+//             href="/api/auth/logout"
+//             className="rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4"
+//           >
+//             Logout
+//           </a>
+//         )}
+//         {!user && (
+//           <a
+//             href="/api/auth/login"
+//             className="rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4"
+//           >
+//             Login
+//           </a>
+//         )}
+//       </div>
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
 
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 
-const [theme, setTheme] = useState();
-
-useEffect(() => {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    setTheme("dark");
-  } else {
-    setTheme("light");
-  }
-}, []);
-
-useEffect(() => {
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}, [theme]);
-
-const handleThemeSwitch = () => {
-  setTheme(theme === "dark" ? "light" : "dark");
-};
+const navigation = [
+  { name: "Dashboard", href: "#", current: false },
+  { name: "Team", href: "#", current: false },
+  { name: "Projects", href: "#", current: false },
+  { name: "Calendar", href: "#", current: false },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar() {
-  const { user, isLoading, error } = useUser();
-
-  const router = useRouter();
-
-  const navigation = [
-    {
-      name: "Register(23-24)",
-      href: "/registration-page",
-      current: router.asPath === "/registration-page",
-    },
-    {
-      name: "Family Profile",
-      href: "/family-profile-page",
-      current: router.asPath === "/family-profile-page",
-    },
-  ];
-
+export default function Example() {
   return (
-    <Disclosure
-      as="nav"
-      className="bg-primary fixed w-full z-10 top-0 border-b border-gray-700"
-    >
+    <Disclosure as="nav" className="bg-gray-200">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-onhover hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -72,15 +75,13 @@ export default function NavBar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center border-2 border-black rounded-md bg-gray-200">
-                  <a href="/">
-                    <Image
-                      src="/GLVN_Minimal_small.png"
-                      alt="GLVN Icon"
-                      width={75}
-                      height={75}
-                    ></Image>
-                  </a>
+                <div className="flex flex-shrink-0 items-center">
+                  <Image
+                    src="/GLVN_Minimal_small.png"
+                    alt="GLVN Icon"
+                    width={75}
+                    height={75}
+                  ></Image>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -90,8 +91,8 @@ export default function NavBar() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-sky-800 text-white"
-                            : "text-gray-300 hover:bg-sky-800 hover:text-white",
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -102,25 +103,15 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
-                {!user ? (
-                  <a
-                    href="/api/auth/login"
-                    className="text-white mr-3 hover:bg-onhover p-1 rounded-md"
-                  >
-                    Sign In
-                  </a>
-                ) : (
-                  <></>
-                )}
-
-                {/* <button
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button> */}
+                </button>
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -155,7 +146,7 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="family-profile-page"
+                            href="#"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -165,7 +156,7 @@ export default function NavBar() {
                           </a>
                         )}
                       </Menu.Item>
-                      {/* <Menu.Item>
+                      <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
@@ -177,24 +168,20 @@ export default function NavBar() {
                             Settings
                           </a>
                         )}
-                      </Menu.Item> */}
-                      {user ? (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="/api/auth/logout"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ) : (
-                        <></>
-                      )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Sign out
+                          </a>
+                        )}
+                      </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>
