@@ -163,7 +163,7 @@ const FamProfile = () => {
                 <div class="ml-3 text-sm font-medium">
                   Your Family Profile has been Successfully updated.{" "}
                   <a
-                    href="#"
+                    href="/registration-page"
                     class="font-semibold underline hover:no-underline"
                   >
                     Register Here!

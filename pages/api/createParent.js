@@ -4,7 +4,7 @@ import {
   minifyRecords,
 } from "./utils/airtable";
 
-export default withApiAuthRequired(async (req, res) => {
+export default async (req, res) => {
   const {
     pg1_first_name,
     pg1_last_name,
@@ -53,4 +53,4 @@ export default withApiAuthRequired(async (req, res) => {
     res.statusCode = 500;
     res.json({ msg: "Something went wrong" });
   }
-});
+};

@@ -1,6 +1,6 @@
 import { parentTable, getMinifiedRecord } from "./utils/airtable";
 
-export default withApiAuthRequired(async (req, res) => {
+export default async (req, res) => {
   const { id, fields } = req.body;
   try {
     const updatedRecords = await parentTable.update([{ id, fields }]);
@@ -11,4 +11,4 @@ export default withApiAuthRequired(async (req, res) => {
     res.statusCode = 500;
     res.json({ msg: "Something went wrong" });
   }
-});
+};

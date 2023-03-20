@@ -3,14 +3,14 @@ import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useFirstRender } from "../utils/useFirstRender";
 import { Alert } from "flowbite-react";
 
 const RegForm = () => {
   const { user } = useUser();
-  const [showAlert, setShowAlert] = useState(false);
+  // const [showAlert, setShowAlert] = useState(false);
   const {
     register,
     handleSubmit,
@@ -93,6 +93,7 @@ const RegForm = () => {
       data.students_cart[i].Family_ID = await getFamID();
     }
     try {
+      console.log("STUDENT CART:", data.student_cart);
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
@@ -100,8 +101,8 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
-      setShowAlert(true);
-      window.scrollTo(0, 0);
+      // setShowAlert(true);
+      // window.scrollTo(0, 0);
       console.log("Form submitted successfully:", responses);
       router.push("/registration-confirmation-page");
     } catch (error) {
@@ -114,7 +115,7 @@ const RegForm = () => {
       <>
         <p className="pt-10 pb-10"></p>
 
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           {showAlert && (
             <Alert>
               <div
@@ -147,7 +148,7 @@ const RegForm = () => {
               </div>
             </Alert>
           )}
-        </div>
+        </div> */}
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -209,7 +210,7 @@ const RegForm = () => {
                           },
                           pattern: {
                             value:
-                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ .-]+$/i,
                             message: "Invalid name",
                           },
                         })}
