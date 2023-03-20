@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm, control, useFieldArray } from "react-hook-form";
 import axios from "axios";
@@ -6,9 +6,11 @@ import { parentTable } from "../pages/api/utils/airtable";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useFirstRender } from "../utils/useFirstRender";
+import { Alert } from "flowbite-react";
 
 const RegForm = () => {
   const { user } = useUser();
+  const [showAlert, setShowAlert] = useState(false);
   const {
     register,
     handleSubmit,
@@ -98,6 +100,8 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
+      setShowAlert(true);
+      window.scrollTo(0, 0);
       console.log("Form submitted successfully:", responses);
       router.push("/registration-confirmation-page");
     } catch (error) {
@@ -109,6 +113,42 @@ const RegForm = () => {
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
         <p className="pt-10 pb-10"></p>
+
+        <div className="flex justify-center">
+          {showAlert && (
+            <Alert>
+              <div
+                id="alert-border-1"
+                class="flex p-4 mb-4 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800"
+                role="alert"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <div class="ml-3 text-sm font-medium">
+                  Your Family Profile has been Successfully updated.{" "}
+                  <a
+                    href="#"
+                    class="font-semibold underline hover:no-underline"
+                  >
+                    Register Here!
+                  </a>{" "}
+                  Or click on the Register button above!
+                </div>
+              </div>
+            </Alert>
+          )}
+        </div>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mx-auto max-w-4xl my-6 bg-secondary shadow-md rounded-lg p-10"
@@ -162,18 +202,21 @@ const RegForm = () => {
                         type="text"
                         name="Saint_Name"
                         id="Saint_Name"
-                        {...register(`students_cart.${index}.Saint_Name`, {
-                          required: true,
+                        {...register("Saint_Name", {
+                          required: {
+                            value: true,
+                            message: "This field is required",
+                          },
                           pattern: {
                             value:
                               /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
-                            message: "Invalid Saint name",
+                            message: "Invalid name",
                           },
                         })}
                       />
-                      {errors?.students?.[index]?.Saint_Name && (
+                      {errors.Saint_Name && (
                         <span className="text-red-500">
-                          {errors.students[index].Saint_Name.message}
+                          {errors.Saint_Name.message}
                         </span>
                       )}
                     </div>
@@ -190,20 +233,22 @@ const RegForm = () => {
                         type="text"
                         name="First_Name"
                         id="First_Name"
-                        {...register(`students_cart.${index}.First_Name`, {
-                          required: true,
+                        {...register("First_Name", {
+                          required: {
+                            value: true,
+                            message: "This field is required",
+                          },
                           pattern: {
                             value:
-                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/,
-                            message: "Invalid Name",
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
+                            message: "Invalid name",
                           },
                         })}
                       />
 
-                      {errors?.students_cart?.[index]?.First_Name?.type ===
-                        "required" && (
+                      {errors.First_Name && (
                         <span className="text-red-500">
-                          This field is required
+                          {errors.First_Name.message}
                         </span>
                       )}
 
@@ -223,30 +268,21 @@ const RegForm = () => {
                         type="text"
                         name="Last_Name"
                         id="Last_Name"
-                        {...register(`students_cart.${index}.Last_Name`, {
-                          required: true,
+                        {...register("Last_Name", {
+                          required: {
+                            value: true,
+                            message: "This field is required",
+                          },
                           pattern: {
                             value:
-                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/,
-                            message: "Invalid Name",
+                              /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
+                            message: "Invalid name",
                           },
                         })}
                       />
-
-                      {errors?.students_cart?.[index]?.Last_Name?.type ===
-                        "required" && (
-                        <span className="text-red-500">
-                          This field is required
-                        </span>
-                      )}
-
-                      {errors?.students_cart?.[index]?.Last_Name?.type ===
-                        "pattern" && (
-                        <span className="text-red-500">Invalid Name</span>
-                      )}
                       {errors.Last_Name && (
                         <span className="text-red-500">
-                          This field is required
+                          {errors.Last_Name.message}
                         </span>
                       )}
                     </div>

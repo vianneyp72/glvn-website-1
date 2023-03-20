@@ -3,9 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { Alert } from "flowbite-react";
 
 const FamProfile = () => {
   const { user } = useUser();
+
+  const [showAlert, setShowAlert] = useState(false);
 
   const [fields, setFields] = useState({
     pg1_first_name: "",
@@ -103,6 +106,8 @@ const FamProfile = () => {
         id: result,
         fields: data,
       });
+      setShowAlert(true);
+      window.scrollTo(0, 0);
       console.log(result);
       console.log("result", result);
       console.log("data", data);
@@ -134,6 +139,42 @@ const FamProfile = () => {
     <div className="min-h-screen bg-primary overflow-auto text-white">
       <>
         <p className="pt-10 pb-10"></p>
+
+        <div className="flex justify-center">
+          {showAlert && (
+            <Alert>
+              <div
+                id="alert-border-1"
+                class="flex p-4 mb-4 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800"
+                role="alert"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <div class="ml-3 text-sm font-medium">
+                  Your Family Profile has been Successfully updated.{" "}
+                  <a
+                    href="#"
+                    class="font-semibold underline hover:no-underline"
+                  >
+                    Register Here!
+                  </a>{" "}
+                  Or click on the Register button above!
+                </div>
+              </div>
+            </Alert>
+          )}
+        </div>
+
         <body>
           <div className="block sm:flex md:justify-center">
             <div>
@@ -682,6 +723,7 @@ const FamProfile = () => {
                     >
                       Update
                     </button>
+
                     <button
                       className="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-900 font-bold text-lg shadow-lg ml-3"
                       onClick={() => {
