@@ -186,17 +186,19 @@ const FamProfile = () => {
                     </button>
                   </li>
                   <li class="mr-2" role="presentation">
-                    <button
-                      class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                      id="dashboard-tab"
-                      data-tabs-target="#dashboard"
-                      type="button"
-                      role="tab"
-                      aria-controls="dashboard"
-                      aria-selected="false"
-                    >
-                      Students
-                    </button>
+                    <a href="/student-profile-page">
+                      <button
+                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="dashboard-tab"
+                        data-tabs-target="#dashboard"
+                        type="button"
+                        role="tab"
+                        aria-controls="dashboard"
+                        aria-selected="false"
+                      >
+                        Students
+                      </button>
+                    </a>
                   </li>
                 </ul>
               </div>

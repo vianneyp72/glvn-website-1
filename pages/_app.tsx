@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
       <NavBar />
-      <main className= {`${robo.variable} font-sans`}>
+      <main className= {`${robo.variable} font-sans`} >
         <Component {...pageProps} />
       </main>
     </UserProvider>

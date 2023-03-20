@@ -7,33 +7,32 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-const [theme, setTheme] = useState();
-
-useEffect(() => {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    setTheme("dark");
-  } else {
-    setTheme("light");
-  }
-}, []);
-
-useEffect(() => {
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}, [theme]);
-
-const handleThemeSwitch = () => {
-  setTheme(theme === "dark" ? "light" : "dark");
-};
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
   const { user, isLoading, error } = useUser();
 
   const router = useRouter();
