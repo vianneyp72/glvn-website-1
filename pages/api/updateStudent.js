@@ -1,8 +1,6 @@
 import { studentTable, getMinifiedRecord } from "./utils/airtable";
-// import auth0 from './utils/auth0';
 
 export default async (req, res) => {
-  // const { user } = await auth0.getSession(req);
   const { id, fields } = req.body;
   try {
     const updatedRecords = await studentTable.update([{ id, fields }]);

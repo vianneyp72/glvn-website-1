@@ -1,8 +1,6 @@
 import { studentTable, getMinifiedRecord } from "./utils/airtable";
-// import auth0 from './utils/auth0';
 
-export default async (req, res) => {
-  // const { user } = await auth0.getSession(req);
+export default withApiAuthRequired(async (req, res) => {
   const { id } = req.body;
   try {
     const deletedRecords = await studentTable.destroy([id]);
@@ -13,4 +11,4 @@ export default async (req, res) => {
     res.statusCode = 500;
     res.json({ msg: "Something went wrong" });
   }
-};
+});

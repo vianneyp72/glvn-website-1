@@ -8,7 +8,7 @@ import axios from "axios";
 import { useFirstRender } from "../utils/useFirstRender";
 
 export default withPageAuthRequired(function RegForm() {
-  const { user, isLoading, error } = useUser();
+  const { user } = useUser();
 
   const myID = user?.sub;
 
