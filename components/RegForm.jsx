@@ -427,63 +427,6 @@ const RegForm = () => {
               </button>
             </section>
 
-            <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext mb-3">
-              Payment Information
-            </h2>
-
-            <div className="text-center space-y-5 text-gray-200">
-              <p>
-                After submitting this form, please visit the GLVN office to pay
-                for registration fees to complete registration for your
-                children.
-              </p>
-              <p className="text-3xl font-bold text-white">
-                Registration Fee: $120
-              </p>
-              <p>
-                All students pay $120 for the general GLVN program. Additional
-                fees are required for the following grades to cover special
-                programming for Sacramental Preparation.
-              </p>
-            </div>
-
-            <div>
-              <table className="table-fixed flex justify-center p-6 text-gray-200">
-                <tbody>
-                  <tr>
-                    <td className="border-4 border-gray-100 px-3">
-                      Lop 2 - First Communion
-                    </td>
-                    <td className="border-4 border-gray-100 px-3">+ $100.00</td>
-                  </tr>
-                  <tr>
-                    <td className="border-4 border-gray-100 px-3">
-                      Lop 9 - Pre-Confirmation Retreat
-                    </td>
-                    <td className="border-4 border-gray-100 px-3">+ $150.00</td>
-                  </tr>
-                  <tr>
-                    <td className="border-4 border-gray-100 px-3">
-                      Lop 10 - Confirmation Retreat
-                    </td>
-                    <td className="border-4 border-gray-100 px-3">+ $300.00</td>
-                  </tr>
-                  <tr>
-                    <td className="border-4 border-gray-100 px-3">
-                      Cleaning Fee (Per Family)
-                    </td>
-                    <td className="border-4 border-gray-100 px-3">+ $25.00</td>
-                  </tr>
-                  <tr>
-                    <td className="border-4 border-gray-100 px-3">Late Fee</td>
-                    <td className="border-4 border-gray-100 px-3">
-                      + $20.00 per child
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
             <div className="my-4 flex justify-center">
               <button
                 className="w-full bg-sky-800 text-white py-2 px-4 rounded-lg hover:bg-sky-900 font-bold text-lg shadow-lg"
@@ -494,20 +437,6 @@ const RegForm = () => {
             </div>
 
             <br />
-            <div className="text-center">
-              <p className="font-bold text-gray-300 text-sm">
-                Dưới sự yêu cầu của cha chánh xứ, Xin mỗi gia đình đóng góp $25
-                để giáo xứ có thể mướn người thu dọn trường học hàng tuần. By
-                the request of our pastor, each family is asked to contribute
-                $25/family to help the parish with the cost of cleaning the
-                school.
-              </p>
-              <br />
-              <br />
-              <p className="font-bold text-white">
-                Registration after May 8th will result in late fees of $20/child
-              </p>
-            </div>
           </div>
         </form>
       </>
