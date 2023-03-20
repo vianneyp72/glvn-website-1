@@ -3,9 +3,9 @@ import {
   getMinifiedRecord,
   minifyRecords,
 } from "./utils/airtable";
-// import auth0 from './utils/auth0';
+import { useUser, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
-export default async (req, res) => {
+export default withApiAuthRequired(async function (req, res) {
   // const { user } = await auth0.getSession(req);
   try {
     const records = await parentTable.select({}).firstPage();
@@ -17,4 +17,4 @@ export default async (req, res) => {
     res.statusCode = 500;
     res.json({ msg: "Something went wrong" });
   }
-};
+});
