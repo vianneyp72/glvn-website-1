@@ -181,6 +181,9 @@ const FamProfile = () => {
               <div className="bg-secondary rounded-lg mx-10 my-6 p-11 text-center">
                 <div>
                   <div>
+                    <div>
+                      <img src={user.picture} alt="Profile picture" />
+                    </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
