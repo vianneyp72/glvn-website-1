@@ -9,98 +9,47 @@ export default function RegConfirmation() {
   let myData;
 
   const displayConfirmationInfo = async (data) => {
-    const recID = await getRecordId();
     try {
       const response = await axios.get("/api/getParents", data);
       myData = response.data;
     } catch (error) {
       console.error("Error Getting Parents:", error);
     }
-    let familyID = await getFamilyID(),
-      cost = await getRegCost(),
-      parent1Name = (await getParent1First()) + " " + (await getParent1Last()),
-      parent2Name = (await getParent2First()) + " " + (await getParent2Last());
+
+    let bigString = (await getInfo()).split("/");
     document
       .getElementById("information-container")
       .append(
-        "Due: (due date here)" + "\n",
-        "Family ID: " + familyID + "\n",
-        "Parents: " + parent1Name + " and " + parent2Name + "\n",
-        "Price: $" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        "--------------------------------------------------------------------------------------\n\n" +
+          user.name +
+          "\n\n",
+        "Family ID: " + bigString[0] + "\n\n",
+        "Total: $" +
+          bigString[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+          "\n\n"
       );
   };
 
-  const getFamilyID = async () => {
+  function displayCost(input) {
+    let cost = input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return (
+      <div id="cost-container" className="font-bold">
+        ${cost}
+      </div>
+    );
+  }
+
+  const getInfo = async () => {
     const sub = user.sub;
     const records = await parentTable
       .select({
         filterByFormula: `{userid} = "${sub}"`,
       })
       .firstPage();
-    console.log(records);
-    return records.length > 0 ? records[0].fields.Family_ID : null;
-  };
-
-  const getRegCost = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    return records.length > 0 ? records[0].fields.Total_Reg_Cost : null;
-  };
-
-  const getParent1First = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    return records.length > 0 ? records[0].fields.pg1_first_name : null;
-  };
-
-  const getParent1Last = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    return records.length > 0 ? records[0].fields.pg1_last_name : null;
-  };
-
-  const getParent2First = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    return records.length > 0 ? records[0].fields.pg2_first_name : null;
-  };
-
-  const getParent2Last = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    return records.length > 0 ? records[0].fields.pg2_last_name : null;
-  };
-
-  const getRecordId = async () => {
-    if (user) {
-      const sub = user.sub;
-      const records = await parentTable
-        .select({
-          filterByFormula: `{userid} = "${sub}"`,
-        })
-        .firstPage();
-      return records.length > 0 ? records[0].id.toString() : null;
-    }
+    let str =
+      records[0].fields.Family_ID + "/" + records[0].fields.Total_Reg_Cost;
+    console.log(str);
+    return str;
   };
 
   useEffect(() => {
@@ -122,7 +71,12 @@ export default function RegConfirmation() {
             Payment is Due by Cash or Check at the GLVN Office!
             <br />
             <br />
-            <div id="information-container" className="whitespace-pre"></div>
+            <div
+              id="information-container"
+              className="bg-gray-100 text-black rounded-md whitespace-pre"
+            >
+              <p className="whitespace-pre font-bold text-4xl">Summary</p>
+            </div>
           </p1>
           <br />
           <div className="border border-gray-700 mb-10"></div>
@@ -134,7 +88,6 @@ export default function RegConfirmation() {
           </a>
         </div>
       </div>
-      <button onClick={displayConfirmationInfo}>button</button>
     </div>
   );
 }
