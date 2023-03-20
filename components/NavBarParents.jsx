@@ -164,19 +164,19 @@ export default function NavBar() {
                           </a>
                         )}
                       </Menu.Item>
-                      {/* <Menu.Item>
+                      <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="https://airtable.com/shrS7yhmQy7su2wAe"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
+                            Help / Request
                           </a>
                         )}
-                      </Menu.Item> */}
+                      </Menu.Item>
                       {user ? (
                         <Menu.Item>
                           {({ active }) => (
