@@ -130,9 +130,9 @@ const FamProfile = () => {
     }
   }
 
-  // const tabs = new Tabs(tabElements, options);
+  const tabs = new Tabs(tabElements, options);
 
-  // tabs.show("contacts");
+  tabs.show("contacts");
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white">
