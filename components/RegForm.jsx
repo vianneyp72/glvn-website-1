@@ -92,6 +92,12 @@ const RegForm = () => {
     }
     try {
       console.log("STUDENT CART:", data.student_cart);
+      for (let i=0; i<data.students_cart.length; i++)
+      {
+        if(data.students_cart[i].First_Communion_Date == "") {
+          delete data.students_cart[i].First_Communion_Date;
+        }
+      }
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );
