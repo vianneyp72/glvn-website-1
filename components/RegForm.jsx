@@ -91,7 +91,18 @@ const RegForm = () => {
       data.students_cart[i].Family_ID = await getFamID();
     }
     try {
+<<<<<<< Updated upstream
       console.log("STUDENT CART:", data.student_cart);
+=======
+      console.log("STUDENT CART:", data.students_cart);
+      console.log("STUDENT CART:", data.students_cart.length);
+      for (let i=0; i<data.students_cart.length; i++)
+      {
+        if(data.students_cart[i].First_Communion_Date == "") {
+          delete data.students_cart[i].First_Communion_Date;
+        }
+      }
+>>>>>>> Stashed changes
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
       );

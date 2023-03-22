@@ -67,9 +67,12 @@ const StudentProfile = () => {
     getExistingStudentsInfo();
   }, [user]);
 
-  const stuRecIdArr = [];
+  
+
+  
 
   const onSubmit = async (data) => {
+    let stuRecIdArr = [];
     const getRecordId = async () => {
       if (user) {
         const sub = user.sub;
@@ -78,34 +81,42 @@ const StudentProfile = () => {
             filterByFormula: `{userid} = "${sub}"`,
           })
           .firstPage();
+        let count = 0;
         for (let i = 0; i < records.length; i++) {
           stuRecIdArr.push(records[i].id);
         }
       }
     };
-    getRecordId();
 
-    console.log("stuRecArr:", stuRecIdArr);
-    console.log("stuRecArr:", stuRecIdArr[0]);
-    console.log("stuRecArrLENGTH:", stuRecIdArr.length);
-
-    console.log("data.students_cart:", data.students_cart[1]);
-
-    // console.log("Data:", data);
-    try {
-      for (let i = 0; i < data.students_cart.length; i++) {
-        console.log("ITERATING");
-        const response = await axios.put("/api/updateStudent", {
-          id: stuRecIdArr[i],
-          fields: data.students_cart[i],
-        });
-        setShowAlert(true);
-        window.scrollTo(0, 0);
-        console.log("Form submitted successfully:", response);
+    (async () => {
+      await getRecordId();
+      console.log("stuRecArr:", stuRecIdArr);
+      console.log("stuRecArrLENGTH:", stuRecIdArr.length);
+      for(let i=0; i < stuRecIdArr.length; i++) {
+        console.log("stuRecArr:", stuRecIdArr[i]);
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+      // console.log("Data:", data);
+      try {
+        for (let i = 0; i < data.students_cart.length; i++) {
+          if(data.students_cart[i].First_Communion_Date == "")
+          {
+            data.students_cart[i].First_Communion_Date = null;
+          }
+
+          console.log("ITERATING");
+          const response = await axios.put("/api/updateStudent", {
+            id: stuRecIdArr[i],
+            fields: data.students_cart[i],
+          });
+          setShowAlert(true);
+          window.scrollTo(0, 0);
+          console.log("Form submitted successfully:", response);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
+    })();
+
   };
 
   const familyName = user.family_name;
