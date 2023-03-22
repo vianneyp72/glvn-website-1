@@ -81,14 +81,14 @@ export default function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center border-2 border-black rounded-md bg-gray-200">
-                  <a href="/">
+                  <Link href="/">
                     <Image
                       src="/GLVN_Minimal_small.png"
                       alt="GLVN Icon"
                       width={75}
                       height={75}
                     ></Image>
-                  </a>
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
