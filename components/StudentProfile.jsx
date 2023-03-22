@@ -282,17 +282,20 @@ const StudentProfile = () => {
                             name="Saint_Name"
                             id="Saint_Name"
                             {...register(`students_cart.${index}.Saint_Name`, {
-                              required: true,
+                              required: {
+                                value: true,
+                                message: "This field is required",
+                              },
                               pattern: {
                                 value:
-                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
-                                message: "Invalid Saint name",
+                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ .-]+$/i,
+                                message: "Invalid name",
                               },
                             })}
                           />
-                          {errors?.students?.[index]?.Saint_Name && (
+                          {errors.Saint_Name && (
                             <span className="text-red-500">
-                              {errors.students[index].Saint_Name.message}
+                              {errors.Saint_Name.message}
                             </span>
                           )}
                         </div>
@@ -310,19 +313,21 @@ const StudentProfile = () => {
                             name="First_Name"
                             id="First_Name"
                             {...register(`students_cart.${index}.First_Name`, {
-                              required: true,
+                              required: {
+                                value: true,
+                                message: "This field is required",
+                              },
                               pattern: {
                                 value:
-                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/,
-                                message: "Invalid Name",
+                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
+                                message: "Invalid name",
                               },
                             })}
                           />
 
-                          {errors?.students_cart?.[index]?.First_Name?.type ===
-                            "required" && (
+                          {errors.First_Name && (
                             <span className="text-red-500">
-                              This field is required
+                              {errors.First_Name.message}
                             </span>
                           )}
 
@@ -343,19 +348,20 @@ const StudentProfile = () => {
                             name="Last_Name"
                             id="Last_Name"
                             {...register(`students_cart.${index}.Last_Name`, {
-                              required: true,
+                              required: {
+                                value: true,
+                                message: "This field is required",
+                              },
                               pattern: {
                                 value:
-                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/,
-                                message: "Invalid Name",
+                                  /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐa-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ -]+$/i,
+                                message: "Invalid name",
                               },
                             })}
                           />
-
-                          {errors?.students_cart?.[index]?.Last_Name?.type ===
-                            "required" && (
+                          {errors.Last_Name && (
                             <span className="text-red-500">
-                              This field is required
+                              {errors.Last_Name.message}
                             </span>
                           )}
 
