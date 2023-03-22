@@ -96,9 +96,8 @@ const RegForm = () => {
     }
     try {
       console.log("STUDENT CART:", data.student_cart);
-      for (let i=0; i<data.students_cart.length; i++)
-      {
-        if(data.students_cart[i].First_Communion_Date == "") {
+      for (let i = 0; i < data.students_cart.length; i++) {
+        if (data.students_cart[i].First_Communion_Date == "") {
           delete data.students_cart[i].First_Communion_Date;
         }
       }
@@ -109,8 +108,8 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
-      setShowAlert(true);
-      window.scrollTo(0, 0);
+      // setShowAlert(true);
+      // window.scrollTo(0, 0);
       console.log("Form submitted successfully:", responses);
       router.push("/registration-confirmation-page");
     } catch (error) {
