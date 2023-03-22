@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { Roboto } from '@next/font/google';
 import  NavBar  from "../components/NavBarParents";
+import {appWithTranslation} from 'next-i18next'
 
 const robo = Roboto({
   subsets: ['latin'],
@@ -10,7 +11,7 @@ const robo = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default appWithTranslation(function App({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
       <NavBar />
@@ -19,4 +20,4 @@ export default function App({ Component, pageProps }: AppProps) {
       </main>
     </UserProvider>
   );
-}
+})

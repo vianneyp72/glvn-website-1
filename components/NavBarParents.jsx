@@ -12,6 +12,12 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { locale, locales, push } = useRouter();
+
+  const handleClick = (l) => () => {
+    push("/", undefined, { locale: l });
+  };
+
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -102,6 +108,19 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
+                <div className="text-white px-4">{locale}</div>
+                <div className="text-white">
+                  {locales.map((l) => (
+                    <button
+                      className="text-white border px-3 mx-1"
+                      key={l}
+                      onClick={handleClick(l)}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
+
                 {!user ? (
                   <a
                     href="/api/auth/login"
