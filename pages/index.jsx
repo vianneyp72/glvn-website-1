@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import RegWelcome from "../components/RegWelcome";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import router from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function Home() {
   const { user } = useUser();
@@ -14,4 +15,12 @@ export default function Home() {
       <Footer />
     </main>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["welcome", "navbar"])),
+    },
+  };
 }

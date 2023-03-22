@@ -6,8 +6,12 @@ import { parentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useFirstRender } from "../utils/useFirstRender";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 const RegForm = () => {
+  const { locale } = useRouter();
+  const { t: translate } = useTranslation("studentprofile");
   const { user } = useUser();
   const {
     register,
@@ -148,7 +152,7 @@ const RegForm = () => {
 
           <div className="my-4">
             <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext mb-3">
-              Student Information
+              {translate("Student Information")}
             </h2>
 
             {fields.map((field, index) => {
@@ -163,7 +167,8 @@ const RegForm = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="Saint_Name"
                       >
-                        Student's Saint Name: <p className="text-red-500">*</p>
+                        {translate("Student's Saint Name")}:{" "}
+                        <p className="text-red-500">*</p>
                       </label>
 
                       <input
@@ -194,11 +199,12 @@ const RegForm = () => {
                       className="flex text-gray-200 font-medium mb-2"
                       htmlFor="First_Name"
                     >
-                      Student's Name:<p className="text-red-500">*</p>
+                      {translate("Student's Name")}:
+                      <p className="text-red-500">*</p>
                     </label>
                     <div className="flex flex-col md:flex-row md:space-x-3">
                       <input
-                        placeholder="First Name"
+                        placeholder={translate("First Name")}
                         className="w-full border bg-tertiary border-fourth p-2 rounded"
                         type="text"
                         name="First_Name"
@@ -233,7 +239,7 @@ const RegForm = () => {
                         htmlFor="Last_Name"
                       ></label>
                       <input
-                        placeholder="Last Name"
+                        placeholder={translate("Last Name")}
                         className="w-full border bg-tertiary border-fourth p-2 rounded"
                         type="text"
                         name="Last_Name"
@@ -261,7 +267,7 @@ const RegForm = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="studentDOB"
                       >
-                        Student's Date of Birth
+                        {translate("Student's Date of Birth")}:
                         <p className="text-red-500">*</p>
                       </label>
                       <input
@@ -290,7 +296,7 @@ const RegForm = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="Baptism_Date"
                       >
-                        Student's Baptism Date
+                        {translate("Student's Baptism Date")}:
                         <p className="text-red-500">*</p>
                       </label>
                       <input
@@ -317,7 +323,7 @@ const RegForm = () => {
                         className="block text-gray-200 font-medium mb-2"
                         htmlFor="First_Communion_Date"
                       >
-                        Student's First Communion Date
+                        {translate("Student's First Communion Date")}:
                       </label>
                       <input
                         className="w-full border bg-tertiary border-fourth p-2 rounded"
@@ -362,7 +368,7 @@ const RegForm = () => {
                               d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
                             />
                           </svg>
-                          Remove Student
+                          {translate("Remove Student")}
                         </div>
                       </button>
                     </div>
@@ -392,7 +398,7 @@ const RegForm = () => {
                       d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  Add Student
+                  {translate("Add Student")}
                 </div>
               </button>
             </section>
@@ -402,7 +408,7 @@ const RegForm = () => {
                 className="w-full bg-sky-800 text-white py-2 px-4 rounded-lg hover:bg-sky-900 font-bold text-lg shadow-lg"
                 type="submit"
               >
-                Register!
+                {translate("Register")}!
               </button>
             </div>
 

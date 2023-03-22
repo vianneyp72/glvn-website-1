@@ -4,8 +4,14 @@ import axios from "axios";
 import { parentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Alert } from "flowbite-react";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 const FamProfile = () => {
+  const { locale, push } = useRouter();
+  const { t: translate } = useTranslation("familyprofile");
+
   const { user } = useUser();
 
   const [showAlert, setShowAlert] = useState(false);
@@ -161,14 +167,16 @@ const FamProfile = () => {
                   ></path>
                 </svg>
                 <div class="ml-3 text-sm font-medium">
-                  Your Family Profile has been Successfully updated.{" "}
+                  {translate(
+                    "Your Family Profile has been Successfully updated."
+                  )}{" "}
                   <a
                     href="/registration-page"
                     class="font-semibold underline hover:no-underline"
                   >
-                    Register Here!
+                    {translate("Register Here!")}
                   </a>{" "}
-                  Or click on the Register button above!
+                  {translate("Or click on the Register button above!")}
                 </div>
               </div>
             </Alert>
@@ -226,23 +234,15 @@ const FamProfile = () => {
                       aria-controls="profile"
                       aria-selected="false"
                     >
-                      Profile
+                      {translate("Profile")}
                     </button>
                   </li>
                   <li class="mr-2" role="presentation">
-                    <a href="/student-profile-page">
-                      <button
-                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                        id="dashboard-tab"
-                        data-tabs-target="#dashboard"
-                        type="button"
-                        role="tab"
-                        aria-controls="dashboard"
-                        aria-selected="false"
-                      >
-                        Students
+                    <Link href={"/student-profile-page"} locale={locale}>
+                      <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+                        {translate("Students")}
                       </button>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -253,41 +253,22 @@ const FamProfile = () => {
                   id="profile"
                   role="tabpanel"
                   aria-labelledby="profile-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Profile tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
+                ></div>
 
                 <div
                   class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
                   id="dashboard"
                   role="tabpanel"
                   aria-labelledby="dashboard-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Dashboard tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
+                ></div>
               </div>
 
               <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext">
-                Parent Information
+                {translate("Parent Information")}
               </h2>
               <h3 className="flex justify-center text-lg font-bold p-4 rounded-sm text-white">
-                PARENT/GUARDIAN 1 INFORMATION <p className="text-red-500">*</p>
+                {translate("PARENT/GUARDIAN 1 INFORMATION")}{" "}
+                <p className="text-red-500">*</p>
               </h3>
 
               <div className="my-4">
@@ -297,7 +278,7 @@ const FamProfile = () => {
                       className="flex text-gray-200 font-medium mb-2"
                       htmlFor="pg1_first_name"
                     >
-                      Parent/Guardian 1 First Name:{" "}
+                      {translate("Parent/Guardian 1 First Name:")}{" "}
                       <p className="text-red-500">*</p>
                     </label>
                     <input
@@ -329,7 +310,7 @@ const FamProfile = () => {
                       className="flex text-gray-200 font-medium mb-2"
                       htmlFor="pg1_last_name"
                     >
-                      Parent/Guardian 1 Last Name:
+                      {translate("Parent/Guardian 1 Last Name:")}
                       <p className="text-red-500">*</p>
                     </label>
 
@@ -364,7 +345,8 @@ const FamProfile = () => {
                   className=" text-gray-200 font-medium mb-2 flex"
                   htmlFor="pg1_phone"
                 >
-                  Parent/Guardian 1 Phone #: <p className="text-red-500"> *</p>
+                  {translate("Parent/Guardian 1 Phone #:")}{" "}
+                  <p className="text-red-500"> *</p>
                 </label>
                 <input
                   placeholder="(000)-000-0000"
@@ -395,7 +377,8 @@ const FamProfile = () => {
                   className="flex text-gray-200 font-medium mb-2"
                   htmlFor="pg1_email"
                 >
-                  Parent/Guardian 1 Email:<p className="text-red-500">*</p>
+                  {translate("Parent/Guardian 1 Email:")}
+                  <p className="text-red-500">*</p>
                 </label>
                 <input
                   placeholder="ex. Tuan1987@yahoo.com"
@@ -420,7 +403,7 @@ const FamProfile = () => {
                 )}
               </div>
               <h3 className="text-lg font-bold text-center p-4 rounded-sm text-white ">
-                PARENT/GUARDIAN 2 INFORMATION
+                {translate("PARENT/GUARDIAN 2 INFORMATION")}
               </h3>
               <div className="my-4">
                 <div className="flex flex-col md:flex-row justify-between md:space-x-3">
@@ -429,7 +412,7 @@ const FamProfile = () => {
                       className="flex text-gray-200 font-medium mb-2"
                       htmlFor="pg1_first_name"
                     >
-                      Parent/Guardian 2 First Name:{" "}
+                      {translate("Parent/Guardian 2 First Name:")}{" "}
                     </label>
                     <input
                       placeholder="First Name"
@@ -459,7 +442,7 @@ const FamProfile = () => {
                       className="block text-gray-200 font-medium mb-2"
                       htmlFor="pg1_last_name"
                     >
-                      Parent/Guardian 2 Last Name:
+                      {translate("Parent/Guardian 2 Last Name:")}
                     </label>
 
                     <input
@@ -490,7 +473,7 @@ const FamProfile = () => {
                   className="block text-gray-200 font-medium mb-2"
                   htmlFor="pg2_phone"
                 >
-                  Parent/Guardian 2 Phone #:
+                  {translate("Parent/Guardian 2 Phone #:")}
                 </label>
                 <input
                   placeholder="(000)-000-0000"
@@ -521,7 +504,7 @@ const FamProfile = () => {
                   className="block text-gray-200 font-medium mb-2"
                   htmlFor="pg2_email"
                 >
-                  Parent/Guardian 2 Email:
+                  {translate("Parent/Guardian 2 Email:")}
                 </label>
                 <input
                   placeholder="ex. Tuan1987@yahoo.com"
@@ -546,13 +529,14 @@ const FamProfile = () => {
 
                 <div className="my-4 mt-10 py-2">
                   <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext">
-                    Address Information
+                    {translate("Address Information")}
                   </h2>
                   <label
                     className="flex text-gray-200 font-medium mb-2 mt-4"
                     htmlFor="street_address"
                   >
-                    Street Address: <p className="text-red-500">*</p>
+                    {translate("Street Address:")}
+                    <p className="text-red-500">*</p>
                   </label>
                   <input
                     className="w-full border bg-tertiary border-fourth p-2 rounded"
@@ -587,7 +571,7 @@ const FamProfile = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="city"
                       >
-                        City:<p className="text-red-500">*</p>
+                        {translate("City")}:<p className="text-red-500">*</p>
                       </label>
                       <input
                         placeholder="Minneapolis"
@@ -622,7 +606,7 @@ const FamProfile = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="City"
                       >
-                        State:<p className="text-red-500">*</p>
+                        {translate("State")}:<p className="text-red-500">*</p>
                       </label>
 
                       <select
@@ -695,7 +679,7 @@ const FamProfile = () => {
                         className="flex text-gray-200 font-medium mb-2"
                         htmlFor="zipcode"
                       >
-                        Zipcode:<p className="text-red-500">*</p>
+                        {translate("Zipcode")}:<p className="text-red-500">*</p>
                       </label>
                       <input
                         placeholder="55443"
@@ -724,7 +708,7 @@ const FamProfile = () => {
                       className="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-900 font-bold text-lg shadow-lg ml-3"
                       type="submit"
                     >
-                      Update
+                      {translate("Update")}
                     </button>
 
                     <button
@@ -733,7 +717,7 @@ const FamProfile = () => {
                         resetForm();
                       }}
                     >
-                      Discard Changes
+                      {translate("Discard Changes")}
                     </button>
                   </div>
                 </div>
