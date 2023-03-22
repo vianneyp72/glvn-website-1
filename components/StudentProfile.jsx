@@ -67,10 +67,6 @@ const StudentProfile = () => {
     getExistingStudentsInfo();
   }, [user]);
 
-  
-
-  
-
   const onSubmit = async (data) => {
     let stuRecIdArr = [];
     const getRecordId = async () => {
@@ -92,14 +88,13 @@ const StudentProfile = () => {
       await getRecordId();
       console.log("stuRecArr:", stuRecIdArr);
       console.log("stuRecArrLENGTH:", stuRecIdArr.length);
-      for(let i=0; i < stuRecIdArr.length; i++) {
+      for (let i = 0; i < stuRecIdArr.length; i++) {
         console.log("stuRecArr:", stuRecIdArr[i]);
       }
       // console.log("Data:", data);
       try {
         for (let i = 0; i < data.students_cart.length; i++) {
-          if(data.students_cart[i].First_Communion_Date == "")
-          {
+          if (data.students_cart[i].First_Communion_Date == "") {
             data.students_cart[i].First_Communion_Date = null;
           }
 
@@ -116,7 +111,6 @@ const StudentProfile = () => {
         console.error("Error submitting form:", error);
       }
     })();
-
   };
 
   const familyName = user.family_name;
