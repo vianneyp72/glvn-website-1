@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 export default function RegWelcome() {
-  const { locale } = useRouter();
+  const { locale, locales, push } = useRouter();
   const { t: translate } = useTranslation("welcome");
+
+  // const handleClick = (l) => {
+  //   push("/family-profile-page", undefined, { locale: l });
+  // };
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white ">
@@ -22,12 +27,11 @@ export default function RegWelcome() {
             <br />
           </h3>
           <div className="border border-gray-700 mt-10 mb-10"></div>
-          <a
-            href="/family-profile-page"
-            className="bg-fourth p-3 mt-3 rounded-md hover:bg-onhover shadow-lg"
-          >
-            {translate("Get Started!")}
-          </a>
+          <button className="bg-fourth p-3 mt-3 rounded-md hover:bg-onhover shadow-lg">
+            <Link href={"/family-profile-page"} locale={locale}>
+              {translate("Get Started!")}
+            </Link>
+          </button>
         </div>
       </div>
     </div>

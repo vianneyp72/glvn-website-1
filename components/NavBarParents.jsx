@@ -3,9 +3,11 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -13,9 +15,12 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const { locale, locales, push } = useRouter();
+  const router = useRouter();
+
+  const { t: translate } = useTranslation("navbar");
 
   const handleClick = (l) => () => {
-    push("/", undefined, { locale: l });
+    push(router.asPath, undefined, { locale: l });
   };
 
   const [theme, setTheme] = useState("light");
@@ -41,16 +46,14 @@ export default function NavBar() {
   };
   const { user, isLoading, error } = useUser();
 
-  const router = useRouter();
-
   const navigation = [
     {
-      name: "Register(23-24)",
+      name: translate("Register(23-24)"),
       href: "/registration-page",
       current: router.asPath === "/registration-page",
     },
     {
-      name: "Family Profile",
+      name: translate("Family Profile"),
       href: "/family-profile-page",
       current: router.asPath === "/family-profile-page",
     },
@@ -90,7 +93,7 @@ export default function NavBar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={classNames(
@@ -102,31 +105,27 @@ export default function NavBar() {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
-                <div className="text-white px-4">{locale}</div>
-                <div className="text-white">
-                  {locales.map((l) => (
-                    <button
-                      className="text-white border px-3 mx-1"
-                      key={l}
-                      onClick={handleClick(l)}
-                    >
-                      {l}
-                    </button>
-                  ))}
+                <div className="text-white mr-3 hover:bg-onhover px-3 py-1 mx-4 rounded-md">
+                  {locale === "en" && (
+                    <button onClick={handleClick("vn")}>VN</button>
+                  )}
+                  {locale === "vn" && (
+                    <button onClick={handleClick("en")}>EN</button>
+                  )}
                 </div>
 
                 {!user ? (
                   <a
                     href="/api/auth/login"
-                    className="text-white mr-3 hover:bg-onhover p-1 rounded-md"
+                    className="text-white mr-3 hover:bg-onhover px-3 py-1 rounded-md"
                   >
-                    Sign In
+                    {translate("Sign In")}
                   </a>
                 ) : (
                   <></>
@@ -179,7 +178,7 @@ export default function NavBar() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
+                            {translate("Your Profile")}
                           </a>
                         )}
                       </Menu.Item>
@@ -192,7 +191,7 @@ export default function NavBar() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Help / Request
+                            {translate("Help / Request")}
                           </a>
                         )}
                       </Menu.Item>
@@ -206,7 +205,7 @@ export default function NavBar() {
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Sign out
+                              {translate("Sign out")}
                             </a>
                           )}
                         </Menu.Item>

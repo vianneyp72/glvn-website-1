@@ -5,9 +5,16 @@ import { studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFirstRender } from "../utils/useFirstRender";
 import { Alert } from "flowbite-react";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 const StudentProfile = () => {
   const { user } = useUser();
+
+  const { locale } = useRouter();
+  const { t: translate } = useTranslation("studentprofile");
+
   const [showAlert, setShowAlert] = useState(false);
   const {
     register,
@@ -135,7 +142,7 @@ const StudentProfile = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <div class="ml-3 text-sm font-medium">
-                    Your Student has been Successfully updated.{" "}
+                    {translate("Your Student has been Successfully updated")}.{" "}
                   </div>
                   <path
                     fill-rule="evenodd"
@@ -187,7 +194,7 @@ const StudentProfile = () => {
                   aria-current="page"
                 >
                   <li class="mr-2" role="presentation">
-                    <a href="/family-profile-page">
+                    <Link href={"/family-profile-page"} locale={locale}>
                       <button
                         class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                         id="profile-tab"
@@ -197,24 +204,22 @@ const StudentProfile = () => {
                         aria-controls="profile"
                         aria-selected="false"
                       >
-                        Profile
+                        {translate("Profile")}
                       </button>
-                    </a>
+                    </Link>
                   </li>
                   <li class="mr-2" role="presentation">
-                    <a href="/student-profile-page">
-                      <button
-                        class="inline-block p-4 border-b-2 rounded-t-lg"
-                        id="dashboard-tab"
-                        data-tabs-target="#dashboard"
-                        type="button"
-                        role="tab"
-                        aria-controls="dashboard"
-                        aria-selected="true"
-                      >
-                        Students
-                      </button>
-                    </a>
+                    <button
+                      class="inline-block p-4 border-b-2 rounded-t-lg"
+                      id="dashboard-tab"
+                      data-tabs-target="#dashboard"
+                      type="button"
+                      role="tab"
+                      aria-controls="dashboard"
+                      aria-selected="true"
+                    >
+                      {translate("Students")}
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -225,34 +230,14 @@ const StudentProfile = () => {
                   id="profile"
                   role="tabpanel"
                   aria-labelledby="profile-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Profile tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
+                ></div>
 
                 <div
                   class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
                   id="dashboard"
                   role="tabpanel"
                   aria-labelledby="dashboard-tab"
-                >
-                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This is some placeholder content the{" "}
-                    <strong class="font-medium text-gray-800 dark:text-white">
-                      Dashboard tab's associated content
-                    </strong>
-                    . Clicking another tab will toggle the visibility of this
-                    one for the next. The tab JavaScript swaps classes to
-                    control the content visibility and styling.
-                  </p>
-                </div>
+                ></div>
               </div>
 
               <div className="my-4">
@@ -261,7 +246,7 @@ const StudentProfile = () => {
 
               <div className="my-4">
                 <h2 className="text-lg font-bold bg-fourth p-4 rounded-lg shadow-md text-primarytext mb-3">
-                  Student Information
+                  {translate("Student Information")}
                 </h2>
 
                 {fields.map((field, index) => {
@@ -276,7 +261,7 @@ const StudentProfile = () => {
                             className="flex text-gray-200 font-medium mb-2"
                             htmlFor="Saint_Name"
                           >
-                            Student's Saint Name:{" "}
+                            {translate("Student's Saint Name")}:{" "}
                             <p className="text-red-500">*</p>
                           </label>
 
@@ -308,7 +293,8 @@ const StudentProfile = () => {
                           className="flex text-gray-200 font-medium mb-2"
                           htmlFor="First_Name"
                         >
-                          Student's Name:<p className="text-red-500">*</p>
+                          {translate("Student's Name")}:
+                          <p className="text-red-500">*</p>
                         </label>
                         <div className="flex flex-col md:flex-row md:space-x-3">
                           <input
@@ -385,7 +371,7 @@ const StudentProfile = () => {
                             className="flex text-gray-200 font-medium mb-2"
                             htmlFor="studentDOB"
                           >
-                            Student's Date of Birth
+                            {translate("Student's Date of Birth")}:
                             <p className="text-red-500">*</p>
                           </label>
                           <input
@@ -414,7 +400,7 @@ const StudentProfile = () => {
                             className="flex text-gray-200 font-medium mb-2"
                             htmlFor="Baptism_Date"
                           >
-                            Student's Baptism Date
+                            {translate("Student's Baptism Date")}:
                             <p className="text-red-500">*</p>
                           </label>
                           <input
@@ -444,7 +430,7 @@ const StudentProfile = () => {
                             className="block text-gray-200 font-medium mb-2"
                             htmlFor="First_Communion_Date"
                           >
-                            Student's First Communion Date
+                            {translate("Student's First Communion Date")}:
                           </label>
                           <input
                             className="w-full border bg-tertiary border-fourth p-2 rounded"
@@ -479,7 +465,7 @@ const StudentProfile = () => {
                     className="w-full bg-sky-800 text-white py-2 px-4 rounded-lg hover:bg-sky-900 font-bold text-lg shadow-lg"
                     type="submit"
                   >
-                    Update
+                    {translate("Update")}
                   </button>
                 </div>
               </div>
