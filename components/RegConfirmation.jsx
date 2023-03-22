@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { parentTable } from "../pages/api/utils/airtable";
+import {parentTable, studentTable} from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -25,25 +25,71 @@ export default function RegConfirmation() {
     }
 
     let bigString = (await getInfo()).split("/");
-    document
-      .getElementById("information-container")
-      .append(
-        user.name + "\n\n",
-        "Family ID: " + bigString[0] + "\n\n",
-        "Total: $" +
-          bigString[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-          "\n\n"
-      );
+    document.getElementById("family-container").append(
+        user.family_name + " Family\n\n",
+        "Family ID: " + bigString[0],
+    )
+    // document
+    //   .getElementById("information-container")
+    //   .append(
+    //     "Total: $" +
+    //       bigString[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+    //       "\n\n"
+    //   );
   };
 
-  function displayCost(input) {
-    let cost = input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return (
-      <div id="cost-container" className="font-bold">
-        ${cost}
-      </div>
-    );
+  function formatMoney(input) {
+    return (Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) / 100).toFixed(2)
   }
+
+  useEffect(() => {
+    const getExistingStudentsInfo = async () => {
+      if (user) {
+        const sub = user.sub;
+        const records = await studentTable
+            .select({
+              filterByFormula: `{userID} = "${sub}"`,
+            })
+            .firstPage();
+        for (let i = 0; i < records.length; i++) {
+          document.getElementById("grade-container").append(
+              "Student " + (i+1) + " (" + records[i].fields.Grade + ")\n\n"
+          )
+          document.getElementById("price-container").append(
+              "$" + formatMoney(records[i].fields.Grade_Price) + "\n\n"
+          )
+        }
+      }
+    }
+    getExistingStudentsInfo();
+  }, [user]);
+
+  useEffect(() => {
+    const getExistingParentsInfo = async () => {
+      if (user) {
+        const sub = user.sub;
+        const records = await parentTable
+            .select({
+              filterByFormula: `{userID} = "${sub}"`,
+            })
+            .firstPage();
+        document.getElementById("left-side-container").append(
+            "Cleaning Fee\n\n"
+        )
+        document.getElementById("right-side-container").append(
+            "$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n"
+        )
+        document.getElementById("string-total-container").append(
+            "Total\n\n"
+        )
+
+        document.getElementById("number-total-container").append(
+            "$" + formatMoney(records[0].fields.Total_Reg_Cost)
+        )
+      }
+    }
+    getExistingParentsInfo();
+  }, [user]);
 
   const getInfo = async () => {
     const sub = user.sub;
@@ -66,11 +112,11 @@ export default function RegConfirmation() {
     <div className="min-h-screen bg-primary overflow-auto text-white ">
       <p className="pt-10 pb-10 mb-10"></p>
       <div className="flex justify-center">
-        <div className="bg-secondary shadow-lg p-10 rounded-lg w-2/3 sm:w-1/2 lg:w-1/3 text-center mb-4">
-          <h3 className="font-bold text-4xl sm:text-6xl pb-3">
+        <div className="bg-secondary shadow-lg p-10 rounded-lg w-2/3 sm:w-3/4 m:w-1/2 lg:w-1/2 mb-4">
+          <h3 className="flex justify-center font-bold text-4xl sm:text-6xl pb-3">
             {translate("Registered")}!
           </h3>
-          <h3 className="text-xs pb-10 text-gray-300">
+          <h3 className="flex justify-center text-xs pb-10 text-gray-300">
             {translate("Your submission has been received")}.
           </h3>
           <p1 className="text-primarytext text-sm sm:text-xl ">
@@ -133,12 +179,26 @@ export default function RegConfirmation() {
 
             <div
               id="information-container"
-              className="bg-gray-100 text-black rounded-md whitespace-pre"
-            >
+              className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl">
+              <div id="family-container" className="flex justify-start pt-10 font-bold"/>
+              <p id="thanks-container" className="flex justify-start pt-5 text-onhover text-2xl font-bold">Thanks for Registering</p>
               <p className="whitespace-pre font-bold text-4xl mb-4 pt-4">
                 {translate("Summary")}
               </p>
-              <div className="border border-dashed border-gray-500 mb-10 mx-2" />
+              <div className="border border-dashed border-gray-500 mb-10" />
+              {/*fix padding pls*/}
+              <div id="student-cost-container" className="flex justify-between font-bold">
+                <div id="grade-container"/>
+                <div id="price-container"/>
+              </div>
+              <div id="misc-container" className="flex justify-between">
+                <div id="left-side-container" className="text-sm"/>
+                <div id="right-side-container"/>
+              </div>
+              <div className="flex justify-between text-sm xs:text-xs sm:text-4xl">
+                <div id="string-total-container" className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"/>
+                <div id="number-total-container" className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"/>
+              </div>
             </div>
           </p1>
           <br />
@@ -160,7 +220,7 @@ export default function RegConfirmation() {
           <div className="border border-gray-700 mb-10"></div>
           <Link
             href="/family-profile-page"
-            className="bg-fourth p-3 mt-3  rounded-md hover:bg-onhover shadow-lg"
+            className="flex justify-center bg-fourth p-3 mt-3 rounded-md hover:bg-onhover shadow-lg"
           >
             {translate("Done!")}
           </Link>
