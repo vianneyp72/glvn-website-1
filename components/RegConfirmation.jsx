@@ -26,14 +26,10 @@ export default function RegConfirmation() {
     let bigString = (await getInfo()).split("/");
     document
       .getElementById("family-container")
-      .append(user.family_name + " Family\n\n", "Family ID: " + bigString[0]);
-    // document
-    //   .getElementById("information-container")
-    //   .append(
-    //     "Total: $" +
-    //       bigString[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-    //       "\n\n"
-    //   );
+      .append(user.family_name + " Family\n\n");
+    document
+      .getElementById("family-id-container")
+      .append("ID: " + bigString[0]);
   };
 
   function formatMoney(input) {
@@ -69,7 +65,7 @@ export default function RegConfirmation() {
       }
     };
     getExistingStudentsInfo();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     const getExistingParentsInfo = async () => {
@@ -96,7 +92,7 @@ export default function RegConfirmation() {
       }
     };
     getExistingParentsInfo();
-  }, [user]);
+  }, []);
 
   const getInfo = async () => {
     const sub = user.sub;
@@ -188,18 +184,24 @@ export default function RegConfirmation() {
                 id="information-container"
                 className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl w-full md:w-2/3"
               >
-                <div
-                  id="family-container"
-                  className="flex justify-start pt-10 font-bold"
-                />
+                <div className="flex justify-between">
+                  <div
+                    id="family-container"
+                    className="flex justify-start pt-10 font-bold text-2xl"
+                  />
+                  <div
+                    id="family-id-container"
+                    className="flex justify-start pt-10"
+                  />
+                </div>
                 <p
                   id="thanks-container"
                   className="flex justify-start pt-5 text-onhover text-2xl font-bold"
                 >
                   {translate("Thanks for Registering")}
                 </p>
-                <p className="whitespace-pre font-bold text-4xl mb-4 pt-4">
-                  {translate("Summary")}
+                <p className="whitespace-pre text-xl mb-4 pt-4 text-blue-900">
+                  {translate("Payment Summary")}
                 </p>
                 <div className="border border-dashed border-gray-500 mb-10" />
                 {/*fix padding pls*/}

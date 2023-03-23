@@ -79,6 +79,10 @@ const RegForm = () => {
 
   const router = useRouter();
 
+  const handleConfRedirect = () => {
+    router.push("/registration-confirmation-page", undefined, { locale });
+  };
+
   const onSubmit = async (data) => {
     let existingStudentArray = [];
     let studentArray = [];
@@ -106,10 +110,8 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
-      // setShowAlert(true);
-      // window.scrollTo(0, 0);
       console.log("Form submitted successfully:", responses);
-      push("/registration-confirmation-page", undefined, { locale });
+      handleConfRedirect();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
