@@ -430,7 +430,7 @@ const StudentProfile = () => {
                             className="block text-gray-200 font-medium mb-2"
                             htmlFor="First_Communion_Date"
                           >
-                            {translate("Student's First Communion Date")}:
+                            {translate("Student's First Communion Date")}
                           </label>
                           <input
                             className="w-full border bg-tertiary border-fourth p-2 rounded"
