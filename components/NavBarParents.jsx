@@ -155,7 +155,7 @@ export default function NavBar() {
                 {!user ? (
                   <a
                     href="/api/auth/login"
-                    className="text-white mr-3 hover:bg-onhover px-1 py-1 rounded-md"
+                    className="text-white mr-3 hover:bg-onhover px-1/2 py-1 rounded-md"
                   >
                     {translate("Sign In")}
                   </a>
