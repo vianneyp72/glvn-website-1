@@ -52,7 +52,8 @@ export default function RegConfirmation() {
           document
             .getElementById("grade-container")
             .append(
-              translate("Student ") +
+              translate("Student") +
+                " " +
                 (i + 1) +
                 " (" +
                 records[i].fields.Grade +
