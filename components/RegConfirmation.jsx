@@ -14,110 +14,79 @@ export default function RegConfirmation() {
   const { locale } = useRouter();
   const { t: translate } = useTranslation("confirmation");
 
-  // const firstRender = useFirstRender();
-  // useEffect(() => {
-  //   if (firstRender) {
-  //     window.location.reload();
-  //   }
-  // }, [firstRender]);
-
-  let myData;
-
-  const displayConfirmationInfo = async (data) => {
-    try {
-      const response = await axios.get("/api/getParents", data);
-      myData = response.data;
-    } catch (error) {
-      console.error("Error Getting Parents:", error);
-    }
-
-    let bigString = (await getInfo()).split("/");
-    document
-      .getElementById("family-container")
-      .append(user.family_name + " Family\n\n");
-    document
-      .getElementById("family-id-container")
-      .append("ID: " + bigString[0]);
-  };
-
   function formatMoney(input) {
     return (
-      Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) /
-      100
+        Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) /
+        100
     ).toFixed(2);
   }
 
-  useEffect(() => {
-    const getExistingStudentsInfo = async () => {
-      if (user) {
-        const sub = user.sub;
-        const records = await studentTable
+  const getExistingParentsInfo = async () => {
+    if (user) {
+      const sub = user.sub;
+      const records = await parentTable
           .select({
             filterByFormula: `{userID} = "${sub}"`,
           })
           .firstPage();
-        for (let i = 0; i < records.length; i++) {
-          document
+      document
+          .getElementById("family-container")
+          .append(user.family_name + " Family\n\n");
+      document
+          .getElementById("family-id-container")
+          .append("ID: " + records[0].fields.Family_ID);
+      document
+          .getElementById("left-side-container")
+          .append(translate("Cleaning Fee")) + "\n\n";
+      document
+          .getElementById("right-side-container")
+          .append("$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n");
+      document
+          .getElementById("string-total-container")
+          .append(translate("Total")) + "\n";
+
+      document
+          .getElementById("number-total-container")
+          .append("$" + formatMoney(records[0].fields.Total_Reg_Cost));
+      console.log("done appending parent info")
+    }
+  };
+
+  let studentCount = 0;
+
+  const getExistingStudentsInfo = async () => {
+    if (user) {
+      const sub = user.sub;
+      const records = await studentTable
+          .select({
+            filterByFormula: `{userID} = "${sub}"`,
+          })
+          .firstPage();
+      console.log("RECORDS: " + records)
+
+      for (let i = 0; i < records.length; i++) {
+        document
             .getElementById("grade-container")
             .append(
-              translate("Student") +
+                translate("Student") +
                 " " +
                 (i + 1) +
                 " (" +
                 records[i].fields.Grade +
                 ")\n\n"
             );
-          document
+        document
             .getElementById("price-container")
             .append("$" + formatMoney(records[i].fields.Grade_Price) + "\n\n");
-        }
+        console.log("done appending student info")
       }
-    };
-    getExistingStudentsInfo();
-  }, [user]);
-
-  useEffect(() => {
-    const getExistingParentsInfo = async () => {
-      if (user) {
-        const sub = user.sub;
-        const records = await parentTable
-          .select({
-            filterByFormula: `{userID} = "${sub}"`,
-          })
-          .firstPage();
-        document
-          .getElementById("left-side-container")
-          .append(translate("Cleaning Fee")) + "\n\n";
-        document
-          .getElementById("right-side-container")
-          .append("$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n");
-        document
-          .getElementById("string-total-container")
-          .append(translate("Total")) + "\n";
-
-        document
-          .getElementById("number-total-container")
-          .append("$" + formatMoney(records[0].fields.Total_Reg_Cost));
-      }
-    };
-    getExistingParentsInfo();
-  }, [user]);
-
-  const getInfo = async () => {
-    const sub = user.sub;
-    const records = await parentTable
-      .select({
-        filterByFormula: `{userid} = "${sub}"`,
-      })
-      .firstPage();
-    let str =
-      records[0].fields.Family_ID + "/" + records[0].fields.Total_Reg_Cost;
-    return str;
+    }
   };
 
   useEffect(() => {
-    displayConfirmationInfo();
-  }, []);
+    getExistingParentsInfo();
+    getExistingStudentsInfo();
+  }, [])
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white ">
