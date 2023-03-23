@@ -105,7 +105,6 @@ const FamProfile = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log("Data:", data);
     try {
       const result = await getRecordId();
       const response = await axios.put("/api/updateParent", {
@@ -114,9 +113,6 @@ const FamProfile = () => {
       });
       setShowAlert(true);
       window.scrollTo(0, 0);
-      console.log(result);
-      console.log("result", result);
-      console.log("data", data);
       console.log("Updated successfully:", response);
     } catch (error) {
       console.error("Error submitting form:", error);

@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 const RegForm = () => {
-  const { locale } = useRouter();
+  const { locale, locales, push } = useRouter();
   const { t: translate } = useTranslation("studentprofile");
   const { user } = useUser();
   const {
@@ -80,7 +80,6 @@ const RegForm = () => {
   const router = useRouter();
 
   const onSubmit = async (data) => {
-    console.log("Data:", data);
     let existingStudentArray = [];
     let studentArray = [];
 
@@ -95,7 +94,6 @@ const RegForm = () => {
       data.students_cart[i].Family_ID = await getFamID();
     }
     try {
-      console.log("STUDENT CART:", data.student_cart);
       for (let i = 0; i < data.students_cart.length; i++) {
         if (data.students_cart[i].First_Communion_Date == "") {
           delete data.students_cart[i].First_Communion_Date;
@@ -111,7 +109,7 @@ const RegForm = () => {
       // setShowAlert(true);
       // window.scrollTo(0, 0);
       console.log("Form submitted successfully:", responses);
-      router.push("/registration-confirmation-page");
+      push("/registration-confirmation-page", undefined, { locale });
     } catch (error) {
       console.error("Error submitting form:", error);
     }

@@ -93,19 +93,12 @@ const StudentProfile = () => {
 
     (async () => {
       await getRecordId();
-      console.log("stuRecArr:", stuRecIdArr);
-      console.log("stuRecArrLENGTH:", stuRecIdArr.length);
-      for (let i = 0; i < stuRecIdArr.length; i++) {
-        console.log("stuRecArr:", stuRecIdArr[i]);
-      }
-      // console.log("Data:", data);
+
       try {
         for (let i = 0; i < data.students_cart.length; i++) {
           if (data.students_cart[i].First_Communion_Date == "") {
             data.students_cart[i].First_Communion_Date = null;
           }
-
-          console.log("ITERATING");
           const response = await axios.put("/api/updateStudent", {
             id: stuRecIdArr[i],
             fields: data.students_cart[i],

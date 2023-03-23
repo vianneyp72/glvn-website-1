@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 
 export default function RegConfirmation() {
   const { user } = useUser();
-  console.log("USER: ", user);
 
   const { locale } = useRouter();
   const { t: translate } = useTranslation("confirmation");
@@ -108,7 +107,6 @@ export default function RegConfirmation() {
       .firstPage();
     let str =
       records[0].fields.Family_ID + "/" + records[0].fields.Total_Reg_Cost;
-    console.log(str);
     return str;
   };
 
@@ -120,7 +118,7 @@ export default function RegConfirmation() {
     <div className="min-h-screen bg-primary overflow-auto text-white ">
       <p className="pt-10 pb-10 mb-10"></p>
       <div className="flex justify-center">
-        <div className="bg-secondary shadow-lg p-10 rounded-lg w-2/3 sm:w-3/4 m:w-1/2 lg:w-1/2 mb-4">
+        <div className="bg-secondary shadow-lg p-10 rounded-lg w-5/6 sm:w-3/4 m:w-1/2 lg:w-1/2 mb-4">
           <h3 className="flex justify-center font-bold text-4xl sm:text-6xl pb-3">
             {translate("Registered")}!
           </h3>
@@ -188,7 +186,7 @@ export default function RegConfirmation() {
             <div className="flex justify-center">
               <div
                 id="information-container"
-                className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl md:w-2/3"
+                className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl w-full md:w-2/3"
               >
                 <div
                   id="family-container"
