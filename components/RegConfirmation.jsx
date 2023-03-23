@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {parentTable, studentTable} from "../pages/api/utils/airtable";
+import { parentTable, studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -25,10 +25,9 @@ export default function RegConfirmation() {
     }
 
     let bigString = (await getInfo()).split("/");
-    document.getElementById("family-container").append(
-        user.family_name + " Family\n\n",
-        "Family ID: " + bigString[0],
-    )
+    document
+      .getElementById("family-container")
+      .append(user.family_name + " Family\n\n", "Family ID: " + bigString[0]);
     // document
     //   .getElementById("information-container")
     //   .append(
@@ -39,7 +38,10 @@ export default function RegConfirmation() {
   };
 
   function formatMoney(input) {
-    return (Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) / 100).toFixed(2)
+    return (
+      Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) /
+      100
+    ).toFixed(2);
   }
 
   useEffect(() => {
@@ -47,20 +49,26 @@ export default function RegConfirmation() {
       if (user) {
         const sub = user.sub;
         const records = await studentTable
-            .select({
-              filterByFormula: `{userID} = "${sub}"`,
-            })
-            .firstPage();
+          .select({
+            filterByFormula: `{userID} = "${sub}"`,
+          })
+          .firstPage();
         for (let i = 0; i < records.length; i++) {
-          document.getElementById("grade-container").append(
-              "Student " + (i+1) + " (" + records[i].fields.Grade + ")\n\n"
-          )
-          document.getElementById("price-container").append(
-              "$" + formatMoney(records[i].fields.Grade_Price) + "\n\n"
-          )
+          document
+            .getElementById("grade-container")
+            .append(
+              translate("Student ") +
+                (i + 1) +
+                " (" +
+                records[i].fields.Grade +
+                ")\n\n"
+            );
+          document
+            .getElementById("price-container")
+            .append("$" + formatMoney(records[i].fields.Grade_Price) + "\n\n");
         }
       }
-    }
+    };
     getExistingStudentsInfo();
   }, [user]);
 
@@ -69,25 +77,23 @@ export default function RegConfirmation() {
       if (user) {
         const sub = user.sub;
         const records = await parentTable
-            .select({
-              filterByFormula: `{userID} = "${sub}"`,
-            })
-            .firstPage();
-        document.getElementById("left-side-container").append(
-            "Cleaning Fee\n\n"
-        )
-        document.getElementById("right-side-container").append(
-            "$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n"
-        )
-        document.getElementById("string-total-container").append(
-            "Total\n\n"
-        )
+          .select({
+            filterByFormula: `{userID} = "${sub}"`,
+          })
+          .firstPage();
+        document
+          .getElementById("left-side-container")
+          .append("Cleaning Fee\n\n");
+        document
+          .getElementById("right-side-container")
+          .append("$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n");
+        document.getElementById("string-total-container").append("Total\n\n");
 
-        document.getElementById("number-total-container").append(
-            "$" + formatMoney(records[0].fields.Total_Reg_Cost)
-        )
+        document
+          .getElementById("number-total-container")
+          .append("$" + formatMoney(records[0].fields.Total_Reg_Cost));
       }
-    }
+    };
     getExistingParentsInfo();
   }, [user]);
 
@@ -179,42 +185,51 @@ export default function RegConfirmation() {
 
             <div
               id="information-container"
-              className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl">
-              <div id="family-container" className="flex justify-start pt-10 font-bold"/>
-              <p id="thanks-container" className="flex justify-start pt-5 text-onhover text-2xl font-bold">Thanks for Registering</p>
+              className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl"
+            >
+              <div
+                id="family-container"
+                className="flex justify-start pt-10 font-bold"
+              />
+              <p
+                id="thanks-container"
+                className="flex justify-start pt-5 text-onhover text-2xl font-bold"
+              >
+                {translate("Thanks for Registering")}
+              </p>
               <p className="whitespace-pre font-bold text-4xl mb-4 pt-4">
                 {translate("Summary")}
               </p>
               <div className="border border-dashed border-gray-500 mb-10" />
               {/*fix padding pls*/}
-              <div id="student-cost-container" className="flex justify-between font-bold">
-                <div id="grade-container"/>
-                <div id="price-container"/>
+              <div
+                id="student-cost-container"
+                className="flex justify-between font-bold"
+              >
+                <div id="grade-container" />
+                <div id="price-container" />
               </div>
               <div id="misc-container" className="flex justify-between">
-                <div id="left-side-container" className="text-sm"/>
-                <div id="right-side-container"/>
+                <div id="left-side-container" className="text-sm" />
+                <div id="right-side-container" />
               </div>
               <div className="flex justify-between text-sm xs:text-xs sm:text-4xl">
-                <div id="string-total-container" className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"/>
-                <div id="number-total-container" className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"/>
+                <div
+                  id="string-total-container"
+                  className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                />
+                <div
+                  id="number-total-container"
+                  className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                />
               </div>
             </div>
           </p1>
           <br />
 
           <div className="text-center">
-            <p className="font-bold text-gray-300 text-sm">
-              {translate(
-                "By the request of our pastor, each family is asked to contribute $25/family to help the parish with the cost of cleaning the school"
-              )}
-              .
-            </p>
             <br />
             <br />
-            <p className="font-bold text-white">
-              Registration after May 8th will result in late fees of $20/child
-            </p>
           </div>
 
           <div className="border border-gray-700 mb-10"></div>
