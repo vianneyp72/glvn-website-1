@@ -83,11 +83,13 @@ export default function RegConfirmation() {
           .firstPage();
         document
           .getElementById("left-side-container")
-          .append("Cleaning Fee\n\n");
+          .append(translate("Cleaning Fee")) + "\n\n";
         document
           .getElementById("right-side-container")
           .append("$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n");
-        document.getElementById("string-total-container").append("Total\n\n");
+        document
+          .getElementById("string-total-container")
+          .append(translate("Total")) + "\n";
 
         document
           .getElementById("number-total-container")
@@ -213,15 +215,17 @@ export default function RegConfirmation() {
                 <div id="left-side-container" className="text-sm" />
                 <div id="right-side-container" />
               </div>
-              <div className="flex justify-between text-sm xs:text-xs sm:text-4xl">
-                <div
-                  id="string-total-container"
-                  className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                />
-                <div
-                  id="number-total-container"
-                  className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                />
+              <div className="pb-4">
+                <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3">
+                  <div
+                    id="string-total-container"
+                    className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                  />
+                  <div
+                    id="number-total-container"
+                    className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                  />
+                </div>
               </div>
             </div>
           </p1>
