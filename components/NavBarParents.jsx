@@ -111,7 +111,7 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-1 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-xs sm:text">
-                <div className="text-white mr-3 hover:bg-onhover px-3 py-1 mx-4 rounded-md flex">
+                <div className="text-white mr-3 hover:bg-onhover px-1 py-1 mx-4 rounded-md flex">
                   {locale === "en" && (
                     <button onClick={handleClick("vn")}>
                       <svg
@@ -155,7 +155,7 @@ export default function NavBar() {
                 {!user ? (
                   <a
                     href="/api/auth/login"
-                    className="text-white mr-3 hover:bg-onhover px-3 py-1 rounded-md"
+                    className="text-white mr-3 hover:bg-onhover px-1 py-1 rounded-md"
                   >
                     {translate("Sign In")}
                   </a>
@@ -171,7 +171,7 @@ export default function NavBar() {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button> */}
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative ml-1">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
