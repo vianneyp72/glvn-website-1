@@ -205,7 +205,7 @@ export default function RegConfirmation() {
                 </div>
                 <p
                   id="thanks-container"
-                  className="flex justify-start pt-5 text-onhover small:text-sm md:text-2xl font-bold"
+                  className="flex justify-start pt-5 text-onhover small:text-sm sm:text-2xl font-bold"
                 >
                   {translate("Thanks for Registering")}
                 </p>
