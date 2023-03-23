@@ -176,7 +176,7 @@ const StudentProfile = () => {
 
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="max-w-4xl my-6 mx-10 md:mx-0 bg-secondary shadow-md rounded-lg p-10"
+              className="max-w-4xl my-6 mx-10 md:mx-0 bg-secondary shadow-md rounded-lg p-10 w-1/3"
             >
               <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul
