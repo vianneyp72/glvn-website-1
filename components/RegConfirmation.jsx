@@ -185,46 +185,48 @@ export default function RegConfirmation() {
               </table>
             </div>
 
-            <div
-              id="information-container"
-              className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl"
-            >
+            <div className="flex justify-center">
               <div
-                id="family-container"
-                className="flex justify-start pt-10 font-bold"
-              />
-              <p
-                id="thanks-container"
-                className="flex justify-start pt-5 text-onhover text-2xl font-bold"
+                id="information-container"
+                className="bg-gray-100 text-black rounded-md whitespace-pre px-6 pt-4 shadow-xl md:w-2/3"
               >
-                {translate("Thanks for Registering")}
-              </p>
-              <p className="whitespace-pre font-bold text-4xl mb-4 pt-4">
-                {translate("Summary")}
-              </p>
-              <div className="border border-dashed border-gray-500 mb-10" />
-              {/*fix padding pls*/}
-              <div
-                id="student-cost-container"
-                className="flex justify-between font-bold"
-              >
-                <div id="grade-container" />
-                <div id="price-container" />
-              </div>
-              <div id="misc-container" className="flex justify-between">
-                <div id="left-side-container" className="text-sm" />
-                <div id="right-side-container" />
-              </div>
-              <div className="pb-4">
-                <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3">
-                  <div
-                    id="string-total-container"
-                    className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                  />
-                  <div
-                    id="number-total-container"
-                    className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                  />
+                <div
+                  id="family-container"
+                  className="flex justify-start pt-10 font-bold"
+                />
+                <p
+                  id="thanks-container"
+                  className="flex justify-start pt-5 text-onhover text-2xl font-bold"
+                >
+                  {translate("Thanks for Registering")}
+                </p>
+                <p className="whitespace-pre font-bold text-4xl mb-4 pt-4">
+                  {translate("Summary")}
+                </p>
+                <div className="border border-dashed border-gray-500 mb-10" />
+                {/*fix padding pls*/}
+                <div
+                  id="student-cost-container"
+                  className="flex justify-between font-bold"
+                >
+                  <div id="grade-container" />
+                  <div id="price-container" />
+                </div>
+                <div id="misc-container" className="flex justify-between">
+                  <div id="left-side-container" className="text-sm" />
+                  <div id="right-side-container" />
+                </div>
+                <div className="pb-4">
+                  <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3">
+                    <div
+                      id="string-total-container"
+                      className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                    />
+                    <div
+                      id="number-total-container"
+                      className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
