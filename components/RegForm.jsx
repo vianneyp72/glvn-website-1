@@ -80,7 +80,7 @@ const RegForm = () => {
   const router = useRouter();
 
   const handleConfRedirect = () => {
-    push("/registration-confirmation-page", undefined, { locale });
+    router.push("/registration-confirmation-page", undefined, { locale });
   };
 
   const onSubmit = async (data) => {
