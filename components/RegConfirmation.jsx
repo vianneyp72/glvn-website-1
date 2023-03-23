@@ -6,12 +6,20 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useFirstRender } from "../utils/useFirstRender";
 
 export default function RegConfirmation() {
   const { user } = useUser();
 
   const { locale } = useRouter();
   const { t: translate } = useTranslation("confirmation");
+
+  // const firstRender = useFirstRender();
+  // useEffect(() => {
+  //   if (firstRender) {
+  //     window.location.reload();
+  //   }
+  // }, [firstRender]);
 
   let myData;
 
@@ -66,7 +74,7 @@ export default function RegConfirmation() {
       }
     };
     getExistingStudentsInfo();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const getExistingParentsInfo = async () => {
@@ -93,7 +101,7 @@ export default function RegConfirmation() {
       }
     };
     getExistingParentsInfo();
-  }, []);
+  }, [user]);
 
   const getInfo = async () => {
     const sub = user.sub;
