@@ -158,9 +158,8 @@ const RegForm = () => {
           delete data.students_cart[i].First_Communion_Date;
         }
         let assignedGrade = getAgeAtCutOff(data.students_cart[i].Birthday);
-        console.log(assignedGrade);
 
-        //////
+        data.students_cart[i].Grade = assignedGrade;
       }
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
@@ -169,10 +168,6 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
-      for (let i = 0; i < studentArray.length; i++) {
-        // updateStudentGrade
-        updateStudentGrade(studentArray[i]);
-      }
       console.log("Form submitted successfully:", responses);
       // handleConfRedirect();
     } catch (error) {
