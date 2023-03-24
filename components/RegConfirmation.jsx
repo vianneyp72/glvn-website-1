@@ -32,7 +32,7 @@ export default function RegConfirmation() {
           filterByFormula: `{userID} = "${user.sub}"`,
         })
         .firstPage();
-      setFamID("ID: " + records[0].fields.Family_ID);
+      setFamID(+records[0].fields.Family_ID);
       setTotalCost(formatMoney(records[0].fields.Total_Reg_Cost));
       setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
     }
@@ -54,14 +54,14 @@ export default function RegConfirmation() {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("UPDATED studentArray:", studentArray);
-  // }, [studentArray]);
+  useEffect(() => {
+    console.log("UPDATED studentArray:", studentArray);
+  }, [studentArray]);
 
-  // useEffect(() => {
-  //   console.log("STATE FAMILY ID:", famID);
-  //   console.log("STATE TotalCost:", totalCost);
-  // }, [famID, totalCost]);
+  useEffect(() => {
+    console.log("STATE FAMILY ID:", famID);
+    console.log("STATE TotalCost:", totalCost);
+  }, [famID, totalCost]);
 
   // function refreshWindow() {
   //   const reloadCount = Number(sessionStorage.getItem("reloadCount")) || 0;
@@ -162,7 +162,7 @@ export default function RegConfirmation() {
                     id="family-id-container"
                     className="flex justify-start pt-10"
                   >
-                    {famID}
+                    FamilyID: {famID}
                   </div>
                 </div>
                 <p
