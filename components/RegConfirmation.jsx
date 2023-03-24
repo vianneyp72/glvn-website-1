@@ -181,7 +181,7 @@ export default function RegConfirmation() {
                   {studentArray.map((student, index) => (
                     <div
                       key={student.id}
-                      className="flex justify-between text-xl font-bold py-2"
+                      className="flex justify-between text-md xs:text-md sm:text-xl font-bold py-2"
                     >
                       <p className="font-bold">
                         Student {index + 1} ({student.fields.Grade})
@@ -198,16 +198,13 @@ export default function RegConfirmation() {
                   <div id="right-side-container">${cleaningCost}</div>
                 </div>
                 <div className="pb-4">
-                  <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3 pt-3">
-                    <div
-                      id="string-total-container"
-                      className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                    >
+                  <div className="flex justify-between text-lg xs:text-lg sm:text-2xl lg:text-4xl mb-3 pt-3">
+                    <div id="string-total-container" className="font-bold">
                       Total
                     </div>
                     <div
                       id="number-total-container"
-                      className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
+                      className="font-bold text-onhover"
                     >
                       ${totalCost}
                     </div>
