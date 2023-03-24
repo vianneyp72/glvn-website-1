@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 import { parentTable, studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { useFirstRender } from "../utils/useFirstRender";
 
 export default function RegConfirmation() {
   const { user } = useUser();
@@ -16,77 +15,67 @@ export default function RegConfirmation() {
 
   function formatMoney(input) {
     return (
-        Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) /
-        100
+      Math.round(input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") * 100) /
+      100
     ).toFixed(2);
   }
 
-  const getExistingParentsInfo = async () => {
-    if (user) {
-      const sub = user.sub;
-      const records = await parentTable
-          .select({
-            filterByFormula: `{userID} = "${sub}"`,
-          })
-          .firstPage();
-      document
-          .getElementById("family-container")
-          .append(user.family_name + " Family\n\n");
-      document
-          .getElementById("family-id-container")
-          .append("ID: " + records[0].fields.Family_ID);
-      document
-          .getElementById("left-side-container")
-          .append(translate("Cleaning Fee")) + "\n\n";
-      document
-          .getElementById("right-side-container")
-          .append("$" + formatMoney(records[0].fields.Cleaning_Fee) + "\n\n");
-      document
-          .getElementById("string-total-container")
-          .append(translate("Total")) + "\n";
-
-      document
-          .getElementById("number-total-container")
-          .append("$" + formatMoney(records[0].fields.Total_Reg_Cost));
-      console.log("done appending parent info")
-    }
-  };
-
-  let studentCount = 0;
-
-  const getExistingStudentsInfo = async () => {
-    if (user) {
-      const sub = user.sub;
-      const records = await studentTable
-          .select({
-            filterByFormula: `{userID} = "${sub}"`,
-          })
-          .firstPage();
-      console.log("RECORDS: " + records)
-
-      for (let i = 0; i < records.length; i++) {
-        document
-            .getElementById("grade-container")
-            .append(
-                translate("Student") +
-                " " +
-                (i + 1) +
-                " (" +
-                records[i].fields.Grade +
-                ")\n\n"
-            );
-        document
-            .getElementById("price-container")
-            .append("$" + formatMoney(records[i].fields.Grade_Price) + "\n\n");
-        console.log("done appending student info")
-      }
-    }
-  };
+  const [totalCost, setTotalCost] = useState();
+  const [cleaningCost, setCleaningCost] = useState();
+  const [famID, setFamID] = useState();
+  const [studentArray, setStudentArray] = useState([]);
 
   useEffect(() => {
-    getExistingParentsInfo();
-    getExistingStudentsInfo();
-  }, [])
+    async function fetchParentData() {
+      const records = await parentTable
+        .select({
+          filterByFormula: `{userID} = "${user.sub}"`,
+        })
+        .firstPage();
+      setFamID("ID: " + records[0].fields.Family_ID);
+      setTotalCost(formatMoney(records[0].fields.Total_Reg_Cost));
+      setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
+    }
+    fetchParentData();
+  }, []);
+
+  useEffect(() => {
+    (async function fetchStudentData() {
+      const records = await studentTable
+        .select({
+          filterByFormula: `{userID} = "${user.sub}"`,
+        })
+        .firstPage();
+      let newStudentArray = [];
+      for (let i = 0; i < records.length; i++) {
+        newStudentArray.push(records[i]);
+      }
+      setStudentArray(newStudentArray);
+    })();
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("UPDATED studentArray:", studentArray);
+  // }, [studentArray]);
+
+  // useEffect(() => {
+  //   console.log("STATE FAMILY ID:", famID);
+  //   console.log("STATE TotalCost:", totalCost);
+  // }, [famID, totalCost]);
+
+  // function refreshWindow() {
+  //   const reloadCount = Number(sessionStorage.getItem("reloadCount")) || 0;
+  //   if (reloadCount < 1) {
+  //     sessionStorage.setItem("reloadCount", String(reloadCount + 1));
+  //     window.location.reload();
+  //   } else {
+  //     sessionStorage.removeItem("reloadCount");
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   refreshWindow();
+  // }, []);
 
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white ">
@@ -166,11 +155,15 @@ export default function RegConfirmation() {
                   <div
                     id="family-container"
                     className="flex justify-start pt-10 font-bold text-2xl"
-                  />
+                  >
+                    {user.family_name} Family
+                  </div>
                   <div
                     id="family-id-container"
                     className="flex justify-start pt-10"
-                  />
+                  >
+                    {famID}
+                  </div>
                 </div>
                 <p
                   id="thanks-container"
@@ -183,27 +176,41 @@ export default function RegConfirmation() {
                 </p>
                 <div className="border border-dashed border-gray-500 mb-10" />
                 {/*fix padding pls*/}
-                <div
-                  id="student-cost-container"
-                  className="flex justify-between font-bold"
-                >
-                  <div id="grade-container" />
-                  <div id="price-container" />
+
+                <div>
+                  {studentArray.map((student, index) => (
+                    <div
+                      key={student.id}
+                      className="flex justify-between text-xl font-bold py-2"
+                    >
+                      <p className="font-bold">
+                        Student {index + 1} ({student.fields.Grade})
+                      </p>
+                      <p>${formatMoney(student.fields.Grade_Price)}</p>
+                    </div>
+                  ))}
                 </div>
+
                 <div id="misc-container" className="flex justify-between">
-                  <div id="left-side-container" className="text-sm" />
-                  <div id="right-side-container" />
+                  <div id="left-side-container" className="text-sm">
+                    Cleaning Fee
+                  </div>
+                  <div id="right-side-container">${cleaningCost}</div>
                 </div>
                 <div className="pb-4">
-                  <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3">
+                  <div className="flex justify-between text-sm xs:text-xs sm:text-4xl mb-3 pt-3">
                     <div
                       id="string-total-container"
                       className="font-bold text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                    />
+                    >
+                      Total
+                    </div>
                     <div
                       id="number-total-container"
                       className="font-bold text-onhover text-lg xs:text-lg sm:text-2xl lg:text-4xl"
-                    />
+                    >
+                      ${totalCost}
+                    </div>
                   </div>
                 </div>
               </div>
