@@ -83,6 +83,61 @@ const RegForm = () => {
     router.push("/registration-confirmation-page", undefined, { locale });
   };
 
+  function getAgeAtCutOff(birthdate) {
+    const cutOffDay = new Date("2023-09-10");
+    // calculate the difference between the birthdate and cutoff date
+    const diff = cutOffDay.getTime() - new Date(birthdate).getTime();
+    // convert the difference from milliseconds to years
+    const age = new Date(diff).getUTCFullYear() - 1970;
+    if (age === 5) {
+      return "VL 1";
+    } else if (age === 6) {
+      return "VL 2";
+    } else if (age === 7) {
+      return "Lớp 1";
+    } else if (age === 8) {
+      return "Lớp 2";
+    } else if (age === 9) {
+      return "Lớp 3";
+    } else if (age === 10) {
+      return "Lớp 4";
+    } else if (age === 11) {
+      return "Lớp 5";
+    } else if (age === 12) {
+      return "Lớp 6";
+    } else if (age === 13) {
+      return "Lớp 7";
+    } else if (age === 14) {
+      return "Lớp 8";
+    } else if (age === 15) {
+      return "Lớp 9";
+    } else if (age === 16) {
+      return "Lớp 10";
+    } else {
+      return "Unknown Grade/Age"; // return a default code if age is not within the specified range
+    }
+  }
+
+  // async function updateStudentGrade(recID) {
+  //   try {
+  //     console.log("CURRENT ID", recID);
+  //     const gradeAssignment = calculateGrade(getAgeAtCutOff(student.Birthday));
+  //     console.log("gradeAssignment", gradeAssignment);
+  //     // console.log(gradeAssignment);
+  //     // student.gradeAssignment = gradeAssignment;
+  //     const response = await axios.put("/api/updateStudent", {
+  //       id: recID,
+  //       fields: { Grade: "Lớp 2" },
+  //     });
+  //     // console.log(
+  //     //   `Student record with ID ${recID} updated successfully:`,
+  //     //   response.data
+  //     // );
+  //   } catch (error) {
+  //     console.error(`Error updating student record with ID ${recID}:`, error);
+  //   }
+  // }
+
   const onSubmit = async (data) => {
     let existingStudentArray = [];
     let studentArray = [];
@@ -102,6 +157,10 @@ const RegForm = () => {
         if (data.students_cart[i].First_Communion_Date == "") {
           delete data.students_cart[i].First_Communion_Date;
         }
+        let assignedGrade = getAgeAtCutOff(data.students_cart[i].Birthday);
+        console.log(assignedGrade);
+
+        //////
       }
       const responses = await Promise.all(
         data.students_cart.map((item) => axios.post("/api/createStudent", item))
@@ -110,8 +169,12 @@ const RegForm = () => {
         studentArray.push(responses[i].data.id);
       }
       addStudentToFamily(studentArray);
+      for (let i = 0; i < studentArray.length; i++) {
+        // updateStudentGrade
+        updateStudentGrade(studentArray[i]);
+      }
       console.log("Form submitted successfully:", responses);
-      handleConfRedirect();
+      // handleConfRedirect();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
