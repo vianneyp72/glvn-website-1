@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { parentTable, studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
@@ -32,7 +31,7 @@ export default function RegConfirmation() {
           filterByFormula: `{userID} = "${user.sub}"`,
         })
         .firstPage();
-      setFamID(+records[0].fields.Family_ID);
+      setFamID(records[0].fields.Family_ID);
       setTotalCost(formatMoney(records[0].fields.Total_Reg_Cost));
       setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
     }
