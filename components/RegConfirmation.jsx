@@ -24,43 +24,34 @@ export default function RegConfirmation() {
   const [famID, setFamID] = useState();
   const [studentArray, setStudentArray] = useState([]);
 
-  useEffect(() => {
-    async function fetchParentData() {
-      const records = await parentTable
-        .select({
-          filterByFormula: `{userID} = "${user.sub}"`,
-        })
-        .firstPage();
-      setFamID(records[0].fields.Family_ID);
-      setTotalCost(formatMoney(records[0].fields.Total_Reg_Cost));
-      setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
+  async function fetchParentData() {
+    const records = await parentTable
+      .select({
+        filterByFormula: `{userID} = "${user.sub}"`,
+      })
+      .firstPage();
+    setFamID(records[0].fields.Family_ID);
+    setTotalCost(formatMoney(records[0].fields.Total_Reg_Cost));
+    setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
+  }
+
+  async function fetchStudentData() {
+    const records = await studentTable
+      .select({
+        filterByFormula: `{userID} = "${user.sub}"`,
+      })
+      .firstPage();
+    let newStudentArray = [];
+    for (let i = 0; i < records.length; i++) {
+      newStudentArray.push(records[i]);
     }
+    setStudentArray(newStudentArray);
+  }
+
+  useEffect(() => {
     fetchParentData();
-  }, [totalCost, cleaningCost, famID]);
-
-  useEffect(() => {
-    (async function fetchStudentData() {
-      const records = await studentTable
-        .select({
-          filterByFormula: `{userID} = "${user.sub}"`,
-        })
-        .firstPage();
-      let newStudentArray = [];
-      for (let i = 0; i < records.length; i++) {
-        newStudentArray.push(records[i]);
-      }
-      setStudentArray(newStudentArray);
-    })();
-  }, [studentArray]);
-
-  useEffect(() => {
-    console.log("UPDATED studentArray:", studentArray);
-  }, [studentArray]);
-
-  useEffect(() => {
-    console.log("STATE FAMILY ID:", famID);
-    console.log("STATE TotalCost:", totalCost);
-  }, [famID, totalCost]);
+    fetchStudentData();
+  }, [totalCost, cleaningCost, famID, studentArray]);
 
   // function refreshWindow() {
   //   const reloadCount = Number(sessionStorage.getItem("reloadCount")) || 0;

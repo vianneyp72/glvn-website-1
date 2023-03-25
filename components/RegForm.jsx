@@ -89,7 +89,7 @@ const RegForm = () => {
     const diff = cutOffDay.getTime() - new Date(birthdate).getTime();
     // convert the difference from milliseconds to years
     const age = new Date(diff).getUTCFullYear() - 1970;
-    if (age === 5) {
+    if (age <= 5) {
       return "VL 1";
     } else if (age === 6) {
       return "VL 2";
@@ -111,7 +111,7 @@ const RegForm = () => {
       return "Lớp 8";
     } else if (age === 15) {
       return "Lớp 9";
-    } else if (age === 16) {
+    } else if (age >= 16) {
       return "Lớp 10";
     } else {
       return "Unknown Grade/Age"; // return a default code if age is not within the specified range
