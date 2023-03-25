@@ -169,7 +169,7 @@ const RegForm = () => {
       }
       addStudentToFamily(studentArray);
       console.log("Form submitted successfully:", responses);
-      // handleConfRedirect();
+      handleConfRedirect();
     } catch (error) {
       console.error("Error submitting form:", error);
     }

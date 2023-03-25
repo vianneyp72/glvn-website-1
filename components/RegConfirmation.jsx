@@ -36,7 +36,7 @@ export default function RegConfirmation() {
       setCleaningCost(formatMoney(records[0].fields.Cleaning_Fee));
     }
     fetchParentData();
-  }, []);
+  }, [totalCost, cleaningCost, famID]);
 
   useEffect(() => {
     (async function fetchStudentData() {
@@ -51,7 +51,7 @@ export default function RegConfirmation() {
       }
       setStudentArray(newStudentArray);
     })();
-  }, []);
+  }, [studentArray]);
 
   useEffect(() => {
     console.log("UPDATED studentArray:", studentArray);
