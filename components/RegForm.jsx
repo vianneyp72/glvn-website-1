@@ -118,26 +118,6 @@ const RegForm = () => {
     }
   }
 
-  // async function updateStudentGrade(recID) {
-  //   try {
-  //     console.log("CURRENT ID", recID);
-  //     const gradeAssignment = calculateGrade(getAgeAtCutOff(student.Birthday));
-  //     console.log("gradeAssignment", gradeAssignment);
-  //     // console.log(gradeAssignment);
-  //     // student.gradeAssignment = gradeAssignment;
-  //     const response = await axios.put("/api/updateStudent", {
-  //       id: recID,
-  //       fields: { Grade: "Lớp 2" },
-  //     });
-  //     // console.log(
-  //     //   `Student record with ID ${recID} updated successfully:`,
-  //     //   response.data
-  //     // );
-  //   } catch (error) {
-  //     console.error(`Error updating student record with ID ${recID}:`, error);
-  //   }
-  // }
-
   const onSubmit = async (data) => {
     let existingStudentArray = [];
     let studentArray = [];
