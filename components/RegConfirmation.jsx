@@ -53,20 +53,6 @@ export default function RegConfirmation() {
     fetchStudentData();
   }, [totalCost, cleaningCost, famID, studentArray]);
 
-  // function refreshWindow() {
-  //   const reloadCount = Number(sessionStorage.getItem("reloadCount")) || 0;
-  //   if (reloadCount < 1) {
-  //     sessionStorage.setItem("reloadCount", String(reloadCount + 1));
-  //     window.location.reload();
-  //   } else {
-  //     sessionStorage.removeItem("reloadCount");
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   refreshWindow();
-  // }, []);
-
   return (
     <div className="min-h-screen bg-primary overflow-auto text-white ">
       <p className="pt-10 pb-10 mb-10"></p>
@@ -174,7 +160,8 @@ export default function RegConfirmation() {
                       className="flex justify-between text-md xs:text-md sm:text-xl font-bold py-2"
                     >
                       <p className="font-bold">
-                        Student {index + 1} ({student.fields.Grade})
+                        {translate("Student")} {index + 1} (
+                        {student.fields.Grade})
                       </p>
                       <p>${formatMoney(student.fields.Grade_Price)}</p>
                     </div>
@@ -183,14 +170,14 @@ export default function RegConfirmation() {
 
                 <div id="misc-container" className="flex justify-between">
                   <div id="left-side-container" className="text-sm">
-                    Cleaning Fee
+                    {translate("Cleaning Fee")}
                   </div>
                   <div id="right-side-container">${cleaningCost}</div>
                 </div>
                 <div className="pb-4">
                   <div className="flex justify-between text-lg xs:text-lg sm:text-2xl lg:text-4xl mb-3 pt-3">
                     <div id="string-total-container" className="font-bold">
-                      Total
+                      {translate("Total")}
                     </div>
                     <div
                       id="number-total-container"
