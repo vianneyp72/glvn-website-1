@@ -4,7 +4,15 @@ import {
   minifyRecords,
 } from "./utils/airtable";
 
-export default async (req, res) => {
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+
+const handler = async (req, res) => {
+  const session = getSession(req, res);
+  if (!session) {
+    res.status(401).json({ msg: "Unauthorized" });
+    return;
+  }
+
   const {
     Family_ID,
     Grade,
@@ -42,3 +50,5 @@ export default async (req, res) => {
     res.json({ msg: "Something went wrong" });
   }
 };
+
+export default withApiAuthRequired(handler);
