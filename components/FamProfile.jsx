@@ -9,7 +9,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 const FamProfile = () => {
-  const { locale, push } = useRouter();
+  const { locale } = useRouter();
   const { t: translate } = useTranslation("familyprofile");
 
   const { user } = useUser();
