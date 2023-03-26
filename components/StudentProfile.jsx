@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm, control, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import { studentTable } from "../pages/api/utils/airtable";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -84,7 +84,6 @@ const StudentProfile = () => {
             filterByFormula: `{userid} = "${sub}"`,
           })
           .firstPage();
-        let count = 0;
         for (let i = 0; i < records.length; i++) {
           stuRecIdArr.push(records[i].id);
         }
@@ -464,7 +463,6 @@ const StudentProfile = () => {
               </div>
             </form>
           </div>
-          <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         </body>
       </>
     </div>

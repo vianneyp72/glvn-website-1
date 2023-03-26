@@ -11,7 +11,7 @@
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
     // I suggest you add at least those two rules:
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "warn"
     // "@typescript-eslint/no-explicit-any": "error"
   },
   "env": {

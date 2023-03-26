@@ -166,12 +166,12 @@ const FamProfile = () => {
                   {translate(
                     "Your Family Profile has been Successfully updated."
                   )}{" "}
-                  <a
+                  <Link
                     href="/registration-page"
                     class="font-semibold underline hover:no-underline"
                   >
                     {translate("Register Here!")}
-                  </a>{" "}
+                  </Link>{" "}
                   {translate("Or click on the Register button above!")}
                 </div>
               </div>
@@ -720,7 +720,6 @@ const FamProfile = () => {
               </div>
             </form>
           </div>
-          <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         </body>
       </>
     </div>

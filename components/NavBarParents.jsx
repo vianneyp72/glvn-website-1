@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -14,7 +14,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { locale, locales, push } = useRouter();
+  const { locale, push } = useRouter();
   const router = useRouter();
 
   const { t: translate } = useTranslation("navbar");
@@ -41,10 +41,10 @@ export default function NavBar() {
     }
   }, [theme]);
 
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-  const { user, isLoading, error } = useUser();
+  // const handleThemeSwitch = () => {
+  //   setTheme(theme === "dark" ? "light" : "dark");
+  // };
+  const { user } = useUser();
 
   const navigation = [
     {
@@ -153,12 +153,12 @@ export default function NavBar() {
                 </div>
 
                 {!user ? (
-                  <a
+                  <Link
                     href="/api/auth/login"
                     className="text-white mr-3 hover:bg-onhover px-1/2 py-1 rounded-md"
                   >
                     {translate("Sign In")}
-                  </a>
+                  </Link>
                 ) : (
                   <></>
                 )}
@@ -230,7 +230,7 @@ export default function NavBar() {
                       {user ? (
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               href="/api/auth/logout"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
@@ -238,7 +238,7 @@ export default function NavBar() {
                               )}
                             >
                               {translate("Sign out")}
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       ) : (
