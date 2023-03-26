@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 export default function RegWelcome() {
-  const { locale, locales, push } = useRouter();
+  const { locale } = useRouter();
   const { t: translate } = useTranslation("welcome");
 
   // const handleClick = (l) => {
